@@ -1,7 +1,7 @@
 import json
 import sys
 import os
-from main.utilities.log import Logger
+from utilities.log import Logger
 import jmespath  # http://jmespath.org/tutorial.html
 import shutil
 from pathlib import Path

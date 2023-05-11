@@ -10,8 +10,8 @@ import os
 import sys
 import RPi.GPIO as GPIO
 
-from main.utilities.log import Logger
-from main.utilities.config import Config
+from utilities.log import Logger
+from utilities.config import Config
 
 log = Logger().setup_logger('CALIBRATE SERVOS')
 
