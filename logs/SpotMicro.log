@@ -68,3 +68,44 @@
 2023-05-11 00:24:26,504 - SpotMicro Remote controller      - INFO - Connected to device: Wireless Controller
 2023-05-11 00:24:26,505 - SpotMicro Remote controller      - INFO - 8 axes found: lx, ly, lz, rx, ry, rz, hat0x, hat0y
 2023-05-11 00:24:26,505 - SpotMicro Remote controller      - INFO - 13 buttons found: a, b, x, y, tl, tr, tl2, tr2, select, start, mode, thumbl, thumbr
+2023-05-11 14:02:28,379 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-11 14:02:28,392 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller, serial_controller, lcd_screen_controller
+2023-05-11 14:02:28,407 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller, motion_controller
+2023-05-11 14:02:28,433 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller, motion_controller
+2023-05-11 14:02:30,922 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller, motion_controller
+2023-05-11 14:02:30,926 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 14:02:30,928 - SpotMicro Remote controller      - INFO - Connected to device: Wireless Controller
+2023-05-11 14:02:30,928 - SpotMicro Remote controller      - INFO - 8 axes found: lx, ly, lz, rx, ry, rz, hat0x, hat0y
+2023-05-11 14:02:30,929 - SpotMicro Remote controller      - INFO - 13 buttons found: a, b, x, y, tl, tr, tl2, tr2, select, start, mode, thumbl, thumbr
+2023-05-11 14:05:18,222 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-11 14:05:18,237 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller, serial_controller, lcd_screen_controller
+2023-05-11 14:05:18,254 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller, motion_controller
+2023-05-11 14:05:18,285 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller, motion_controller
+2023-05-11 14:05:20,769 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller, motion_controller
+2023-05-11 14:05:20,774 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 14:05:20,775 - SpotMicro Remote controller      - INFO - Connected to device: Wireless Controller
+2023-05-11 14:05:20,776 - SpotMicro Remote controller      - INFO - 8 axes found: lx, ly, lz, rx, ry, rz, hat0x, hat0y
+2023-05-11 14:05:20,777 - SpotMicro Remote controller      - INFO - 13 buttons found: a, b, x, y, tl, tr, tl2, tr2, select, start, mode, thumbl, thumbr
+2023-05-11 14:16:53,525 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-11 14:16:53,539 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller, serial_controller, lcd_screen_controller
+2023-05-11 14:16:53,552 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller, motion_controller
+2023-05-11 14:16:53,580 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller, motion_controller
+2023-05-11 14:16:56,072 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller, motion_controller
+2023-05-11 14:16:56,077 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 14:16:56,078 - SpotMicro Remote controller      - INFO - Connected to device: Wireless Controller
+2023-05-11 14:16:56,079 - SpotMicro Remote controller      - INFO - 8 axes found: lx, ly, lz, rx, ry, rz, hat0x, hat0y
+2023-05-11 14:16:56,080 - SpotMicro Remote controller      - INFO - 13 buttons found: a, b, x, y, tl, tr, tl2, tr2, select, start, mode, thumbl, thumbr
+2023-05-11 14:18:29,735 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-11 14:18:29,749 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller, serial_controller, lcd_screen_controller
+2023-05-11 14:18:29,762 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller, motion_controller
+2023-05-11 14:18:29,791 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller, motion_controller
+2023-05-11 14:18:32,284 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller, motion_controller
+2023-05-11 14:18:32,288 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 14:18:32,289 - SpotMicro Remote controller      - INFO - Connected to device: Wireless Controller
+2023-05-11 14:18:32,291 - SpotMicro Remote controller      - INFO - 8 axes found: lx, ly, lz, rx, ry, rz, hat0x, hat0y
+2023-05-11 14:18:32,292 - SpotMicro Remote controller      - INFO - 13 buttons found: a, b, x, y, tl, tr, tl2, tr2, select, start, mode, thumbl, thumbr
+2023-05-11 14:18:35,897 - SpotMicro Motion controller      - INFO - resting
+2023-05-11 14:18:36,668 - SpotMicro Motion controller      - INFO - resting
+2023-05-11 14:18:37,300 - SpotMicro Motion controller      - INFO - resting
+2023-05-11 14:18:45,280 - SpotMicro Motion controller      - INFO - Press START/OPTIONS to enable the servos
+2023-05-11 14:18:45,282 - SpotMicro Motion controller      - INFO - Press START/OPTIONS to enable the servos

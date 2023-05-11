@@ -95,7 +95,7 @@ class RemoteController:
                     states.update(self.button_states)
                     states.update(self.axis_states)
 
-                    # log.debug(states)
+                    log.debug(states)
 
                     self._motion_queue.put(states)
 

@@ -193,21 +193,11 @@ class MotionController:
 
             self._abort_queue = communication_queues['abort_controller']
             self._motion_queue = communication_queues['motion_controller']
-            
-
-            if self.pca9685_2_address:
-                self._lcd_screen_queue.put('motion_controller_1 OK')
-                self._lcd_screen_queue.put('motion_controller_2 OK')
-            else:
-                self._lcd_screen_queue.put('motion_controller_1 OK')
-                self._lcd_screen_queue.put('motion_controller_2 NOK')
 
             self._previous_event = {}
 
         except Exception as e:
             log.error('Motion controller initialization problem', e)
-            self._lcd_screen_queue.put('motion_controller_1 NOK')
-            self._lcd_screen_queue.put('motion_controller_2 NOK')
             try:
                 self.pca9685_1.deinit()
             finally:
