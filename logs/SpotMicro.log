@@ -1,0 +1,70 @@
+2023-05-11 00:13:56,355 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-11 00:13:56,369 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller, serial_controller, lcd_screen_controller
+2023-05-11 00:13:56,382 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller_controller, motion_controller
+2023-05-11 00:13:56,436 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller_controller, motion_controller
+2023-05-11 00:13:58,901 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller_controller, motion_controller
+2023-05-11 00:13:58,905 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:01,409 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:03,914 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:06,418 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:08,922 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:11,426 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:13,930 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:16,435 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:18,939 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:21,443 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:23,946 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:26,450 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:28,954 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:31,458 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:33,962 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:36,466 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:38,971 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:41,475 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:43,979 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:46,483 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:48,987 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:51,491 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:53,995 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:56,499 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:14:59,003 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:15:01,505 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:15:04,009 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:16:28,750 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-11 00:16:28,763 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller, serial_controller, lcd_screen_controller
+2023-05-11 00:16:28,776 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller_controller, motion_controller
+2023-05-11 00:16:28,810 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller_controller, motion_controller
+2023-05-11 00:16:31,293 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller_controller, motion_controller
+2023-05-11 00:16:31,297 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:16:33,801 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:18:43,565 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-11 00:18:43,582 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller, serial_controller, lcd_screen_controller
+2023-05-11 00:18:43,601 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller_controller, motion_controller
+2023-05-11 00:18:43,637 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller_controller, motion_controller
+2023-05-11 00:18:46,113 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller_controller, motion_controller
+2023-05-11 00:18:46,118 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:18:48,622 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:18:51,126 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:18:53,630 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:18:56,143 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:18:58,646 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:19:01,150 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:19:03,654 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:21:39,974 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-11 00:21:39,987 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller, serial_controller, lcd_screen_controller
+2023-05-11 00:21:40,000 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller, motion_controller
+2023-05-11 00:21:40,041 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller, motion_controller
+2023-05-11 00:21:42,518 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller, motion_controller
+2023-05-11 00:21:42,523 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:21:42,525 - SpotMicro Remote controller      - INFO - Connected to device: Wireless Controller
+2023-05-11 00:21:42,527 - SpotMicro Remote controller      - INFO - 8 axes found: lx, ly, lz, rx, ry, rz, hat0x, hat0y
+2023-05-11 00:21:42,528 - SpotMicro Remote controller      - INFO - 13 buttons found: a, b, x, y, tl, tr, tl2, tr2, select, start, mode, thumbl, thumbr
+2023-05-11 00:24:23,946 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-11 00:24:23,963 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller, serial_controller, lcd_screen_controller
+2023-05-11 00:24:23,981 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller, motion_controller
+2023-05-11 00:24:24,022 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller, motion_controller
+2023-05-11 00:24:26,499 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, remote_controller, motion_controller
+2023-05-11 00:24:26,503 - SpotMicro Remote controller      - INFO - The remote controller is not detected, looking for connected devices
+2023-05-11 00:24:26,504 - SpotMicro Remote controller      - INFO - Connected to device: Wireless Controller
+2023-05-11 00:24:26,505 - SpotMicro Remote controller      - INFO - 8 axes found: lx, ly, lz, rx, ry, rz, hat0x, hat0y
+2023-05-11 00:24:26,505 - SpotMicro Remote controller      - INFO - 13 buttons found: a, b, x, y, tl, tr, tl2, tr2, select, start, mode, thumbl, thumbr
