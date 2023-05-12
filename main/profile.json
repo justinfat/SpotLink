@@ -7,8 +7,8 @@
 			"address": "7x27"
 		}]
 	}],
-	"remote_controller": [{
-		"remote_controller": [{
+	"gamepad_controller": [{
+		"gamepad_controller": [{
 			"device": "js0"
 		}]
 	}],

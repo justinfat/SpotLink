@@ -8,7 +8,7 @@ import multiprocessing
 
 from motion_controller.motion_controller import MotionController
 from abort_controller.abort_controller import AbortController
-from remote_controller.remote_controller import RemoteController
+from gamepad_controller.gamepad_controller import GamepadController
 
 log = Logger().setup_logger()
 
@@ -23,9 +23,9 @@ def process_motion_controller(communication_queues):
     motion.do_process_events_from_queues()
 
 
-def process_remote_controller(communication_queues):
-    remote_controller = RemoteController(communication_queues)
-    remote_controller.do_process_events_from_queues()
+def process_gamepad_controller(communication_queues):
+    gamepad_controller = GamepadController(communication_queues)
+    gamepad_controller.do_process_events_from_queues()
 
 
 def create_controllers_queues():
@@ -62,14 +62,14 @@ def main():
 
     # Activate Bluetooth controller
     # Let you move the dog using the bluetooth paired device
-    remote_controller = multiprocessing.Process(target=process_remote_controller,
+    gamepad_controller = multiprocessing.Process(target=process_gamepad_controller,
                                                            args=(communication_queues,))
-    remote_controller.daemon = True
+    gamepad_controller.daemon = True
 
     # Start the threads, queues messages are produced and consumed in those
     abort_controller.start()
     motion_controller.start()
-    remote_controller.start()
+    gamepad_controller.start()
 
     if not abort_controller.is_alive():
         log.error("SpotMicro can't work without abort_controller")
@@ -79,14 +79,14 @@ def main():
         log.error("SpotMicro can't work without motion_controller")
         sys.exit(1)
 
-    if not remote_controller:
-        log.error("SpotMicro can't work without remote_controller")
+    if not gamepad_controller:
+        log.error("SpotMicro can't work without gamepad_controller")
         sys.exit(1)
 
     # Make sure the thread/process ends
     abort_controller.join()
     motion_controller.join()
-    remote_controller.join()
+    gamepad_controller.join()
 
     close_controllers_queues(communication_queues)
 

@@ -241,7 +241,7 @@ class MotionController:
                         #self.rotate_CCW()
                         #self._serial_queue.put(0)
                 else:
-                    #remote controller
+                    #gamepad controller
                     if event['start']:
                         if self.is_activated:
                             self.rest_position()

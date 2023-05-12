@@ -21,7 +21,7 @@ class Singleton(type):
 class Config(metaclass=Singleton):
     ABORT_CONTROLLER_GPIO_PORT = 'abort_controller[0].gpio_port'
     LCD_SCREEN_CONTROLLER_I2C_ADDRESS = 'lcd_screen_controller[0].lcd_screen[0].address'
-    REMOTE_CONTROLLER_DEVICE = 'remote_controller[0].remote_controller[0].device'
+    GAMEPAD_CONTROLLER_DEVICE = 'gamepad_controller[0].gamepad_controller[0].device'
 
     MOTION_CONTROLLER_BOARDS_PCA9685_1_ADDRESS = 'motion_controller[*].boards[*].pca9685_1[*].address | [0] | [0] | [0]'
     MOTION_CONTROLLER_BOARDS_PCA9685_1_REFERENCE_CLOCK_SPEED = 'motion_controller[*].boards[*].pca9685_1[*].reference_clock_speed | [0] | [0] | [0]'
