@@ -62,8 +62,7 @@ def main():
 
     # Activate Bluetooth controller
     # Let you move the dog using the bluetooth paired device
-    gamepad_controller = multiprocessing.Process(target=process_gamepad_controller,
-                                                           args=(communication_queues,))
+    gamepad_controller = multiprocessing.Process(target=process_gamepad_controller, args=(communication_queues,))
     gamepad_controller.daemon = True
 
     # Start the threads, queues messages are produced and consumed in those

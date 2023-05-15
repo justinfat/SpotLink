@@ -277,4 +277,6 @@
 2023-05-11 18:00:17,555 - SpotMicro Configuration          - INFO - MIN_PULSE: 500
 2023-05-11 18:00:17,557 - SpotMicro Configuration          - INFO - MAX_PULSE: 2500
 2023-05-11 18:00:17,558 - SpotMicro Configuration          - INFO - REST_ANGLE: 94
-                                                                                        
+                                                                                        2023-05-15 14:51:43,687 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-15 14:51:43,748 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-15 14:51:43,749 - SpotMicro                        - INFO - Closing controller queues
