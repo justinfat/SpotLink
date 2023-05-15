@@ -406,3 +406,71 @@
 2023-05-15 19:35:18,476 - SpotMicro Configuration          - INFO - MIN_PULSE: 500
 2023-05-15 19:35:18,478 - SpotMicro Configuration          - INFO - MAX_PULSE: 2500
 2023-05-15 19:35:18,479 - SpotMicro Configuration          - INFO - REST_ANGLE: 89
+2023-05-15 19:54:06,583 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-15 19:54:06,620 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller, serial_controller, lcd_screen_controller
+2023-05-15 19:54:07,328 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 19:54:07,347 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 19:54:09,803 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 19:54:09,810 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 19:54:12,315 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 19:54:14,821 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 19:54:17,334 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 19:54:19,840 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 19:54:22,346 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 19:54:24,851 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 19:54:27,357 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 19:54:29,863 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 19:54:32,368 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 19:54:34,874 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 19:54:37,381 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 19:54:39,887 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 19:54:42,392 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 19:54:44,899 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 20:17:00,458 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-15 20:17:00,483 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-15 20:17:00,939 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 20:17:00,985 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 20:17:03,482 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 20:17:03,501 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 20:17:06,007 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 20:17:08,512 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 20:21:15,905 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-15 20:21:15,934 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-15 20:21:16,484 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 20:21:16,549 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 20:21:18,942 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 20:21:18,949 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 20:22:01,479 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-15 20:22:01,504 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-15 20:22:02,206 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 20:22:02,207 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 20:46:09,177 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-15 20:46:18,358 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-15 20:46:18,913 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 20:46:18,968 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 20:47:07,247 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-15 20:47:20,271 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-15 20:47:20,836 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 20:47:21,252 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 20:47:45,312 - SpotMicro Abort controller       - INFO - Terminated
+2023-05-15 20:47:45,312 - SpotMicro                        - INFO - Terminated due Control+C was pressed
+2023-05-15 20:47:45,319 - SpotMicro Motion controller      - INFO - Terminated
+2023-05-15 20:48:51,443 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-15 20:48:54,763 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-15 20:52:09,858 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-15 20:52:13,742 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-15 20:52:14,296 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 20:52:14,388 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 21:00:28,942 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-15 21:00:33,177 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-15 21:00:33,777 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 21:00:33,819 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 21:03:02,417 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-15 21:03:17,862 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-15 21:03:20,863 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-15 21:03:21,414 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 21:03:21,443 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 21:04:00,495 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-15 21:04:00,753 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-15 21:04:01,349 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 21:04:01,466 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
