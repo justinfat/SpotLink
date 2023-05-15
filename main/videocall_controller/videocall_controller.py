@@ -26,7 +26,7 @@ def webcam_capture(cam_id):
             break
         
     cap.release()
-    cv2.destoryAllWindows()
+    cv2.destroyAllWindows()
 
 def main(argv=None):
     if argv is None:

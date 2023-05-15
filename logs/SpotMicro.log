@@ -364,3 +364,45 @@
 2023-05-15 17:04:40,040 - SpotMicro Motion controller      - INFO - Terminated
 2023-05-15 17:04:40,039 - SpotMicro                        - INFO - Terminated due Control+C was pressed
 2023-05-15 17:04:40,047 - SpotMicro Gamepad controller     - INFO - Terminated
+2023-05-15 19:20:19,661 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-15 19:20:19,680 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller, serial_controller, lcd_screen_controller
+2023-05-15 19:20:19,695 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 19:20:19,755 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 19:20:22,216 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 19:20:22,218 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 19:20:24,721 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 19:20:27,225 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 19:20:28,542 - SpotMicro Gamepad controller     - INFO - Terminated
+2023-05-15 19:20:28,542 - SpotMicro Abort controller       - INFO - Terminated
+2023-05-15 19:20:28,542 - SpotMicro                        - INFO - Terminated due Control+C was pressed
+2023-05-15 19:20:28,544 - SpotMicro Motion controller      - INFO - Terminated
+2023-05-15 19:20:28,546 - SpotMicro Gamepad controller     - INFO - Terminated
+2023-05-15 19:20:34,981 - SpotMicro CALIBRATE SERVOS       - INFO - Calibrate rest position...
+2023-05-15 19:20:34,982 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 19:20:37,578 - SpotMicro Configuration          - INFO - PCA9685_ADDRESS: 0x40
+2023-05-15 19:20:37,579 - SpotMicro Configuration          - INFO - PCA9685_REFERENCE_CLOCK_SPEED: 25000000
+2023-05-15 19:20:37,580 - SpotMicro Configuration          - INFO - PCA9685_FREQUENCY: 50
+2023-05-15 19:20:37,581 - SpotMicro Configuration          - INFO - CHANNEL: 3
+2023-05-15 19:20:37,582 - SpotMicro Configuration          - INFO - MIN_PULSE: 500
+2023-05-15 19:20:37,583 - SpotMicro Configuration          - INFO - MAX_PULSE: 2500
+2023-05-15 19:20:37,584 - SpotMicro Configuration          - INFO - REST_ANGLE: 89
+2023-05-15 19:34:28,093 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-15 19:34:28,108 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller, serial_controller, lcd_screen_controller
+2023-05-15 19:34:28,123 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 19:34:28,159 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 19:34:30,643 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 19:34:30,645 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 19:34:33,151 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-15 19:34:33,447 - SpotMicro Gamepad controller     - INFO - Terminated
+2023-05-15 19:34:33,447 - SpotMicro Abort controller       - INFO - Terminated
+2023-05-15 19:34:33,447 - SpotMicro Motion controller      - INFO - Terminated
+2023-05-15 19:34:33,448 - SpotMicro                        - INFO - Terminated due Control+C was pressed
+2023-05-15 19:35:15,713 - SpotMicro CALIBRATE SERVOS       - INFO - Calibrate rest position...
+2023-05-15 19:35:15,714 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-15 19:35:18,471 - SpotMicro Configuration          - INFO - PCA9685_ADDRESS: 0x40
+2023-05-15 19:35:18,473 - SpotMicro Configuration          - INFO - PCA9685_REFERENCE_CLOCK_SPEED: 25000000
+2023-05-15 19:35:18,474 - SpotMicro Configuration          - INFO - PCA9685_FREQUENCY: 50
+2023-05-15 19:35:18,475 - SpotMicro Configuration          - INFO - CHANNEL: 3
+2023-05-15 19:35:18,476 - SpotMicro Configuration          - INFO - MIN_PULSE: 500
+2023-05-15 19:35:18,478 - SpotMicro Configuration          - INFO - MAX_PULSE: 2500
+2023-05-15 19:35:18,479 - SpotMicro Configuration          - INFO - REST_ANGLE: 89

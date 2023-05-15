@@ -11,4 +11,4 @@ cd ~/MayTest || exit
 
 export PYTHONPATH=.
 
-venv/bin/python3 main/main.py
+pyenv/bin/python3 main/main.py

@@ -5,7 +5,7 @@ import math
 import queue
 import time
 import busio
-import board
+from board import SCL, SDA
 from adafruit_pca9685 import PCA9685
 from adafruit_motor import servo
 from utilities.log import Logger
@@ -187,7 +187,7 @@ class MotionController:
             signal.signal(signal.SIGINT, self.exit_gracefully)
             signal.signal(signal.SIGTERM, self.exit_gracefully)
 
-            self.i2c = busio.I2C(board.SCL, board.SDA)
+            self.i2c = busio.I2C(SCL, SDA)
             self.load_pca9685_boards_configuration()
             self.load_servos_configuration()
 
