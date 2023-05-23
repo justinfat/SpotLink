@@ -16,7 +16,7 @@ class RecvController:
         payload_size = struct.calcsize("L")
 
         # Load the TFLite model and allocate tensors.
-        interpreter = Interpreter(model_path="model_mobilenet.tflite")
+        interpreter = Interpreter(model_path="/home/pi/MayTest/main/recv_controller/model_mobilenet.tflite")
         interpreter.allocate_tensors()
 
         # Get input and output tensor details
