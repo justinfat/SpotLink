@@ -87,13 +87,13 @@ def main():
     motion_controller = multiprocessing.Process(target=process_motion_controller, args=(communication_queues,))
     motion_controller.daemon = True
 
-    # gamepad_controller = multiprocessing.Process(target=process_gamepad_controller, args=(communication_queues,))
-    # gamepad_controller.daemon = True
+    gamepad_controller = multiprocessing.Process(target=process_gamepad_controller, args=(communication_queues,))
+    gamepad_controller.daemon = True
 
     # Start the processes
     abort_controller.start()
     motion_controller.start()
-    # gamepad_controller.start()
+    gamepad_controller.start()
     send_controller.start()
     recv_controller.start()
 
@@ -111,7 +111,7 @@ def main():
     # Wait till the processes end
     abort_controller.join()
     motion_controller.join()
-    # gamepad_controller.join()
+    gamepad_controller.join()
     send_controller.join()
     recv_controller.join()
 

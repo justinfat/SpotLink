@@ -10,6 +10,7 @@ class SendController:
     def send_video(self, connection_socket):
         global stop_sockets
         capture = cv2.VideoCapture(0)
+        capture.set(cv2.CAP_PROP_FPS, 10)
 
         while not stop_sockets:
             try:

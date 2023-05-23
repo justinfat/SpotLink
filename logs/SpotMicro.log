@@ -492,3 +492,56 @@
 2023-05-23 16:22:17,301 - SpotMicro Motion controller      - INFO - Inactivity lasted 60 seconds, shutting down the servos, press start to reactivate
 2023-05-23 16:23:17,362 - SpotMicro Motion controller      - INFO - Inactivity lasted 60 seconds, shutting down the servos, press start to reactivate
 2023-05-23 16:24:17,419 - SpotMicro Motion controller      - INFO - Inactivity lasted 60 seconds, shutting down the servos, press start to reactivate
+2023-05-23 17:44:06,568 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-23 17:44:07,985 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-23 17:44:08,024 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-23 17:44:08,071 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-23 17:45:08,152 - SpotMicro Motion controller      - INFO - Inactivity lasted 60 seconds, shutting down the servos, press start to reactivate
+2023-05-23 17:46:08,200 - SpotMicro Motion controller      - INFO - Inactivity lasted 60 seconds, shutting down the servos, press start to reactivate
+2023-05-23 17:47:08,260 - SpotMicro Motion controller      - INFO - Inactivity lasted 60 seconds, shutting down the servos, press start to reactivate
+2023-05-23 17:48:08,321 - SpotMicro Motion controller      - INFO - Inactivity lasted 60 seconds, shutting down the servos, press start to reactivate
+2023-05-23 17:49:08,349 - SpotMicro Motion controller      - INFO - Inactivity lasted 60 seconds, shutting down the servos, press start to reactivate
+2023-05-23 17:50:08,410 - SpotMicro Motion controller      - INFO - Inactivity lasted 60 seconds, shutting down the servos, press start to reactivate
+2023-05-23 17:51:08,472 - SpotMicro Motion controller      - INFO - Inactivity lasted 60 seconds, shutting down the servos, press start to reactivate
+2023-05-23 17:52:08,482 - SpotMicro Motion controller      - INFO - Inactivity lasted 60 seconds, shutting down the servos, press start to reactivate
+2023-05-23 17:53:08,543 - SpotMicro Motion controller      - INFO - Inactivity lasted 60 seconds, shutting down the servos, press start to reactivate
+2023-05-23 17:54:08,592 - SpotMicro Motion controller      - INFO - Inactivity lasted 60 seconds, shutting down the servos, press start to reactivate
+2023-05-23 17:55:08,653 - SpotMicro Motion controller      - INFO - Inactivity lasted 60 seconds, shutting down the servos, press start to reactivate
+2023-05-23 17:56:08,715 - SpotMicro Motion controller      - INFO - Inactivity lasted 60 seconds, shutting down the servos, press start to reactivate
+2023-05-23 17:56:52,685 - SpotMicro Motion controller      - INFO - Terminated
+2023-05-23 17:56:52,685 - SpotMicro Abort controller       - INFO - Terminated
+2023-05-23 17:56:52,685 - SpotMicro                        - INFO - Terminated due Control+C was pressed
+2023-05-23 18:01:56,297 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-23 18:02:19,168 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-23 18:02:51,890 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-23 18:02:54,102 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-23 18:02:54,599 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-23 18:02:54,637 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-23 18:03:54,944 - SpotMicro Motion controller      - INFO - Inactivity lasted 60 seconds, shutting down the servos, press start to reactivate
+2023-05-23 18:05:38,578 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-23 18:05:41,749 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-23 18:05:42,274 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-23 18:05:42,318 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-23 18:09:18,977 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-23 18:09:21,791 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-23 18:09:22,208 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-23 18:09:22,239 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-23 18:10:22,564 - SpotMicro Motion controller      - INFO - Inactivity lasted 60 seconds, shutting down the servos, press start to reactivate
+2023-05-23 18:11:11,998 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-23 18:11:15,438 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-23 18:11:16,084 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-23 18:11:16,148 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-23 18:11:18,924 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-23 18:11:18,943 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-23 18:11:21,449 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-23 18:11:23,954 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-23 18:11:26,463 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-23 18:11:28,970 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-23 18:11:31,476 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-23 18:11:33,985 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-23 18:11:36,487 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-23 18:11:38,992 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-23 18:11:41,500 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-23 18:11:44,004 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-23 18:11:46,511 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-23 18:11:49,016 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
