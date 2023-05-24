@@ -8,6 +8,8 @@ from tflite_runtime.interpreter import Interpreter
 # import threading
 
 stop_sockets = False
+sever_ip = '0.0.0.0'
+sever_port = 8485
 
 class RecvController:
     def recv_video(self, connection_socket):
@@ -57,7 +59,7 @@ class RecvController:
                 for (x, y, w, h) in faces:
                     cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 0), 2)
 
-                    face = gray[y:y+h, x:x+w]
+                    face = gray[y:y+h, x:x+w] # choose the face region from gray
                     face = cv2.resize(face, (224, 224)).reshape(224, 224, 1)
                     #face = np.array(Image.fromarray(face))
                     face = face.astype('float32') / 255.0
@@ -84,3 +86,16 @@ class RecvController:
                 break
 
         cv2.destroyAllWindows()
+
+    if __name__ == '__main__':
+        server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # client socket declaration: ipv4, TCP
+        server_socket.bind((sever_ip, sever_port))
+        server_socket.listen(1)
+
+        connection_socket, client_address = server_socket.accept()
+
+        recv_video(connection_socket)
+
+        # connection_socket.shutdown(socket.SHUT_RDWR)
+        connection_socket.close()
+        server_socket.close()
