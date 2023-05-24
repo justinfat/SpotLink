@@ -2,18 +2,13 @@ import cv2
 import socket
 import numpy as np
 import struct
-import cv2
-import numpy as np
 from tflite_runtime.interpreter import Interpreter
-# import threading
 
-stop_sockets = False
 sever_ip = '0.0.0.0'
 sever_port = 8485
 
 class RecvController:
     def recv_video(self, connection_socket):
-        global stop_sockets
         data = b'' # empty btytes
         payload_size = struct.calcsize("L")
 
@@ -31,7 +26,7 @@ class RecvController:
         # Define the emotion labels
         emotions = ('angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral')
         
-        while not stop_sockets:
+        while True:
             try:
                 # process the data that received
                 while len(data) < payload_size:
@@ -51,7 +46,6 @@ class RecvController:
                 frame_data = data[:data_size]
                 data = data[data_size:]
 
-                # show the video
                 frame = np.frombuffer(frame_data, dtype=np.uint8).reshape(240, 320, 3)
                 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
                 faces = face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
@@ -78,11 +72,10 @@ class RecvController:
 
                 # stop video calling if type q
                 if cv2.waitKey(1) & 0xFF == ord('q'):
-                    stop_sockets = True
                     break
+                
             except socket.error as e:
                 print("Receive video socket error:", e)
-                stop_sockets = True
                 break
 
         cv2.destroyAllWindows()

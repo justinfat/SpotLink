@@ -1,18 +1,20 @@
 import cv2
 import socket
-import numpy as np
+# import numpy as np
 import struct
-import threading
 
-stop_sockets = False
+sever_ip = '0.0.0.0'
+sever_port = 8485
 
 class SendController:
     def send_video(self, connection_socket):
-        global stop_sockets
         capture = cv2.VideoCapture(0)
         capture.set(cv2.CAP_PROP_FPS, 10)
 
-        while not stop_sockets:
+        # Load the Haar cascade for face detection
+        face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+
+        while True:
             try:
                 ret, frame = capture.read()
                 if not ret:
@@ -27,11 +29,23 @@ class SendController:
 
                 # stop video calling if type q
                 if cv2.waitKey(1) & 0xFF == ord('q'):
-                    stop_sockets = True
                     break
+
             except socket.error as e:
-                print("Receive video socket error:", e)
-                stop_sockets = True
+                print("Send video socket error:", e)
                 break
 
         capture.release()
+
+if __name__ == '__main__':
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # client socket declaration: ipv4, TCP
+    server_socket.bind((sever_ip, sever_port))
+    server_socket.listen(1)
+
+    connection_socket, client_address = server_socket.accept()
+
+    SendController().recv_video(connection_socket)
+
+    # connection_socket.shutdown(socket.SHUT_RDWR)
+    connection_socket.close()
+    server_socket.close()

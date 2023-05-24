@@ -178,7 +178,7 @@ class MotionController:
     servo_arm_cam_tilt_max_pulse = None
     servo_arm_cam_tilt_rest_angle = None
 
-    def __init__(self, communication_queues):
+    def __init__(self, communication_queues): # run when class MotionController is created
 
         try:
 
