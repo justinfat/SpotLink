@@ -223,83 +223,91 @@ class MotionController:
         while True:
             try:
                 event = self._motion_queue.get(block=True, timeout=60)
+
+                # send_controller
+                if event == 'TooRight':
+                    print('Too right...')
+                if event == 'TooLeft':
+                    print('Too left...')
+                if event == 'TooLow':
+                    print('Too low...')
+                if event == 'TooHigh':
+                    print('Too high...')
                 
-                #serial controller
-                if type(event) == int:
-                    if event == 11519:
-                        self.walk_stably()
-                    if event == 21074: #right
-                        self.shift_z(1)
-                        #self.rotate_CW()
-                        #self._serial_queue.put(0)
-                    if event == 19532: #left
-                        self.shift_z(-1)
-                        #self.rotate_CCW()
-                        #self._serial_queue.put(0)
-                else:
-                    #gamepad controller
-                    if event['start']:
-                        if self.is_activated:
-                            self.rest_position()
-                            time.sleep(0.5)
-                            self.deactivate_pca9685_boards()
-                            self._abort_queue.put('abort')
-                        else:
-                            self._abort_queue.put('activate')
-                            self.activate_pca9685_boards()
-                            self.activate_servos()
-                            self.rest_position()
+                # #serial controller
+                # if type(event) == int:
+                #     if event == 11519:
+                #         self.walk_stably()
+                #     if event == 21074: #right
+                #         self.shift_z(1)
+                #         #self.rotate_CW()
+                #         #self._serial_queue.put(0)
+                #     if event == 19532: #left
+                #         self.shift_z(-1)
+                #         #self.rotate_CCW()
+                #         #self._serial_queue.put(0)
+                # else:
+                #     #gamepad controller
+                #     if event['start']:
+                #         if self.is_activated:
+                #             self.rest_position()
+                #             time.sleep(0.5)
+                #             self.deactivate_pca9685_boards()
+                #             self._abort_queue.put('abort')
+                #         else:
+                #             self._abort_queue.put('activate')
+                #             self.activate_pca9685_boards()
+                #             self.activate_servos()
+                #             self.rest_position()
 
-                    if not self.is_activated:
-                        log.info('Press START/OPTIONS to enable the servos')
-                        continue
+                #     if not self.is_activated:
+                #         log.info('Press START/OPTIONS to enable the servos')
+                #         continue
                     
-                    if event['mode']: #PS button
-                        self.rest_position()
-                        log.info('resting')
+                #     if event['mode']: #PS button
+                #         self.rest_position()
+                #         log.info('resting')
 
-                    #if event['a']: # buttom
-                    #    self.stand()
+                #     #if event['a']: # buttom
+                #     #    self.stand()
                         
 
-                    if event['x']: #top
-                        self.walk_stably()
+                #     if event['x']: #top
+                #         self.walk_stably()
 
-                    if event['y']: #left
-                        self.start_walk()
+                #     if event['y']: #left
+                #         self.start_walk()
 
-                    #if event['b']: #right
-                    #    self.stop_walk()
+                #     #if event['b']: #right
+                #     #    self.stop_walk()
                     
-                    ## body posture ##
-                    if event['select']: #share
-                        self.stand()
-                        log.info('standing...')
-                        log.info(self.servo_rear_shoulder_left.angle, self.servo_rear_shoulder_right.angle, self.servo_front_shoulder_left.angle, self.servo_front_shoulder_right.angle)
+                #     ## body posture ##
+                #     if event['select']: #share
+                #         self.stand()
+                #         log.info('standing...')
+                #         log.info(self.servo_rear_shoulder_left.angle, self.servo_rear_shoulder_right.angle, self.servo_front_shoulder_left.angle, self.servo_front_shoulder_right.angle)
 
-                    if event['hat0x']: #direction button x
-                        self.shift_z(event['hat0x'])
+                #     if event['hat0x']: #direction button x
+                #         self.shift_z(event['hat0x'])
 
-                    if event['hat0y']: #direction button y
-                        self.body_move_y(event['hat0y'])
+                #     if event['hat0y']: #direction button y
+                #         self.body_move_y(event['hat0y'])
 
-                    if event['ry']: #right joystick y
-                        self.body_move_analog_x(event['ry'])
+                #     if event['ry']: #right joystick y
+                #         self.body_move_analog_x(event['ry'])
 
-                    if event['rx']: #right joystick x
-                        self.body_move_analog_z(event['rx'])
+                #     if event['rx']: #right joystick x
+                #         self.body_move_analog_z(event['rx'])
 
-                    if event['tr']: #R1
-                        self.rotate_CW()
+                #     if event['tr']: #R1
+                #         self.rotate_CW()
 
-                    if event['tl']: #L1
-                        self.rotate_CCW()
+                #     if event['tl']: #L1
+                #         self.rotate_CCW()
                     
-                    '''
-                    if event['hat0x'] and event['tl2']:
-                        # 2 buttons example
-                        pass
-                    '''
+                    # if event['hat0x'] and event['tl2']:
+                    #     # 2 buttons example
+                    #     pass
 
                     #self.move()
 
@@ -312,8 +320,9 @@ class MotionController:
                     self.deactivate_pca9685_boards()
             
             except Exception as e:
-                log.error('Unknown problem while processing the queue of the motion controller')
-                log.error(' - Most likely a servo is not able to get to the assigned position')
+                print(e)
+                # log.error('Unknown problem while processing the queue of the motion controller')
+                # log.error(' - Most likely a servo is not able to get to the assigned position')
             
     ##### SETUP ##### 
     def load_pca9685_boards_configuration(self):

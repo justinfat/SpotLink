@@ -29,12 +29,12 @@ def process_gamepad_controller(communication_queues):
     gamepad_controller = GamepadController(communication_queues)
     gamepad_controller.do_process_events_from_queues()
 
-def process_send_controller(connection_socket):
-    send_controller = SendController()
+def process_send_controller(communication_queues, connection_socket):
+    send_controller = SendController(communication_queues)
     send_controller.send_video(connection_socket)
 
-def process_recv_controller(connection_socket):
-    recv_controller = RecvController()
+def process_recv_controller(communication_queues, connection_socket):
+    recv_controller = RecvController(communication_queues)
     recv_controller.recv_video(connection_socket)
 
 # Queues
@@ -74,10 +74,10 @@ def main():
 
     communication_queues = create_controllers_queues()
 
-    send_controller = multiprocessing.Process(target=process_send_controller, args=(connection_socket,))
+    send_controller = multiprocessing.Process(target=process_send_controller, args=(communication_queues, connection_socket))
     send_controller.daemon = True
 
-    recv_controller = multiprocessing.Process(target=process_recv_controller, args=(connection_socket,))
+    recv_controller = multiprocessing.Process(target=process_recv_controller, args=(communication_queues, connection_socket))
     recv_controller.daemon = True
 
     # Controls the 0E port from PCA9685 to cut the power to the servos conveniently if needed.
@@ -87,13 +87,13 @@ def main():
     motion_controller = multiprocessing.Process(target=process_motion_controller, args=(communication_queues,))
     motion_controller.daemon = True
 
-    gamepad_controller = multiprocessing.Process(target=process_gamepad_controller, args=(communication_queues,))
-    gamepad_controller.daemon = True
+    # gamepad_controller = multiprocessing.Process(target=process_gamepad_controller, args=(communication_queues,))
+    # gamepad_controller.daemon = True
 
     # Start the processes
     abort_controller.start()
     motion_controller.start()
-    gamepad_controller.start()
+    # gamepad_controller.start()
     send_controller.start()
     recv_controller.start()
 
@@ -111,7 +111,7 @@ def main():
     # Wait till the processes end
     abort_controller.join()
     motion_controller.join()
-    gamepad_controller.join()
+    # gamepad_controller.join()
     send_controller.join()
     recv_controller.join()
 

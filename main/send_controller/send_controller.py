@@ -1,12 +1,18 @@
 import cv2
 import socket
-# import numpy as np
+import numpy as np
 import struct
 
 sever_ip = '0.0.0.0'
 sever_port = 8485
+videoHeight = 240
+videoWidth = 320
+face_in_center = True
 
 class SendController:
+    def __init__(self, communication_queues):
+        self._motion_queue = communication_queues['motion_controller']
+
     def send_video(self, connection_socket):
         capture = cv2.VideoCapture(0)
         capture.set(cv2.CAP_PROP_FPS, 10)
@@ -22,6 +28,54 @@ class SendController:
                     break
 
                 frame = cv2.resize(frame, (320, 240))
+                frame = np.frombuffer(frame, dtype=np.uint8).reshape(videoHeight, videoWidth, 3)
+                gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                faces = face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
+
+                for (x, y, w, h) in faces:
+                    faceCenter = (int(x+w/2), int(y+h/2))
+                    # cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 0), 2) # face region
+                    cv2.putText(frame, 'x: %s, y: %s'%faceCenter, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1) # face center coordinates
+                    cv2.line(frame, faceCenter, (int(videoWidth/2), int(videoHeight/2)), (0, 0, 255), 2) # face center to frame center line
+                    cv2.rectangle(frame, (int(videoWidth*0.25), int(videoHeight*0.25)), (int(videoWidth*0.75), int(videoHeight*0.75)), (255, 0, 0), 2)
+                    # face = gray[y:y+h, x:x+w] # choose the face region from gray
+
+                    if faceCenter[0] > videoWidth*0.75:
+                        self._motion_queue.put('TooRight', timeout=60)
+                        # print('Too right...')
+                    elif faceCenter[0] < videoWidth*0.25:
+                        self._motion_queue.put('TooLeft', timeout=60)
+                        # print('Too left...')
+
+                    if faceCenter[1] > videoHeight*0.75:
+                        self._motion_queue.put('TooLow', timeout=60)
+                        # print('Too low...')
+                    elif faceCenter[1] < videoHeight*0.25:
+                        self._motion_queue.put('TooHigh', timeout=60)
+                        # print('Too high...')
+
+                    # if faceCenter[0] > videoWidth*0.75:
+                    #     if face_in_center == True:
+                    #         self._motion_queue.put('TooRight', timeout=60)
+                    #     # print('Too right...')
+                    #     face_in_center = False
+                    # elif faceCenter[0] < videoWidth*0.25:
+                    #     if face_in_center == True:
+                    #         self._motion_queue.put('TooLeft', timeout=60)
+                    #     # print('Too left...')
+                    #     face_in_center = False
+                    # elif faceCenter[1] > videoHeight*0.75:
+                    #     if face_in_center == True:
+                    #         self._motion_queue.put('TooLow', timeout=60)
+                    #     # print('Too low...')
+                    #     face_in_center = False
+                    # elif faceCenter[1] < videoHeight*0.25:
+                    #     if face_in_center == True:
+                    #         self._motion_queue.put('TooHigh', timeout=60)
+                    #     # print('Too high...')
+                    #     face_in_center = False
+                    # else:
+                    #     face_in_center = True
 
                 # send data to client
                 data = frame.tobytes()
@@ -45,7 +99,7 @@ if __name__ == '__main__':
 
     connection_socket, client_address = server_socket.accept()
 
-    SendController().recv_video(connection_socket)
+    SendController().send_video(connection_socket)
 
     # connection_socket.shutdown(socket.SHUT_RDWR)
     connection_socket.close()

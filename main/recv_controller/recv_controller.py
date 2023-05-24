@@ -8,6 +8,9 @@ sever_ip = '0.0.0.0'
 sever_port = 8485
 
 class RecvController:
+    def __init__(self, communication_queues):
+        self._motion_queue = communication_queues['motion_controller']
+
     def recv_video(self, connection_socket):
         data = b'' # empty btytes
         payload_size = struct.calcsize("L")

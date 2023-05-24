@@ -662,3 +662,237 @@
 2023-05-24 14:45:55,254 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
 2023-05-24 14:45:57,759 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
 2023-05-24 14:46:00,267 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:37:37,693 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-24 21:37:47,108 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-24 21:37:47,669 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 21:37:47,859 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 21:37:50,249 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 21:37:50,260 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:37:52,764 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:37:55,269 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:37:57,774 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:00,278 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:02,784 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:05,289 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:07,797 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:10,305 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:12,814 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:15,323 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:17,831 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:20,337 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:22,844 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:25,350 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:27,864 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:30,368 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:32,873 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:35,390 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:37,894 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:40,401 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:42,910 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:45,418 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:47,924 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:48,249 - SpotMicro Motion controller      - INFO - Inactivity lasted 60 seconds, shutting down the servos, press start to reactivate
+2023-05-24 21:38:50,432 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:52,938 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:55,446 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:38:57,950 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:39:00,468 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:39:02,974 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:39:05,484 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:39:07,989 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 21:39:49,761 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-24 21:39:50,583 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-24 21:39:51,083 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 21:39:51,269 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 21:44:36,246 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-24 21:44:52,627 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-24 21:44:53,129 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 21:44:53,351 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 21:48:19,084 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-24 21:48:26,478 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-24 21:48:27,030 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 21:48:27,287 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 22:01:29,450 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-24 22:01:32,579 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-24 22:01:33,003 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 22:01:33,370 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 22:01:48,493 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:01:48,497 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:01:48,619 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:01:48,622 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:01:48,743 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:01:48,747 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:01:48,824 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:01:48,828 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:01:48,925 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:01:48,926 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:01:49,019 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:01:49,020 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:01:49,121 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:01:49,122 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:01:49,239 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:01:49,240 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:01:49,359 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:01:49,360 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:01:49,474 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:01:49,475 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:01:49,597 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:01:49,598 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:01:49,698 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:01:49,699 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:01:49,771 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:01:49,772 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:01:49,884 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:01:49,886 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:01:49,992 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:01:49,995 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:01:50,084 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:01:50,085 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:01:50,166 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:01:50,167 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:01:50,265 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:01:50,266 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:01:50,370 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:01:50,372 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:01:50,442 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:01:50,443 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:01:50,527 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:01:50,528 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:01:50,609 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:01:50,610 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:01:50,718 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:01:50,719 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:02:17,988 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:02:17,990 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:02:18,107 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:02:18,109 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:02:18,227 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:02:18,228 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:02:18,345 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:02:18,346 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:02:18,428 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:02:18,444 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:02:18,501 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:02:18,504 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:02:18,580 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:02:18,582 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:02:18,691 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:02:18,696 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:02:18,808 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:02:18,809 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:02:18,903 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:02:18,904 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:02:19,007 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:02:19,009 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:02:19,104 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:02:19,105 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:02:19,207 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:02:19,209 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:07:57,211 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-24 22:08:02,669 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-24 22:08:03,255 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 22:08:03,276 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 22:08:11,960 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:11,962 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:12,075 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:12,082 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:12,191 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:12,207 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:12,292 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:12,294 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:12,424 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:12,425 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:12,529 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:12,530 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:12,626 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:12,628 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:12,724 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:12,727 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:12,830 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:12,831 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:12,903 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:12,908 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:12,985 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:12,987 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:13,138 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:13,140 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:13,235 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:13,236 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:13,302 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:13,303 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:15,137 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:15,139 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:15,294 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:15,305 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:15,421 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:15,424 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:15,466 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:15,467 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:15,578 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:15,579 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:15,704 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:15,706 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:15,811 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:15,812 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:15,896 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:15,897 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:16,003 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:16,006 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:16,125 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:16,126 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:16,191 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:16,193 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:16,280 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:16,293 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:18,257 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:18,258 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:18,954 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:18,955 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:19,062 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:19,063 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:19,168 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:19,170 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:19,273 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:19,276 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:19,392 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:19,393 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:19,492 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:19,497 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:19,603 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:19,604 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:19,704 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:19,712 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:19,792 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:19,799 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:19,915 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:19,919 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:19,998 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:19,999 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:20,088 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:20,095 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:20,181 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:20,182 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:20,317 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:20,318 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:08:20,392 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:08:20,393 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:23:38,313 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-24 22:23:42,673 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-24 22:23:43,195 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 22:23:43,238 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 22:23:51,138 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:23:51,140 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:24:02,439 - SpotMicro Motion controller      - ERROR - Unknown problem while processing the queue of the motion controller
+2023-05-24 22:24:02,441 - SpotMicro Motion controller      - ERROR -  - Most likely a servo is not able to get to the assigned position
+2023-05-24 22:27:10,687 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-24 22:27:25,305 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-24 22:27:25,900 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 22:27:25,976 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 22:33:19,256 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-24 22:33:26,181 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-24 22:33:26,661 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 22:33:26,869 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 22:41:02,463 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-24 22:41:07,056 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-24 22:41:07,531 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 22:41:07,601 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
