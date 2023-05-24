@@ -221,12 +221,8 @@ class MotionController:
     def do_process_events_from_queues(self):
 
         while True:
-            
             try:
-
                 event = self._motion_queue.get(block=True, timeout=60)
-                #serial_event = self._serial_queue.get(block=True, timeout=60)
-                #log.info(event)
                 
                 #serial controller
                 if type(event) == int:
