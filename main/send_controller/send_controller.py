@@ -22,8 +22,9 @@ class SendController:
                     break
 
                 frame = cv2.resize(frame, (320, 240))
-                data = frame.tobytes()
 
+                # send data to client
+                data = frame.tobytes()
                 connection_socket.sendall(struct.pack("L", len(data)))
                 connection_socket.sendall(data)
 
