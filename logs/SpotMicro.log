@@ -604,3 +604,61 @@
 2023-05-23 19:15:57,526 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
 2023-05-23 19:16:00,034 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
 2023-05-23 19:16:02,536 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:42:36,104 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-24 14:42:39,799 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-24 14:42:40,273 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 14:42:40,553 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 14:42:42,872 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 14:42:42,889 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:42:45,400 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:42:47,906 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:42:50,411 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:42:52,915 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:42:55,420 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:42:57,926 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:43:00,434 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:43:02,944 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:43:05,450 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:43:07,955 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:43:10,463 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:43:12,973 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:43:15,481 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:43:17,987 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:43:20,495 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:43:23,003 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:43:25,510 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:43:28,015 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:43:30,523 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:43:33,029 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:43:35,535 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:43:38,040 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:43:40,546 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:43:40,870 - SpotMicro Motion controller      - INFO - Inactivity lasted 60 seconds, shutting down the servos, press start to reactivate
+2023-05-24 14:43:43,062 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:43:45,567 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:43:48,074 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:43:50,579 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:43:53,087 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:44:56,380 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-24 14:44:56,551 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-24 14:44:56,995 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 14:44:57,221 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 14:44:59,781 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 14:44:59,796 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:45:02,301 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:45:04,807 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:45:07,311 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:45:09,816 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:45:12,321 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:45:14,826 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:45:17,330 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:45:19,836 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:45:49,111 - SpotMicro                        - INFO - SpotMicro starting...
+2023-05-24 14:45:49,365 - SpotMicro                        - INFO - Created the communication queues: abort_controller, motion_controller
+2023-05-24 14:45:49,819 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 14:45:49,877 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 14:45:52,731 - SpotMicro Configuration          - INFO - Detected configuration for the modules: abort_controller, lcd_screen_controller, gamepad_controller, motion_controller
+2023-05-24 14:45:52,748 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:45:55,254 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:45:57,759 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
+2023-05-24 14:46:00,267 - SpotMicro Gamepad controller     - INFO - The gamepad controller is not detected, looking for connected devices
