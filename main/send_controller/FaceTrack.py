@@ -8,6 +8,11 @@ capture.set(cv2.CAP_PROP_FPS, 10)
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
 while True:
+    ret, frame = capture.read()
+    if not ret:
+        print('unable to read the video...')
+        break
+
     frame = cv2.resize(frame, (320, 240))
     frame = np.frombuffer(frame, dtype=np.uint8).reshape(240, 320, 3)
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -18,6 +23,12 @@ while True:
 
         face = gray[y:y+h, x:x+w] # choose the face region from gray
 
-        cv2.putText(frame, 'x: %s, y: %s'%(x+w/2,y+h/2), (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-
+        cv2.putText(frame, 'x: %s, y: %s'%(x+w/2,y+h/2), (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1)
     cv2.imshow('Captured Video', frame)
+
+    # stop video calling if type q
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+cv2.destroyAllWindows()
+capture.release()
