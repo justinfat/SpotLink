@@ -87,15 +87,15 @@ class RecvController:
 
         cv2.destroyAllWindows()
 
-    if __name__ == '__main__':
-        server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # client socket declaration: ipv4, TCP
-        server_socket.bind((sever_ip, sever_port))
-        server_socket.listen(1)
+if __name__ == '__main__':
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # client socket declaration: ipv4, TCP
+    server_socket.bind((sever_ip, sever_port))
+    server_socket.listen(1)
 
-        connection_socket, client_address = server_socket.accept()
+    connection_socket, client_address = server_socket.accept()
 
-        recv_video(connection_socket)
+    RecvController().recv_video(connection_socket)
 
-        # connection_socket.shutdown(socket.SHUT_RDWR)
-        connection_socket.close()
-        server_socket.close()
+    # connection_socket.shutdown(socket.SHUT_RDWR)
+    connection_socket.close()
+    server_socket.close()
