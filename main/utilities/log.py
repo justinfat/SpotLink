@@ -7,11 +7,11 @@ SPOTMICRO = 'SpotMicro'
 class Logger:
 
     def __init__(self):
-        logs_folder = 'logs/'
-        Path(logs_folder).mkdir(parents=True, exist_ok=True)
+        log_folder = 'log/'
+        Path(log_folder).mkdir(parents=True, exist_ok=True)
 
-        # create file handler which logs even debug messages
-        self.logging_file_handler = logging.FileHandler(logs_folder + SPOTMICRO + '.log')
+        # create file handler which log even debug messages
+        self.logging_file_handler = logging.FileHandler(log_folder + SPOTMICRO + '.log')
         # self.logging_file_handler.setLevel(logging.INFO)
 
         # create console handler with a higher log level
