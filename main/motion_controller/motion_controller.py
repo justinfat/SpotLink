@@ -53,139 +53,139 @@ front_right_P0 = [0, 0, 0]
 
 class MotionController:
     ## declare variable ##
-    if True:
-        boards = 1
+    boards = 1
 
-        is_activated = False
+    is_activated = False
 
-        i2c = None
-        pca9685_1 = None
-        pca9685_2 = None
+    i2c = None
+    pca9685_1 = None
+    pca9685_2 = None
 
-        pca9685_1_address = None
-        pca9685_1_reference_clock_speed = None
-        pca9685_1_frequency = None
-        pca9685_2_address = None
-        pca9685_2_reference_clock_speed = None
-        pca9685_2_frequency = None
+    pca9685_1_address = None
+    pca9685_1_reference_clock_speed = None
+    pca9685_1_frequency = None
+    pca9685_2_address = None
+    pca9685_2_reference_clock_speed = None
+    pca9685_2_frequency = None
 
-        servo_rear_shoulder_left = None
-        servo_rear_shoulder_left_pca9685 = None
-        servo_rear_shoulder_left_channel = None
-        servo_rear_shoulder_left_min_pulse = None
-        servo_rear_shoulder_left_max_pulse = None
-        servo_rear_shoulder_left_rest_angle = None
+    servo_rear_shoulder_left = None
+    servo_rear_shoulder_left_pca9685 = None
+    servo_rear_shoulder_left_channel = None
+    servo_rear_shoulder_left_min_pulse = None
+    servo_rear_shoulder_left_max_pulse = None
+    servo_rear_shoulder_left_rest_angle = None
 
-        servo_rear_leg_left = None
-        servo_rear_leg_left_pca9685 = None
-        servo_rear_leg_left_channel = None
-        servo_rear_leg_left_min_pulse = None
-        servo_rear_leg_left_max_pulse = None
-        servo_rear_leg_left_rest_angle = None
+    servo_rear_leg_left = None
+    servo_rear_leg_left_pca9685 = None
+    servo_rear_leg_left_channel = None
+    servo_rear_leg_left_min_pulse = None
+    servo_rear_leg_left_max_pulse = None
+    servo_rear_leg_left_rest_angle = None
 
-        servo_rear_feet_left = None
-        servo_rear_feet_left_pca9685 = None
-        servo_rear_feet_left_channel = None
-        servo_rear_feet_left_min_pulse = None
-        servo_rear_feet_left_max_pulse = None
-        servo_rear_feet_left_rest_angle = None
+    servo_rear_feet_left = None
+    servo_rear_feet_left_pca9685 = None
+    servo_rear_feet_left_channel = None
+    servo_rear_feet_left_min_pulse = None
+    servo_rear_feet_left_max_pulse = None
+    servo_rear_feet_left_rest_angle = None
 
-        servo_rear_shoulder_right = None
-        servo_rear_shoulder_right_pca9685 = None
-        servo_rear_shoulder_right_channel = None
-        servo_rear_shoulder_right_min_pulse = None
-        servo_rear_shoulder_right_max_pulse = None
-        servo_rear_shoulder_right_rest_angle = None
+    servo_rear_shoulder_right = None
+    servo_rear_shoulder_right_pca9685 = None
+    servo_rear_shoulder_right_channel = None
+    servo_rear_shoulder_right_min_pulse = None
+    servo_rear_shoulder_right_max_pulse = None
+    servo_rear_shoulder_right_rest_angle = None
 
-        servo_rear_leg_right = None
-        servo_rear_leg_right_pca9685 = None
-        servo_rear_leg_right_channel = None
-        servo_rear_leg_right_min_pulse = None
-        servo_rear_leg_right_max_pulse = None
-        servo_rear_leg_right_rest_angle = None
+    servo_rear_leg_right = None
+    servo_rear_leg_right_pca9685 = None
+    servo_rear_leg_right_channel = None
+    servo_rear_leg_right_min_pulse = None
+    servo_rear_leg_right_max_pulse = None
+    servo_rear_leg_right_rest_angle = None
 
-        servo_rear_feet_right = None
-        servo_rear_feet_right_pca9685 = None
-        servo_rear_feet_right_channel = None
-        servo_rear_feet_right_min_pulse = None
-        servo_rear_feet_right_max_pulse = None
-        servo_rear_feet_right_rest_angle = None
+    servo_rear_feet_right = None
+    servo_rear_feet_right_pca9685 = None
+    servo_rear_feet_right_channel = None
+    servo_rear_feet_right_min_pulse = None
+    servo_rear_feet_right_max_pulse = None
+    servo_rear_feet_right_rest_angle = None
 
-        servo_front_shoulder_left = None
-        servo_front_shoulder_left_pca9685 = None
-        servo_front_shoulder_left_channel = None
-        servo_front_shoulder_left_min_pulse = None
-        servo_front_shoulder_left_max_pulse = None
-        servo_front_shoulder_left_rest_angle = None
+    servo_front_shoulder_left = None
+    servo_front_shoulder_left_pca9685 = None
+    servo_front_shoulder_left_channel = None
+    servo_front_shoulder_left_min_pulse = None
+    servo_front_shoulder_left_max_pulse = None
+    servo_front_shoulder_left_rest_angle = None
 
-        servo_front_leg_left = None
-        servo_front_leg_left_pca9685 = None
-        servo_front_leg_left_channel = None
-        servo_front_leg_left_min_pulse = None
-        servo_front_leg_left_max_pulse = None
-        servo_front_leg_left_rest_angle = None
+    servo_front_leg_left = None
+    servo_front_leg_left_pca9685 = None
+    servo_front_leg_left_channel = None
+    servo_front_leg_left_min_pulse = None
+    servo_front_leg_left_max_pulse = None
+    servo_front_leg_left_rest_angle = None
 
-        servo_front_feet_left = None
-        servo_front_feet_left_pca9685 = None
-        servo_front_feet_left_channel = None
-        servo_front_feet_left_min_pulse = None
-        servo_front_feet_left_max_pulse = None
-        servo_front_feet_left_rest_angle = None
+    servo_front_feet_left = None
+    servo_front_feet_left_pca9685 = None
+    servo_front_feet_left_channel = None
+    servo_front_feet_left_min_pulse = None
+    servo_front_feet_left_max_pulse = None
+    servo_front_feet_left_rest_angle = None
 
-        servo_front_shoulder_right = None
-        servo_front_shoulder_right_pca9685 = None
-        servo_front_shoulder_right_channel = None
-        servo_front_shoulder_right_min_pulse = None
-        servo_front_shoulder_right_max_pulse = None
-        servo_front_shoulder_right_rest_angle = None
+    servo_front_shoulder_right = None
+    servo_front_shoulder_right_pca9685 = None
+    servo_front_shoulder_right_channel = None
+    servo_front_shoulder_right_min_pulse = None
+    servo_front_shoulder_right_max_pulse = None
+    servo_front_shoulder_right_rest_angle = None
 
-        servo_front_leg_right = None
-        servo_front_leg_right_pca9685 = None
-        servo_front_leg_right_channel = None
-        servo_front_leg_right_min_pulse = None
-        servo_front_leg_right_max_pulse = None
-        servo_front_leg_right_rest_angle = None
+    servo_front_leg_right = None
+    servo_front_leg_right_pca9685 = None
+    servo_front_leg_right_channel = None
+    servo_front_leg_right_min_pulse = None
+    servo_front_leg_right_max_pulse = None
+    servo_front_leg_right_rest_angle = None
 
-        servo_front_feet_right = None
-        servo_front_feet_right_pca9685 = None
-        servo_front_feet_right_channel = None
-        servo_front_feet_right_min_pulse = None
-        servo_front_feet_right_max_pulse = None
-        servo_front_feet_right_rest_angle = None
+    servo_front_feet_right = None
+    servo_front_feet_right_pca9685 = None
+    servo_front_feet_right_channel = None
+    servo_front_feet_right_min_pulse = None
+    servo_front_feet_right_max_pulse = None
+    servo_front_feet_right_rest_angle = None
 
-        servo_arm_rotation = None
-        servo_arm_rotation_pca9685 = None
-        servo_arm_rotation_channel = None
-        servo_arm_rotation_min_pulse = None
-        servo_arm_rotation_max_pulse = None
-        servo_arm_rotation_rest_angle = None
+    # servo_arm_rotation = None
+    # servo_arm_rotation_pca9685 = None
+    # servo_arm_rotation_channel = None
+    # servo_arm_rotation_min_pulse = None
+    # servo_arm_rotation_max_pulse = None
+    # servo_arm_rotation_rest_angle = None
 
-        servo_arm_lift = None
-        servo_arm_lift_pca9685 = None
-        servo_arm_lift_channel = None
-        servo_arm_lift_min_pulse = None
-        servo_arm_lift_max_pulse = None
-        servo_arm_lift_rest_angle = None
+    # servo_arm_lift = None
+    # servo_arm_lift_pca9685 = None
+    # servo_arm_lift_channel = None
+    # servo_arm_lift_min_pulse = None
+    # servo_arm_lift_max_pulse = None
+    # servo_arm_lift_rest_angle = None
 
-        servo_arm_range = None
-        servo_arm_range_pca9685 = None
-        servo_arm_range_channel = None
-        servo_arm_range_min_pulse = None
-        servo_arm_range_max_pulse = None
-        servo_arm_range_rest_angle = None
+    # servo_arm_range = None
+    # servo_arm_range_pca9685 = None
+    # servo_arm_range_channel = None
+    # servo_arm_range_min_pulse = None
+    # servo_arm_range_max_pulse = None
+    # servo_arm_range_rest_angle = None
 
-        servo_arm_cam_tilt = None
-        servo_arm_cam_tilt_pca9685 = None
-        servo_arm_cam_tilt_channel = None
-        servo_arm_cam_tilt_min_pulse = None
-        servo_arm_cam_tilt_max_pulse = None
-        servo_arm_cam_tilt_rest_angle = None
+    # servo_arm_cam_tilt = None
+    # servo_arm_cam_tilt_pca9685 = None
+    # servo_arm_cam_tilt_channel = None
+    # servo_arm_cam_tilt_min_pulse = None
+    # servo_arm_cam_tilt_max_pulse = None
+    # servo_arm_cam_tilt_rest_angle = None
 
     def __init__(self, communication_queues): # run when class MotionController is created
 
         try:
 
-            log.debug('Starting controller...')
+            # log.debug('Starting controller...')
+            print('initializing motion controller...')
 
             signal.signal(signal.SIGINT, self.exit_gracefully)
             signal.signal(signal.SIGTERM, self.exit_gracefully)
@@ -193,13 +193,16 @@ class MotionController:
             self.i2c = busio.I2C(SCL, SDA)
             self.load_pca9685_boards_configuration()
             self.load_servos_configuration()
+            self.activate_pca9685_boards()
+            self.activate_servos()
 
             self._abort_queue = communication_queues['abort_controller']
             self._motion_queue = communication_queues['motion_controller']
 
             self._previous_event = {}
 
-            self.init_position()
+            # self.init_position()
+            
 
         except Exception as e:
             log.error('Motion controller initialization problem', e)
@@ -233,6 +236,7 @@ class MotionController:
                 if event == 'TooRight':
                     print('Too right...')
                 if event == 'TooLeft':
+                    self.init_position()
                     print('Too left...')
                 if event == 'TooLow':
                     print('Too low...')
@@ -447,30 +451,30 @@ class MotionController:
         self.servo_front_feet_right_max_pulse = Config().get(Config.MOTION_CONTROLLER_SERVOS_FRONT_FEET_RIGHT_MAX_PULSE)
         self.servo_front_feet_right_rest_angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_FRONT_FEET_RIGHT_REST_ANGLE)
 
-        if self.servo_arm_rotation_pca9685:
-            self.servo_arm_rotation_pca9685 = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_ROTATION_PCA9685)
-            self.servo_arm_rotation_channel = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_ROTATION_CHANNEL)
-            self.servo_arm_rotation_min_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_ROTATION_MIN_PULSE)
-            self.servo_arm_rotation_max_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_ROTATION_MAX_PULSE)
-            self.servo_arm_rotation_rest_angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_ARM_ROTATION_REST_ANGLE)
+        # if self.servo_arm_rotation_pca9685:
+        #     self.servo_arm_rotation_pca9685 = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_ROTATION_PCA9685)
+        #     self.servo_arm_rotation_channel = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_ROTATION_CHANNEL)
+        #     self.servo_arm_rotation_min_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_ROTATION_MIN_PULSE)
+        #     self.servo_arm_rotation_max_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_ROTATION_MAX_PULSE)
+        #     self.servo_arm_rotation_rest_angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_ARM_ROTATION_REST_ANGLE)
 
-            self.servo_arm_lift_pca9685 = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_LIFT_PCA9685)
-            self.servo_arm_lift_channel = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_LIFT_CHANNEL)
-            self.servo_arm_lift_min_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_LIFT_MIN_PULSE)
-            self.servo_arm_lift_max_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_LIFT_MAX_PULSE)
-            self.servo_arm_lift_rest_angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_ARM_LIFT_REST_ANGLE)
+        #     self.servo_arm_lift_pca9685 = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_LIFT_PCA9685)
+        #     self.servo_arm_lift_channel = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_LIFT_CHANNEL)
+        #     self.servo_arm_lift_min_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_LIFT_MIN_PULSE)
+        #     self.servo_arm_lift_max_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_LIFT_MAX_PULSE)
+        #     self.servo_arm_lift_rest_angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_ARM_LIFT_REST_ANGLE)
 
-            self.servo_arm_range_pca9685 = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_RANGE_PCA9685)
-            self.servo_arm_range_channel = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_RANGE_CHANNEL)
-            self.servo_arm_range_min_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_RANGE_MIN_PULSE)
-            self.servo_arm_range_max_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_RANGE_MAX_PULSE)
-            self.servo_arm_range_rest_angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_ARM_RANGE_REST_ANGLE)
+        #     self.servo_arm_range_pca9685 = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_RANGE_PCA9685)
+        #     self.servo_arm_range_channel = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_RANGE_CHANNEL)
+        #     self.servo_arm_range_min_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_RANGE_MIN_PULSE)
+        #     self.servo_arm_range_max_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_RANGE_MAX_PULSE)
+        #     self.servo_arm_range_rest_angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_ARM_RANGE_REST_ANGLE)
 
-            self.servo_arm_cam_tilt_pca9685 = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_CAM_TILT_PCA9685)
-            self.servo_arm_cam_tilt_channel = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_CAM_TILT_CHANNEL)
-            self.servo_arm_cam_tilt_min_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_CAM_TILT_MIN_PULSE)
-            self.servo_arm_cam_tilt_max_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_CAM_TILT_MAX_PULSE)
-            self.servo_arm_cam_tilt_rest_angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_ARM_CAM_TILT_REST_ANGLE)
+        #     self.servo_arm_cam_tilt_pca9685 = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_CAM_TILT_PCA9685)
+        #     self.servo_arm_cam_tilt_channel = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_CAM_TILT_CHANNEL)
+        #     self.servo_arm_cam_tilt_min_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_CAM_TILT_MIN_PULSE)
+        #     self.servo_arm_cam_tilt_max_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_CAM_TILT_MAX_PULSE)
+        #     self.servo_arm_cam_tilt_rest_angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_ARM_CAM_TILT_REST_ANGLE)
     def activate_servos(self):
 
         if self.servo_rear_shoulder_left_pca9685 == 1:
@@ -547,31 +551,31 @@ class MotionController:
             self.servo_front_feet_right = servo.Servo(self.pca9685_2.channels[self.servo_front_feet_right_channel])
         self.servo_front_feet_right.set_pulse_width_range(min_pulse=self.servo_front_feet_right_min_pulse, max_pulse=self.servo_front_feet_right_max_pulse)
 
-        if self.servo_arm_rotation_pca9685:
+        # if self.servo_arm_rotation_pca9685:
 
-            if self.servo_arm_rotation_pca9685 == 1:
-                self.servo_arm_rotation = servo.Servo(self.pca9685_1.channels[self.servo_arm_rotation_channel])
-            else:
-                self.servo_arm_rotation = servo.Servo(self.pca9685_2.channels[self.servo_arm_rotation_channel])
-            self.servo_arm_rotation.set_pulse_width_range(min_pulse=self.servo_arm_rotation_min_pulse, max_pulse=self.servo_arm_rotation_max_pulse)
+        #     if self.servo_arm_rotation_pca9685 == 1:
+        #         self.servo_arm_rotation = servo.Servo(self.pca9685_1.channels[self.servo_arm_rotation_channel])
+        #     else:
+        #         self.servo_arm_rotation = servo.Servo(self.pca9685_2.channels[self.servo_arm_rotation_channel])
+        #     self.servo_arm_rotation.set_pulse_width_range(min_pulse=self.servo_arm_rotation_min_pulse, max_pulse=self.servo_arm_rotation_max_pulse)
 
-            if self.servo_arm_lift_pca9685 == 1:
-                self.servo_arm_lift = servo.Servo(self.pca9685_1.channels[self.servo_arm_lift_channel])
-            else:
-                self.servo_arm_lift = servo.Servo(self.pca9685_2.channels[self.servo_arm_lift_channel])
-            self.servo_arm_lift.set_pulse_width_range(min_pulse=self.servo_arm_lift_min_pulse, max_pulse=self.servo_arm_lift_max_pulse)
+        #     if self.servo_arm_lift_pca9685 == 1:
+        #         self.servo_arm_lift = servo.Servo(self.pca9685_1.channels[self.servo_arm_lift_channel])
+        #     else:
+        #         self.servo_arm_lift = servo.Servo(self.pca9685_2.channels[self.servo_arm_lift_channel])
+        #     self.servo_arm_lift.set_pulse_width_range(min_pulse=self.servo_arm_lift_min_pulse, max_pulse=self.servo_arm_lift_max_pulse)
 
-            if self.servo_arm_range_pca9685 == 1:
-                self.servo_arm_range = servo.Servo(self.pca9685_1.channels[self.servo_arm_range_channel])
-            else:
-                self.servo_arm_range = servo.Servo(self.pca9685_2.channels[self.servo_arm_range_channel])
-            self.servo_arm_range.set_pulse_width_range(min_pulse=self.servo_arm_range_min_pulse, max_pulse=self.servo_arm_range_max_pulse)
+        #     if self.servo_arm_range_pca9685 == 1:
+        #         self.servo_arm_range = servo.Servo(self.pca9685_1.channels[self.servo_arm_range_channel])
+        #    else:
+        #        self.servo_arm_range = servo.Servo(self.pca9685_2.channels[self.servo_arm_range_channel])
+        #    self.servo_arm_range.set_pulse_width_range(min_pulse=self.servo_arm_range_min_pulse, max_pulse=self.servo_arm_range_max_pulse)
 
-            if self.servo_arm_cam_tilt_pca9685 == 1:
-                self.servo_arm_cam_tilt = servo.Servo(self.pca9685_1.channels[self.servo_arm_cam_tilt_channel])
-            else:
-                self.servo_arm_cam_tilt = servo.Servo(self.pca9685_2.channels[self.servo_arm_cam_tilt_channel])
-            self.servo_arm_cam_tilt.set_pulse_width_range(min_pulse=self.servo_arm_cam_tilt_min_pulse, max_pulse=self.servo_arm_cam_tilt_max_pulse)
+        #   if self.servo_arm_cam_tilt_pca9685 == 1:
+        #        self.servo_arm_cam_tilt = servo.Servo(self.pca9685_1.channels[self.servo_arm_cam_tilt_channel])
+        #    else:
+        #        self.servo_arm_cam_tilt = servo.Servo(self.pca9685_2.channels[self.servo_arm_cam_tilt_channel])
+        #    self.servo_arm_cam_tilt.set_pulse_width_range(min_pulse=self.servo_arm_cam_tilt_min_pulse, max_pulse=self.servo_arm_cam_tilt_max_pulse)
     
     ##### MOVE FUNCTIONS #####
     ## P position: new position to move ##
@@ -1083,26 +1087,26 @@ class MotionController:
         except ValueError as e:
             log.error('Impossible servo_front_feet_right angle requested')
 
-        if self.servo_arm_rotation_pca9685:
-            try:
-                self.servo_arm_rotation.angle = self.servo_arm_rotation_rest_angle
-            except ValueError as e:
-                log.error('Impossible servo_arm_rotation angle requested')
+        # if self.servo_arm_rotation_pca9685:
+        #     try:
+        #         self.servo_arm_rotation.angle = self.servo_arm_rotation_rest_angle
+        #     except ValueError as e:
+        #         log.error('Impossible servo_arm_rotation angle requested')
 
-            try:
-                self.servo_arm_lift.angle = self.servo_arm_lift_rest_angle
-            except ValueError as e:
-                log.error('Impossible arm_lift angle requested')
+        #     try:
+        #         self.servo_arm_lift.angle = self.servo_arm_lift_rest_angle
+        #     except ValueError as e:
+        #         log.error('Impossible arm_lift angle requested')
 
-            try:
-                self.servo_arm_range.angle = self.servo_arm_range_rest_angle
-            except ValueError as e:
-                log.error('Impossible servo_arm_range angle requested')
+        #     try:
+        #         self.servo_arm_range.angle = self.servo_arm_range_rest_angle
+        #     except ValueError as e:
+        #         log.error('Impossible servo_arm_range angle requested')
 
-            try:
-                self.servo_arm_cam_tilt.angle = self.servo_arm_cam_tilt_rest_angle
-            except ValueError as e:
-                log.error('Impossible servo_arm_cam_tilt angle requested')
+        #     try:
+        #         self.servo_arm_cam_tilt.angle = self.servo_arm_cam_tilt_rest_angle
+        #     except ValueError as e:
+        #         log.error('Impossible servo_arm_cam_tilt angle requested')
     def init_position(self):
 
         self.servo_rear_shoulder_left_rest_angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_REAR_SHOULDER_LEFT_REST_ANGLE)
@@ -1147,11 +1151,11 @@ class MotionController:
         self.front_left_position_P0(init_Px, init_Py, 0)
         self.front_right_position_P0(init_Px, init_Py, 0)
 
-        if self.servo_arm_rotation_pca9685:
-            self.servo_arm_rotation.angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_ARM_ROTATION_REST_ANGLE)
-            self.servo_arm_lift.angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_ARM_LIFT_REST_ANGLE)
-            self.servo_arm_range.angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_ARM_RANGE_REST_ANGLE)
-            self.servo_arm_cam_tilt.angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_ARM_CAM_TILT_REST_ANGLE)
+        # if self.servo_arm_rotation_pca9685:
+        #     self.servo_arm_rotation.angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_ARM_ROTATION_REST_ANGLE)
+        #     self.servo_arm_lift.angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_ARM_LIFT_REST_ANGLE)
+        #     self.servo_arm_range.angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_ARM_RANGE_REST_ANGLE)
+        #     self.servo_arm_cam_tilt.angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_ARM_CAM_TILT_REST_ANGLE)
   
     def maprange(self, a, b, s):
         (a1, a2), (b1, b2) = a, b

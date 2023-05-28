@@ -22,6 +22,7 @@ def process_abort_controller(communication_queues):
     abort.do_process_events_from_queue()
 
 def process_motion_controller(communication_queues):
+    print("starting motion controller")
     motion = MotionController(communication_queues)
     motion.do_process_events_from_queues()
 
@@ -70,7 +71,8 @@ def main():
     server_socket.bind((sever_ip, sever_port))
     server_socket.listen(1)
 
-    connection_socket, client_address = server_socket.accept()
+    connection_socket, client_address = server_socket.accept() ##
+    # print(connection_socket)
 
     communication_queues = create_controllers_queues()
 
@@ -123,7 +125,7 @@ def main():
 
 
 if __name__ == '__main__':
-    log.info('SpotMicro starting...')
+    # log.info('SpotMicro starting...')
 
     try:
         main()
