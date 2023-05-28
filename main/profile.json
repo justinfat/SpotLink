@@ -31,14 +31,14 @@
 				"channel": 3,
 				"min_pulse": 500,
 				"max_pulse": 2500,
-				"rest_angle": 89
+				"rest_angle": 95
 			}],
 			"rear_leg_left": [{
 				"pca9685": 1,
 				"channel": 4,
 				"min_pulse": 500,
 				"max_pulse": 2500,
-				"rest_angle": 179
+				"rest_angle": 165
 			}],
 			"rear_feet_left": [{
 				"pca9685": 1,
@@ -52,91 +52,63 @@
 				"channel": 3,
 				"min_pulse": 500,
 				"max_pulse": 2500,
-				"rest_angle": 83
+				"rest_angle": 92
 			}],
 			"rear_leg_right": [{
 				"pca9685": 2,
 				"channel": 4,
 				"min_pulse": 500,
 				"max_pulse": 2500,
-				"rest_angle": 0
+				"rest_angle": 18
 			}],
 			"rear_feet_right": [{
 				"pca9685": 2,
 				"channel": 5,
 				"min_pulse": 500,
 				"max_pulse": 2500,
-				"rest_angle": 180
+				"rest_angle": 166
 			}],
 			"front_shoulder_left": [{
 				"pca9685": 1,
 				"channel": 0,
 				"min_pulse": 500,
 				"max_pulse": 2500,
-				"rest_angle": 94
+				"rest_angle": 86
 			}],
 			"front_leg_left": [{
 				"pca9685": 1,
 				"channel": 1,
 				"min_pulse": 500,
 				"max_pulse": 2500,
-				"rest_angle": 180
+				"rest_angle": 160
 			}],
 			"front_feet_left": [{
 				"pca9685": 1,
 				"channel": 2,
 				"min_pulse": 500,
 				"max_pulse": 2500,
-				"rest_angle": 0
+				"rest_angle": 6
 			}],
 			"front_shoulder_right": [{
 				"pca9685": 2,
 				"channel": 0,
 				"min_pulse": 500,
 				"max_pulse": 2500,
-				"rest_angle": 94
+				"rest_angle": 90
 			}],
 			"front_leg_right": [{
 				"pca9685": 2,
 				"channel": 1,
 				"min_pulse": 500,
 				"max_pulse": 2500,
-				"rest_angle": 0
+				"rest_angle": 18
 			}],
 			"front_feet_right": [{
 				"pca9685": 2,
 				"channel": 2,
 				"min_pulse": 500,
 				"max_pulse": 2500,
-				"rest_angle": 180
-			}],
-			"arm_rotation": [{
-			    "pca9685": 1,
-				"channel": 12,
-				"min_pulse": 500,
-				"max_pulse": 2500,
-				"rest_angle": 90
-			}],
-			"arm_lift": [{
-			    "pca9685": 1,
-				"channel": 13,
-				"min_pulse": 500,
-				"max_pulse": 2500,
-				"rest_angle": 90
-			}],
-			"arm_range": [{
-			    "pca9685": 1,
-				"channel": 14,
-				"min_pulse": 500,
-				"max_pulse": 2500,
-				"rest_angle": 90
-			}],
-			"arm_cam_tilt": [{
-			    "pca9685": 1,
-				"channel": 15,
-				"min_pulse": 500,
-				"max_pulse": 2500,
-				"rest_angle": 90
+				"rest_angle": 170
 			}]
 		}]
 	}]
