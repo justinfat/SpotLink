@@ -17,6 +17,10 @@ log = Logger().setup_logger('Motion controller')
 leg_len = 10.8 # leg length in cm
 feet_len = 11.6 # feet length in cm
 shoulder_len = 5.84 # shoulder length in cm
+body_len = 18.56 # body length in cm
+
+# Body position
+pitch_angle = 0
 
 # For walk motion script
 walk_mode = -1
@@ -243,6 +247,9 @@ class MotionController:
                 if event == 'TooHigh':
                     print('Too high...')
                 
+                user_input = input('Insert pitch angle: ')
+                print(user_input)
+
                 # #serial controller
                 # if type(event) == int:
                 #     if event == 11519:
@@ -985,6 +992,21 @@ class MotionController:
         self.stand()
 
     ## body posture ##
+    def body_pitch(self, new_pitch_angle): ### Z AXIS NOT CONSIDERED YET !!!
+        r = body_len/2
+        front_origin = [r*math.cos(math.pi*pitch_angle/180),r*math.sin(math.pi*pitch_angle/180)]
+        rear_origin = [-r*math.cos(math.pi*pitch_angle/180),-r*math.sin(math.pi*pitch_angle/180)]
+        new_front_origin = [r*math.cos(math.pi*new_pitch_angle/180),r*math.sin(math.pi*new_pitch_angle/180)]
+        new_rear_origin = [-r*math.cos(math.pi*new_pitch_angle/180),-r*math.sin(math.pi*new_pitch_angle/180)]
+        front_origin_vector = [new_front_origin[0]-front_origin[0], new_front_origin[1]-front_origin[1]]
+        rear_origin_vector = [new_rear_origin[0]-rear_origin[0], new_rear_origin[1]-rear_origin[1]]
+
+        self.front_left_position_P(front_left_P[0]-front_origin_vector[0], front_left_P[1]-front_origin_vector[1], front_left_P[2])
+        self.front_right_position_P(front_right_P[0]-front_origin_vector[0], front_right_P[1]-front_origin_vector[1], front_right_P[2])
+        self.rear_left_position_P(rear_left_P[0]-rear_origin_vector[0], rear_left_P[1]-rear_origin_vector[1], rear_left_P[2])
+        self.rear_right_position_P(rear_right_P[0]-rear_origin_vector[0], rear_right_P[1]-rear_origin_vector[1], rear_right_P[2])
+        self.move_all(10)
+        
     def stand(self):
         Px_front = 0
         Px_rear = 0
