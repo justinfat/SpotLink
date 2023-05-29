@@ -38,14 +38,14 @@
 				"channel": 4,
 				"min_pulse": 500,
 				"max_pulse": 2500,
-				"rest_angle": 165
+				"rest_angle": 164
 			}],
 			"rear_feet_left": [{
 				"pca9685": 1,
 				"channel": 5,
 				"min_pulse": 500,
 				"max_pulse": 2500,
-				"rest_angle": 0
+				"rest_angle": 8
 			}],
 			"rear_shoulder_right": [{
 				"pca9685": 2,

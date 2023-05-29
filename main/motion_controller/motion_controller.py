@@ -19,7 +19,7 @@ shoulder_len = 5.84 # shoulder length in cm
 body_len = 18.56 # body length in cm
 
 # Body position
-pitch_angle = 0
+pitch_angle = 0.0
 
 # For walk motion script
 walk_mode = -1
@@ -39,7 +39,7 @@ for i in range(7):
 # calibration adjustment
 front_left_init = (86, 160, 6)
 front_right_init = (90, 18, 170)
-rear_left_init = (95, 165, 0)
+rear_left_init = (95, 164, 8)
 rear_right_init = (92, 18, 166)
 leg_init_angle = 15 # initial angle with horizontal
 feet_init_angle = 45 # initial angle with leg
@@ -204,7 +204,9 @@ class MotionController:
 
             self._previous_event = {}
 
-            # self.init_position()
+            self.init_position()
+            self.stand(12)
+            self.body_pitch(9)
             
 
         except Exception as e:
@@ -233,18 +235,19 @@ class MotionController:
 
         while True:
             try:
-                event = self._motion_queue.get(block=True, timeout=60)
+                event = self._motion_queue.get(block=True)
 
                 # send_controller
                 if event == 'TooRight':
                     print('Too right...')
                 if event == 'TooLeft':
-                    self.init_position()
                     print('Too left...')
                 if event == 'TooLow':
                     print('Too low...')
+                    self.body_pitch(pitch_angle-1)
                 if event == 'TooHigh':
                     print('Too high...')
+                    self.body_pitch(pitch_angle+1)
 
                 # #serial controller
                 # if type(event) == int:
@@ -989,6 +992,7 @@ class MotionController:
 
     ## body posture ##
     def body_pitch(self, new_pitch_angle): ### Z AXIS NOT CONSIDERED YET !!!
+        global pitch_angle
         r = body_len/2
         front_origin = [r*math.cos(math.radians(pitch_angle)),r*math.sin(math.radians(pitch_angle))]
         rear_origin = [-r*math.cos(math.radians(pitch_angle)),-r*math.sin(math.radians(pitch_angle))]
@@ -1004,10 +1008,10 @@ class MotionController:
         self.move_all(10)
         pitch_angle = new_pitch_angle
         
-    def stand(self):
+    def stand(self, height):
         Px_front = 0
         Px_rear = 0
-        Py = -10
+        Py = -height
         Pz = 0
 
         self.rear_left_position_P(Px_rear, Py, Pz)
@@ -1157,8 +1161,8 @@ class MotionController:
         self.servo_front_leg_right.angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_FRONT_LEG_RIGHT_REST_ANGLE)
         self.servo_front_feet_right.angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_FRONT_FEET_RIGHT_REST_ANGLE)
 
-        init_Px = -leg_len*math.cos(math.pi*leg_init_angle/360) + feet_len*math.cos(math.pi*(feet_init_angle-leg_init_angle)/360)
-        init_Py = -leg_len*math.sin(math.pi*leg_init_angle/36) - feet_len*math.sin(math.pi*(feet_init_angle-leg_init_angle)/360)
+        init_Px = -leg_len*math.cos(math.radians(leg_init_angle)) + feet_len*math.cos(math.radians(feet_init_angle-leg_init_angle))
+        init_Py = -leg_len*math.sin(math.radians(leg_init_angle)) - feet_len*math.sin(math.radians(feet_init_angle-leg_init_angle))
         
         self.rear_left_position_P(init_Px, init_Py, 0)
         self.rear_right_position_P(init_Px, init_Py, 0)
@@ -1186,7 +1190,16 @@ if __name__ == '__main__':
                             'socket_queue': 'fake'}
     MC = MotionController(communication_queues)
     MC.init_position()
+    MC.stand()
 
-    user_input = input("Insert pitch angle: ")
-    MC.body_pitch(int(user_input))
-    print(user_input)
+    while True:
+        user_input = input("Insert pitch angle: ")
+
+        if user_input == 'q':
+            break
+        else:
+            MC.body_pitch(float(user_input))
+            # print('front_left_P: ', front_left_P[0], front_left_P[1], front_left_P[2])
+            # print('front_right_P: ', front_right_P[0], front_right_P[1], front_right_P[2])
+            # print('rear_left_P: ', rear_left_P[0], rear_left_P[1], rear_left_P[2])
+            # print('rear_right_P: ', rear_right_P[0], rear_right_P[1], rear_right_P[2])
