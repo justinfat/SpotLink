@@ -1,4 +1,3 @@
-#Latest version 20210909
 import signal
 import sys
 import math
@@ -246,9 +245,6 @@ class MotionController:
                     print('Too low...')
                 if event == 'TooHigh':
                     print('Too high...')
-                
-                user_input = input('Insert pitch angle: ')
-                print(user_input)
 
                 # #serial controller
                 # if type(event) == int:
@@ -994,10 +990,10 @@ class MotionController:
     ## body posture ##
     def body_pitch(self, new_pitch_angle): ### Z AXIS NOT CONSIDERED YET !!!
         r = body_len/2
-        front_origin = [r*math.cos(math.pi*pitch_angle/180),r*math.sin(math.pi*pitch_angle/180)]
-        rear_origin = [-r*math.cos(math.pi*pitch_angle/180),-r*math.sin(math.pi*pitch_angle/180)]
-        new_front_origin = [r*math.cos(math.pi*new_pitch_angle/180),r*math.sin(math.pi*new_pitch_angle/180)]
-        new_rear_origin = [-r*math.cos(math.pi*new_pitch_angle/180),-r*math.sin(math.pi*new_pitch_angle/180)]
+        front_origin = [r*math.cos(math.radians(pitch_angle)),r*math.sin(math.radians(pitch_angle))]
+        rear_origin = [-r*math.cos(math.radians(pitch_angle)),-r*math.sin(math.radians(pitch_angle))]
+        new_front_origin = [r*math.cos(math.radians(new_pitch_angle)),r*math.sin(math.radians(new_pitch_angle))]
+        new_rear_origin = [-r*math.cos(math.radians(new_pitch_angle)),-r*math.sin(math.radians(new_pitch_angle))]
         front_origin_vector = [new_front_origin[0]-front_origin[0], new_front_origin[1]-front_origin[1]]
         rear_origin_vector = [new_rear_origin[0]-rear_origin[0], new_rear_origin[1]-rear_origin[1]]
 
@@ -1006,6 +1002,7 @@ class MotionController:
         self.rear_left_position_P(rear_left_P[0]-rear_origin_vector[0], rear_left_P[1]-rear_origin_vector[1], rear_left_P[2])
         self.rear_right_position_P(rear_right_P[0]-rear_origin_vector[0], rear_right_P[1]-rear_origin_vector[1], rear_right_P[2])
         self.move_all(10)
+        pitch_angle = new_pitch_angle
         
     def stand(self):
         Px_front = 0
@@ -1182,3 +1179,14 @@ class MotionController:
     def maprange(self, a, b, s):
         (a1, a2), (b1, b2) = a, b
         return b1 + ((s - a1) * (b2 - b1) / (a2 - a1))
+    
+if __name__ == '__main__':
+    communication_queues = {'abort_controller': 'fake',
+                            'motion_controller': 'fake',
+                            'socket_queue': 'fake'}
+    MC = MotionController(communication_queues)
+    MC.init_position()
+
+    user_input = input("Insert pitch angle: ")
+    MC.body_pitch(int(user_input))
+    print(user_input)
