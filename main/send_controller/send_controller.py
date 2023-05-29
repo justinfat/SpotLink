@@ -12,8 +12,21 @@ face_in_center = True
 class SendController:
     def __init__(self, communication_queues):
         self._motion_queue = communication_queues['motion_controller']
+        self._socket_queue = communication_queues['socket_queue']
+    
+    def create_sever_socket(self):
+        server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # client socket declaration: ipv4, TCP
+        server_socket.bind((sever_ip, sever_port))
+        server_socket.listen(1)
 
-    def send_video(self, connection_socket):
+        connection_socket, client_address = server_socket.accept()
+
+        return connection_socket
+
+    def send_video(self):
+        connection_socket = self.create_sever_socket()
+        self._socket_queue.put(connection_socket)
+
         capture = cv2.VideoCapture(0)
         capture.set(cv2.CAP_PROP_FPS, 10)
 
@@ -54,53 +67,18 @@ class SendController:
                         self._motion_queue.put('TooHigh', timeout=60)
                         # print('Too high...')
 
-                    # if faceCenter[0] > videoWidth*0.75:
-                    #     if face_in_center == True:
-                    #         self._motion_queue.put('TooRight', timeout=60)
-                    #     # print('Too right...')
-                    #     face_in_center = False
-                    # elif faceCenter[0] < videoWidth*0.25:
-                    #     if face_in_center == True:
-                    #         self._motion_queue.put('TooLeft', timeout=60)
-                    #     # print('Too left...')
-                    #     face_in_center = False
-                    # elif faceCenter[1] > videoHeight*0.75:
-                    #     if face_in_center == True:
-                    #         self._motion_queue.put('TooLow', timeout=60)
-                    #     # print('Too low...')
-                    #     face_in_center = False
-                    # elif faceCenter[1] < videoHeight*0.25:
-                    #     if face_in_center == True:
-                    #         self._motion_queue.put('TooHigh', timeout=60)
-                    #     # print('Too high...')
-                    #     face_in_center = False
-                    # else:
-                    #     face_in_center = True
-
                 # send data to client
                 data = frame.tobytes()
                 connection_socket.sendall(struct.pack("L", len(data)))
                 connection_socket.sendall(data)
-
-                # stop video calling if type q
-                if cv2.waitKey(1) & 0xFF == ord('q'):
-                    break
-
+            
             except socket.error as e:
                 print("Send video socket error:", e)
+                # connection_socket.shutdown(socket.SHUT_RDWR)
+                connection_socket.close()
                 break
 
         capture.release()
 
 if __name__ == '__main__':
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # client socket declaration: ipv4, TCP
-    server_socket.bind((sever_ip, sever_port))
-    server_socket.listen(1)
-
-    connection_socket, client_address = server_socket.accept()
-
-    SendController().send_video(connection_socket)
-
-    # connection_socket.shutdown(socket.SHUT_RDWR)
-    connection_socket.close()
-    server_socket.close()
+    SendController().send_video()

@@ -30,18 +30,19 @@ def process_gamepad_controller(communication_queues):
     gamepad_controller = GamepadController(communication_queues)
     gamepad_controller.do_process_events_from_queues()
 
-def process_send_controller(communication_queues, connection_socket):
+def process_send_controller(communication_queues):
     send_controller = SendController(communication_queues)
-    send_controller.send_video(connection_socket)
+    send_controller.send_video()
 
-def process_recv_controller(communication_queues, connection_socket):
+def process_recv_controller(communication_queues):
     recv_controller = RecvController(communication_queues)
-    recv_controller.recv_video(connection_socket)
+    recv_controller.recv_video()
 
 # Queues
 def create_controllers_queues():
-    communication_queues = {'abort_controller': multiprocessing.Queue(10),
-                            'motion_controller': multiprocessing.Queue(1)}
+    communication_queues = {'abort_controller': multiprocessing.Queue(1),
+                            'motion_controller': multiprocessing.Queue(1),
+                            'socket_queue': multiprocessing.Queue(1)}
 
     log.info('Created the communication queues: ' + ', '.join(communication_queues.keys()))
 
@@ -54,39 +55,31 @@ def close_controllers_queues(communication_queues):
         queue.close()
         queue.join_thread()
 
-# Sockets
-# def create_sever_socket():
-#     sever_ip = '0.0.0.0'
-#     sever_port = 8485
-#     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # client socket declaration: ipv4, TCP
-#     server_socket.bind((sever_ip, sever_port))
-#     server_socket.listen(1)
-
-#     connection_socket, client_address = server_socket.accept()
-
-#     return connection_socket
-
 def main():
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # client socket declaration: ipv4, TCP
-    server_socket.bind((sever_ip, sever_port))
-    server_socket.listen(1)
-
-    connection_socket, client_address = server_socket.accept() ##
+    # client socket declaration: ipv4, TCP
+    # server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
+    # server_socket.bind((sever_ip, sever_port))
+    # server_socket.listen(1)
+    # connection_socket, client_address = server_socket.accept() 
     # print(connection_socket)
 
     communication_queues = create_controllers_queues()
 
-    send_controller = multiprocessing.Process(target=process_send_controller, args=(communication_queues, connection_socket))
+    send_controller = multiprocessing.Process(target=process_send_controller, 
+                                              args=(communication_queues,))
     send_controller.daemon = True
 
-    recv_controller = multiprocessing.Process(target=process_recv_controller, args=(communication_queues, connection_socket))
+    recv_controller = multiprocessing.Process(target=process_recv_controller, 
+                                              args=(communication_queues,))
     recv_controller.daemon = True
 
     # Controls the 0E port from PCA9685 to cut the power to the servos conveniently if needed.
-    abort_controller = multiprocessing.Process(target=process_abort_controller, args=(communication_queues,))
+    abort_controller = multiprocessing.Process(target=process_abort_controller, 
+                                               args=(communication_queues,))
     abort_controller.daemon = True  # The daemon dies if the parent process dies
 
-    motion_controller = multiprocessing.Process(target=process_motion_controller, args=(communication_queues,))
+    motion_controller = multiprocessing.Process(target=process_motion_controller, 
+                                                args=(communication_queues,))
     motion_controller.daemon = True
 
     # gamepad_controller = multiprocessing.Process(target=process_gamepad_controller, args=(communication_queues,))
@@ -116,10 +109,6 @@ def main():
     # gamepad_controller.join()
     send_controller.join()
     recv_controller.join()
-
-    # connection_socket.shutdown(socket.SHUT_RDWR)
-    connection_socket.close()
-    server_socket.close()
 
     close_controllers_queues(communication_queues)
 

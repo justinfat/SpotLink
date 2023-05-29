@@ -10,8 +10,11 @@ sever_port = 8485
 class RecvController:
     def __init__(self, communication_queues):
         self._motion_queue = communication_queues['motion_controller']
+        self._socket_queue = communication_queues['socket_queue']
 
-    def recv_video(self, connection_socket):
+    def recv_video(self):
+        connection_socket = self._socket_queue.get(block=True)
+        
         data = b'' # empty btytes
         payload_size = struct.calcsize("L")
 
@@ -75,10 +78,14 @@ class RecvController:
 
                 # stop video calling if type q
                 if cv2.waitKey(1) & 0xFF == ord('q'):
+                    # connection_socket.shutdown(socket.SHUT_RDWR)
+                    connection_socket.close()
                     break
                 
             except socket.error as e:
                 print("Receive video socket error:", e)
+                # connection_socket.shutdown(socket.SHUT_RDWR)
+                connection_socket.close()
                 break
 
         cv2.destroyAllWindows()
