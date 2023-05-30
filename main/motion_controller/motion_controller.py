@@ -15,7 +15,8 @@ log = Logger().setup_logger('Motion controller')
 # Body size
 leg_len = 10.8 # leg length in cm
 feet_len = 11.6 # feet length in cm
-shoulder_len = 5.84 # shoulder length in cm
+shoulder_len_y = 1 # shoulder length on y axis in cm
+shoulder_len_z = 5.64 # shoulder length on z axis in cm
 body_len = 18.56 # body length in cm
 
 # Body position
@@ -154,34 +155,6 @@ class MotionController:
     servo_front_feet_right_min_pulse = None
     servo_front_feet_right_max_pulse = None
     servo_front_feet_right_rest_angle = None
-
-    # servo_arm_rotation = None
-    # servo_arm_rotation_pca9685 = None
-    # servo_arm_rotation_channel = None
-    # servo_arm_rotation_min_pulse = None
-    # servo_arm_rotation_max_pulse = None
-    # servo_arm_rotation_rest_angle = None
-
-    # servo_arm_lift = None
-    # servo_arm_lift_pca9685 = None
-    # servo_arm_lift_channel = None
-    # servo_arm_lift_min_pulse = None
-    # servo_arm_lift_max_pulse = None
-    # servo_arm_lift_rest_angle = None
-
-    # servo_arm_range = None
-    # servo_arm_range_pca9685 = None
-    # servo_arm_range_channel = None
-    # servo_arm_range_min_pulse = None
-    # servo_arm_range_max_pulse = None
-    # servo_arm_range_rest_angle = None
-
-    # servo_arm_cam_tilt = None
-    # servo_arm_cam_tilt_pca9685 = None
-    # servo_arm_cam_tilt_channel = None
-    # servo_arm_cam_tilt_min_pulse = None
-    # servo_arm_cam_tilt_max_pulse = None
-    # servo_arm_cam_tilt_rest_angle = None
 
     def __init__(self, communication_queues): # run when class MotionController is created
 
@@ -336,8 +309,6 @@ class MotionController:
             
             except Exception as e:
                 print(e)
-                # log.error('Unknown problem while processing the queue of the motion controller')
-                # log.error(' - Most likely a servo is not able to get to the assigned position')
             
     ##### SETUP ##### 
     def load_pca9685_boards_configuration(self):
@@ -457,30 +428,6 @@ class MotionController:
         self.servo_front_feet_right_max_pulse = Config().get(Config.MOTION_CONTROLLER_SERVOS_FRONT_FEET_RIGHT_MAX_PULSE)
         self.servo_front_feet_right_rest_angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_FRONT_FEET_RIGHT_REST_ANGLE)
 
-        # if self.servo_arm_rotation_pca9685:
-        #     self.servo_arm_rotation_pca9685 = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_ROTATION_PCA9685)
-        #     self.servo_arm_rotation_channel = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_ROTATION_CHANNEL)
-        #     self.servo_arm_rotation_min_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_ROTATION_MIN_PULSE)
-        #     self.servo_arm_rotation_max_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_ROTATION_MAX_PULSE)
-        #     self.servo_arm_rotation_rest_angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_ARM_ROTATION_REST_ANGLE)
-
-        #     self.servo_arm_lift_pca9685 = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_LIFT_PCA9685)
-        #     self.servo_arm_lift_channel = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_LIFT_CHANNEL)
-        #     self.servo_arm_lift_min_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_LIFT_MIN_PULSE)
-        #     self.servo_arm_lift_max_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_LIFT_MAX_PULSE)
-        #     self.servo_arm_lift_rest_angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_ARM_LIFT_REST_ANGLE)
-
-        #     self.servo_arm_range_pca9685 = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_RANGE_PCA9685)
-        #     self.servo_arm_range_channel = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_RANGE_CHANNEL)
-        #     self.servo_arm_range_min_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_RANGE_MIN_PULSE)
-        #     self.servo_arm_range_max_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_RANGE_MAX_PULSE)
-        #     self.servo_arm_range_rest_angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_ARM_RANGE_REST_ANGLE)
-
-        #     self.servo_arm_cam_tilt_pca9685 = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_CAM_TILT_PCA9685)
-        #     self.servo_arm_cam_tilt_channel = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_CAM_TILT_CHANNEL)
-        #     self.servo_arm_cam_tilt_min_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_CAM_TILT_MIN_PULSE)
-        #     self.servo_arm_cam_tilt_max_pulse = Config().get(Config.ARM_CONTROLLER_SERVOS_ARM_CAM_TILT_MAX_PULSE)
-        #     self.servo_arm_cam_tilt_rest_angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_ARM_CAM_TILT_REST_ANGLE)
     def activate_servos(self):
 
         if self.servo_rear_shoulder_left_pca9685 == 1:
@@ -557,31 +504,6 @@ class MotionController:
             self.servo_front_feet_right = servo.Servo(self.pca9685_2.channels[self.servo_front_feet_right_channel])
         self.servo_front_feet_right.set_pulse_width_range(min_pulse=self.servo_front_feet_right_min_pulse, max_pulse=self.servo_front_feet_right_max_pulse)
 
-        # if self.servo_arm_rotation_pca9685:
-
-        #     if self.servo_arm_rotation_pca9685 == 1:
-        #         self.servo_arm_rotation = servo.Servo(self.pca9685_1.channels[self.servo_arm_rotation_channel])
-        #     else:
-        #         self.servo_arm_rotation = servo.Servo(self.pca9685_2.channels[self.servo_arm_rotation_channel])
-        #     self.servo_arm_rotation.set_pulse_width_range(min_pulse=self.servo_arm_rotation_min_pulse, max_pulse=self.servo_arm_rotation_max_pulse)
-
-        #     if self.servo_arm_lift_pca9685 == 1:
-        #         self.servo_arm_lift = servo.Servo(self.pca9685_1.channels[self.servo_arm_lift_channel])
-        #     else:
-        #         self.servo_arm_lift = servo.Servo(self.pca9685_2.channels[self.servo_arm_lift_channel])
-        #     self.servo_arm_lift.set_pulse_width_range(min_pulse=self.servo_arm_lift_min_pulse, max_pulse=self.servo_arm_lift_max_pulse)
-
-        #     if self.servo_arm_range_pca9685 == 1:
-        #         self.servo_arm_range = servo.Servo(self.pca9685_1.channels[self.servo_arm_range_channel])
-        #    else:
-        #        self.servo_arm_range = servo.Servo(self.pca9685_2.channels[self.servo_arm_range_channel])
-        #    self.servo_arm_range.set_pulse_width_range(min_pulse=self.servo_arm_range_min_pulse, max_pulse=self.servo_arm_range_max_pulse)
-
-        #   if self.servo_arm_cam_tilt_pca9685 == 1:
-        #        self.servo_arm_cam_tilt = servo.Servo(self.pca9685_1.channels[self.servo_arm_cam_tilt_channel])
-        #    else:
-        #        self.servo_arm_cam_tilt = servo.Servo(self.pca9685_2.channels[self.servo_arm_cam_tilt_channel])
-        #    self.servo_arm_cam_tilt.set_pulse_width_range(min_pulse=self.servo_arm_cam_tilt_min_pulse, max_pulse=self.servo_arm_cam_tilt_max_pulse)
     
     ##### MOVE FUNCTIONS #####
     ## P position: new position to move ##
@@ -620,52 +542,57 @@ class MotionController:
         front_right_P0[2] = Pz
     
     ## get motor angle ##
-    def getPhi(self, Px, Py, Pz): 
-        Pz_corrected = Pz + shoulder_len 
-        h = math.sqrt(Py**2 + Pz_corrected**2 - shoulder_len**2) # length of leg plus feet
-        phi = math.acos((Px**2 + h**2 - leg_len**2 - feet_len**2)/(-2*leg_len*feet_len))*180/math.pi
-        return phi
-    def getTheta(self, Px, Py, Pz):
-        Pz_corrected = Pz + shoulder_len 
-        h = math.sqrt(Py**2 + Pz_corrected**2 - shoulder_len**2)
-        gamma = math.acos(Px/math.sqrt(Px**2 + h**2))*180/math.pi
-        beta = math.asin(feet_len * math.sin((self.getPhi(Px, Py, Pz))*math.pi/180)/math.sqrt(Px**2 + h**2))*180/math.pi
-        theta = 180 - beta - gamma
-        return theta      
-    def getDelta(self, Px, Py, Pz):
-        Pz_corrected = Pz + shoulder_len 
-        h = math.sqrt(Py**2 + Pz_corrected**2 - shoulder_len**2)
-        delta = math.asin((h*Pz_corrected + shoulder_len*Py)/(h**2 + shoulder_len**2))*180/math.pi
-        return delta
+    def getAlpha(self, Px, Py, Pz):
+        Hxy = self.getHxy(Py, Pz)
+        formulaA = math.degrees(math.asin(feet_len * math.sin(math.radians(self.getBeta(Px, Py, Pz)))/math.sqrt(Px**2 + Hxy**2)))
+        formulaB = math.degrees(math.acos(Px/math.sqrt(Px**2 + Hxy**2)))
+        alpha = 180 - formulaA - formulaB
+        return alpha
+    def getBeta(self, Px, Py, Pz): 
+        Hxy = self.getHxy(Py, Pz)
+        beta = math.degrees(math.acos((Px**2 + Hxy**2 - leg_len**2 - feet_len**2)/(-2*leg_len*feet_len)))
+        return beta
+    def getGamma(self, Py, Pz):
+        Hxy = self.getHxy(Py, Pz)
+        formulaA = math.sqrt((shoulder_len_y - Hxy)**2 + shoulder_len_z**2)
+        formulaB = math.sqrt((Py-Hxy)**2+Pz**2)
+        gamma = math.acos((2*formulaA**2-formulaB**2)/(2*formulaA**2))
+        if Pz < 0:
+            gamma = -gamma
+        return gamma
+    def getHxy(self, Py, Pz): # negative vaule of the legs height on xy plane 
+        Hxy = shoulder_len_y - math.sqrt(shoulder_len_y**2 + Py**2 - 2*Py*shoulder_len_y + Pz**2)
+        return Hxy
+    
     ## make each leg move ## 
     def rear_left_move(self, Px, Py, Pz):
-        shoulder_angle = rear_left_init[0] + round(self.getDelta(Px, Py, Pz))
-        leg_angle = rear_left_init[1] - (round(self.getTheta(Px, Py, Pz))-leg_init_angle)
-        feet_angle = rear_left_init[2] + (round(self.getPhi(Px, Py, Pz))-feet_init_angle)
+        shoulder_angle = rear_left_init[0] + round(self.getGamma(Py, Pz))
+        leg_angle = rear_left_init[1] - (round(self.getAlpha(Px, Py, Pz))-leg_init_angle)
+        feet_angle = rear_left_init[2] + (round(self.getBeta(Px, Py, Pz))-feet_init_angle)
 
         self.servo_rear_shoulder_left.angle = shoulder_angle
-        self.servo_rear_leg_left.angle = leg_angle
+        self.servo_rear_leg_left.angle = leg_angle 
         self.servo_rear_feet_left.angle = feet_angle
     def rear_right_move(self, Px, Py, Pz):
-        shoulder_angle = rear_right_init[0] - round(self.getDelta(Px, Py, Pz))
-        leg_angle = rear_right_init[1] + (round(self.getTheta(Px, Py, Pz))-leg_init_angle)
-        feet_angle = rear_right_init[2] - (round(self.getPhi(Px, Py, Pz))-feet_init_angle)
+        shoulder_angle = rear_right_init[0] - round(self.getGamma(Py, Pz))
+        leg_angle = rear_right_init[1] + (round(self.getAlpha(Px, Py, Pz))-leg_init_angle)
+        feet_angle = rear_right_init[2] - (round(self.getBeta(Px, Py, Pz))-feet_init_angle)
 
         self.servo_rear_shoulder_right.angle = shoulder_angle
         self.servo_rear_leg_right.angle = leg_angle
         self.servo_rear_feet_right.angle = feet_angle
     def front_left_move(self, Px, Py, Pz):
-        shoulder_angle = front_left_init[0] - round(self.getDelta(Px, Py, Pz))
-        leg_angle = front_left_init[1] - (round(self.getTheta(Px, Py, Pz))-leg_init_angle)
-        feet_angle = front_left_init[2] + (round(self.getPhi(Px, Py, Pz))-feet_init_angle)
+        shoulder_angle = front_left_init[0] - round(self.getGamma(Py, Pz))
+        leg_angle = front_left_init[1] - (round(self.getAlpha(Px, Py, Pz))-leg_init_angle)
+        feet_angle = front_left_init[2] + (round(self.getBeta(Px, Py, Pz))-feet_init_angle)
 
         self.servo_front_shoulder_left.angle = shoulder_angle
         self.servo_front_leg_left.angle = leg_angle
         self.servo_front_feet_left.angle = feet_angle
     def front_right_move(self, Px, Py, Pz):
-        shoulder_angle = front_right_init[0] + round(self.getDelta(Px, Py, Pz))
-        leg_angle = front_right_init[1] + (round(self.getTheta(Px, Py, Pz))-leg_init_angle)
-        feet_angle = front_right_init[2] - (round(self.getPhi(Px, Py, Pz))-feet_init_angle)
+        shoulder_angle = front_right_init[0] + round(self.getGamma(Py, Pz))
+        leg_angle = front_right_init[1] + (round(self.getAlpha(Px, Py, Pz))-leg_init_angle)
+        feet_angle = front_right_init[2] - (round(self.getBeta(Px, Py, Pz))-feet_init_angle)
 
         self.servo_front_shoulder_right.angle = shoulder_angle
         self.servo_front_leg_right.angle = leg_angle
