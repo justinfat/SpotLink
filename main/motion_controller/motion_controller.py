@@ -15,21 +15,23 @@ log = Logger().setup_logger('Motion controller')
 # Body size
 leg_len = 10.8 # leg length in cm
 feet_len = 11.6 # feet length in cm
-shoulder_len_y = 1 # shoulder length on y axis in cm
+shoulder_len_y = 1.0 # shoulder length on y axis in cm
 shoulder_len_z = 5.64 # shoulder length on z axis in cm
 body_len = 18.56 # body length in cm
+body_wid = 7.8 # body width in cm
 
 # Body position
-pitch_angle = 0.0
+pitch_angle = 0.0 # upward is positive
+yaw_angle = 0.0 # CW in the top view is positive
 
 # For walk motion script
 walk_mode = -1
-Py_ground_front = -15
-Py_ground_rear = -15
+Py_ground_front = -15.0
+Py_ground_rear = -15.0
 y_lift = 4.5
 y_right_corrected = -1
-Px_init_front = 1
-Px_init_rear = -1
+Px_init_front = 1.0
+Px_init_rear = -1.0
 x_step = 2.5
 Px_walk_front = [0, 0, 0, 0, 0, 0, 0]
 Px_walk_rear = [0, 0, 0, 0, 0, 0, 0]
@@ -45,7 +47,7 @@ rear_right_init = (92, 18, 166)
 leg_init_angle = 15 # initial angle with horizontal
 feet_init_angle = 45 # initial angle with leg
 
-#position
+# Coordinates: end point of the legs 
 rear_left_P = [0, 0, 0]
 rear_right_P = [0, 0, 0]
 front_left_P = [0, 0, 0]
@@ -918,23 +920,66 @@ class MotionController:
         self.stand()
 
     ## body posture ##
-    def body_pitch(self, new_pitch_angle): ### Z AXIS NOT CONSIDERED YET !!!
+    def body_pitch(self, new_pitch_angle):
         global pitch_angle
         r = body_len/2
-        front_origin = [r*math.cos(math.radians(pitch_angle)),r*math.sin(math.radians(pitch_angle))]
-        rear_origin = [-r*math.cos(math.radians(pitch_angle)),-r*math.sin(math.radians(pitch_angle))]
-        new_front_origin = [r*math.cos(math.radians(new_pitch_angle)),r*math.sin(math.radians(new_pitch_angle))]
-        new_rear_origin = [-r*math.cos(math.radians(new_pitch_angle)),-r*math.sin(math.radians(new_pitch_angle))]
-        front_origin_vector = [new_front_origin[0]-front_origin[0], new_front_origin[1]-front_origin[1]]
-        rear_origin_vector = [new_rear_origin[0]-rear_origin[0], new_rear_origin[1]-rear_origin[1]]
+        front_Oxy = [r*math.cos(math.radians(pitch_angle)),r*math.sin(math.radians(pitch_angle))] # point O on xy plane related to body center
+        new_front_Oxy = [r*math.cos(math.radians(new_pitch_angle)),r*math.sin(math.radians(new_pitch_angle))]
+        front_Oxy_vector = [new_front_Oxy[0]-front_Oxy[0], new_front_Oxy[1]-front_Oxy[1]]
+        rear_Oxy_vector = [0, 0, 0]
+        for i in (0, 1, 2):
+            rear_Oxy_vector[i] = -front_Oxy_vector[i]
 
-        self.front_left_position_P(front_left_P[0]-front_origin_vector[0], front_left_P[1]-front_origin_vector[1], front_left_P[2])
-        self.front_right_position_P(front_right_P[0]-front_origin_vector[0], front_right_P[1]-front_origin_vector[1], front_right_P[2])
-        self.rear_left_position_P(rear_left_P[0]-rear_origin_vector[0], rear_left_P[1]-rear_origin_vector[1], rear_left_P[2])
-        self.rear_right_position_P(rear_right_P[0]-rear_origin_vector[0], rear_right_P[1]-rear_origin_vector[1], rear_right_P[2])
+        self.front_left_position_P(front_left_P[0]-front_Oxy_vector[0], front_left_P[1]-front_Oxy_vector[1], front_left_P[2])
+        self.front_right_position_P(front_right_P[0]-front_Oxy_vector[0], front_right_P[1]-front_Oxy_vector[1], front_right_P[2])
+        self.rear_left_position_P(rear_left_P[0]-rear_Oxy_vector[0], rear_left_P[1]-rear_Oxy_vector[1], rear_left_P[2])
+        self.rear_right_position_P(rear_right_P[0]-rear_Oxy_vector[0], rear_right_P[1]-rear_Oxy_vector[1], rear_right_P[2])
         self.move_all(10)
         pitch_angle = new_pitch_angle
+
+    def body_rotate(self, new_pitch_angle, new_yaw_angle):
+        global pitch_angle
+        global yaw_angle # CW in the top view is positive
+        r = math.sqrt(body_len**2 + body_wid**2)/2
+        theta = math.radians(pitch_angle)
+        phi = math.radians(yaw_angle)
+        new_theta = math.radians(new_pitch_angle)
+        new_phi = math.radians(new_yaw_angle)
+        delta = math.asin(body_wid/2/r)
+
+        # Cartesian coordinates related to body center
+        front_right_O = [r*math.cos(theta)*math.cos(delta+phi),
+                         r*math.sin(theta),
+                         r*math.cos(theta)*math.sin(delta+phi)] 
+        new_front_right_O = [r*math.cos(new_theta)*math.cos(delta+new_phi),
+                             r*math.sin(new_theta),
+                             r*math.cos(new_theta)*math.sin(delta+new_phi)]
+        front_right_O_vector = [new_front_right_O[0] - front_right_O[0],
+                                new_front_right_O[1] - front_right_O[1],
+                                new_front_right_O[2] - front_right_O[2]]
+        # the vector of rear_left is opposite to the front_right, but postitive z axis direction is opposite too.
+        rear_left_O_vector = [-front_right_O_vector[0], -front_right_O_vector[1], front_right_O_vector[2]]
         
+        front_left_O = [r*math.cos(theta)*math.cos(delta-phi),
+                        r*math.sin(theta),
+                        r*math.cos(theta)*math.sin(delta-phi)]
+        new_front_left_O = [r*math.cos(new_theta)*math.cos(delta-new_phi),
+                            r*math.sin(new_theta),
+                            r*math.cos(new_theta)*math.sin(delta-new_phi)]
+        front_left_O_vector = [new_front_left_O[0] - front_left_O[0],
+                               new_front_left_O[1] - front_left_O[1],
+                               new_front_left_O[2] - front_left_O[2]]
+        # the vector of rear_right is opposite to the front_left, but postitive direction of z axis is opposite too.
+        rear_right_O_vector = [-front_left_O_vector[0], -front_left_O_vector[1], front_left_O_vector[2]]
+        
+        self.front_left_position_P(front_left_P[0]-front_left_O_vector[0], front_left_P[1]-front_left_O_vector[1], front_left_P[2]-front_left_O_vector[2])
+        self.front_right_position_P(front_right_P[0]-front_right_O_vector[0], front_right_P[1]-front_right_O_vector[1], front_right_P[2]-front_right_O_vector[2])
+        self.rear_left_position_P(rear_left_P[0]-rear_left_O_vector[0], rear_left_P[1]-rear_left_O_vector[1], rear_left_P[2]-rear_left_O_vector[2])
+        self.rear_right_position_P(rear_right_P[0]-rear_right_O_vector[0], rear_right_P[1]-rear_right_O_vector[1], rear_right_P[2]-rear_right_O_vector[2])
+        self.move_all(10)
+        pitch_angle = new_pitch_angle
+        yaw_angle = new_yaw_angle
+
     def stand(self, height):
         Px_front = 0
         Px_rear = 0
