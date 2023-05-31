@@ -181,7 +181,7 @@ class MotionController:
 
             self.init_position()
             self.stand(12)
-            self.body_pitch(9)
+            self.body_rotate(10,0)
             
 
         except Exception as e:
@@ -926,8 +926,8 @@ class MotionController:
         front_Oxy = [r*math.cos(math.radians(pitch_angle)),r*math.sin(math.radians(pitch_angle))] # point O on xy plane related to body center
         new_front_Oxy = [r*math.cos(math.radians(new_pitch_angle)),r*math.sin(math.radians(new_pitch_angle))]
         front_Oxy_vector = [new_front_Oxy[0]-front_Oxy[0], new_front_Oxy[1]-front_Oxy[1]]
-        rear_Oxy_vector = [0, 0, 0]
-        for i in (0, 1, 2):
+        rear_Oxy_vector = [0, 0]
+        for i in (0, 1):
             rear_Oxy_vector[i] = -front_Oxy_vector[i]
 
         self.front_left_position_P(front_left_P[0]-front_Oxy_vector[0], front_left_P[1]-front_Oxy_vector[1], front_left_P[2])
@@ -1161,8 +1161,8 @@ if __name__ == '__main__':
                             'motion_controller': 'fake',
                             'socket_queue': 'fake'}
     MC = MotionController(communication_queues)
-    MC.init_position()
-    MC.stand()
+    # MC.init_position()
+    # MC.stand(12)
 
     while True:
         user_input = input("Insert pitch angle: ")
@@ -1170,7 +1170,7 @@ if __name__ == '__main__':
         if user_input == 'q':
             break
         else:
-            MC.body_pitch(float(user_input))
+            MC.body_rotate(10,float(user_input))
             # print('front_left_P: ', front_left_P[0], front_left_P[1], front_left_P[2])
             # print('front_right_P: ', front_right_P[0], front_right_P[1], front_right_P[2])
             # print('rear_left_P: ', rear_left_P[0], rear_left_P[1], rear_left_P[2])
