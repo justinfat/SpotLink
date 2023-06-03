@@ -11,4 +11,5 @@ cd ~/MayTest || exit
 
 export PYTHONPATH=.
 
+# chromium-browser --kiosk --disable-gpu main/GUI/GUI.html
 pyenv/bin/python3 main/main.py

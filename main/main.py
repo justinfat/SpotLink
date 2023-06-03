@@ -35,8 +35,9 @@ def process_send_controller(communication_queues):
     send_controller.send_video()
 
 def process_recv_controller(communication_queues):
-    recv_controller = RecvController(communication_queues)
-    recv_controller.recv_video()
+    # recv_controller = RecvController(communication_queues)
+    # recv_controller.run(communication_queues)
+    RecvController(communication_queues).run(communication_queues)
 
 # Queues
 def create_controllers_queues():
