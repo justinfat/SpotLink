@@ -3,6 +3,7 @@ import socket
 import numpy as np
 import struct
 import threading
+import time
 
 sever_ip = '0.0.0.0'
 sever_port = 8485
@@ -13,8 +14,12 @@ class VideocallController:
     def send_video(connection_socket):
         global stop_threads
         capture = cv2.VideoCapture(0)
+        capture.set(cv2.CAP_PROP_FPS, 24)
+        print(capture.get(cv2.CAP_PROP_FRAME_WIDTH))
+        print(capture.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
         while not stop_threads:
+            print(capture.get(cv2.CAP_PROP_FPS))
             try:
                 ret, frame = capture.read()
                 if not ret:
