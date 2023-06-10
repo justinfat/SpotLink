@@ -2,7 +2,7 @@ import socket
 import os
 
 # The address of the UNIX domain socket
-server_address = './uds_socket'
+server_address = '/home/pi/uds_socket'
 
 # Make sure the socket does not already exist
 try:
@@ -24,12 +24,19 @@ while True:
     # Wait for a connection
     connection, client_address = sock.accept()
     try:
-        # Receive the data in small chunks
-        data = connection.recv(16)
-        print('received {!r}'.format(data))
+        print('connection from', client_address)
 
-        # Send data
-        connection.sendall(b'Hello from Python')
+        # Receive the data in small chunks and retransmit it
+        while True:
+            data = connection.recv(1024).decode()
+            if data:
+                print(data)
+                # print('received {!r}'.format(data))
+                connection.sendall(b'Hello from Python')
+            else:
+                print('no more data from', client_address)
+                break
+
     finally:
         # Clean up the connection
         connection.close()
