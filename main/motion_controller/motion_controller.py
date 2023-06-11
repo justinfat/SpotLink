@@ -214,15 +214,17 @@ class MotionController:
 
                 # send_controller
                 if event == 'TooRight':
-                    print('Too right...')
+                    # print('Too right...')
+                    self.body_pitch(pitch_angle,yaw_angle-1)
                 if event == 'TooLeft':
-                    print('Too left...')
+                    # print('Too left...')
+                    self.body_pitch(pitch_angle,yaw_angle+1)
                 if event == 'TooLow':
-                    print('Too low...')
-                    self.body_pitch(pitch_angle-1)
+                    # print('Too low...')
+                    self.body_pitch(pitch_angle-1,yaw_angle)
                 if event == 'TooHigh':
-                    print('Too high...')
-                    self.body_pitch(pitch_angle+1)
+                    # print('Too high...')
+                    self.body_pitch(pitch_angle+1,yaw_angle)
                 if event == 'Awake':
                     self.stand(12)
                     self.body_rotate(10,0)
