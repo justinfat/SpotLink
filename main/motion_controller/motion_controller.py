@@ -12,6 +12,7 @@ from utilities.config import Config
 
 log = Logger().setup_logger('Motion controller')
 
+sleep_mode = True
 # Body size
 leg_len = 10.8 # leg length in cm
 feet_len = 11.6 # feet length in cm
@@ -213,24 +214,28 @@ class MotionController:
                 event = self._motion_queue.get(block=True)
 
                 # send_controller
-                if event == 'TooRight':
-                    # print('Too right...')
-                    self.body_pitch(pitch_angle,yaw_angle-1)
-                if event == 'TooLeft':
-                    # print('Too left...')
-                    self.body_pitch(pitch_angle,yaw_angle+1)
-                if event == 'TooLow':
-                    # print('Too low...')
-                    self.body_pitch(pitch_angle-1,yaw_angle)
-                if event == 'TooHigh':
-                    # print('Too high...')
-                    self.body_pitch(pitch_angle+1,yaw_angle)
+                if sleep_mode == False:
+                    if event == 'TooRight':
+                        # print('Too right...')
+                        self.body_pitch(pitch_angle,yaw_angle-1)
+                    if event == 'TooLeft':
+                        # print('Too left...')
+                        self.body_pitch(pitch_angle,yaw_angle+1)
+                    if event == 'TooLow':
+                        # print('Too low...')
+                        self.body_pitch(pitch_angle-1,yaw_angle)
+                    if event == 'TooHigh':
+                        # print('Too high...')
+                        self.body_pitch(pitch_angle+1,yaw_angle)
+                    if event == 'Asleep':
+                        self.body_rotate(0,0)
+                        self.init_position()
+                        sleep_mode = True
                 if event == 'Awake':
                     self.stand(12)
                     self.body_rotate(10,0)
-                if event == 'Asleep':
-                    self.body_rotate(0,0)
-                    self.init_position()
+                    sleep_mode = False
+                
 
                     
 
