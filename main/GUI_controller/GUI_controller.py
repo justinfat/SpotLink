@@ -23,15 +23,16 @@ class GUIController:
 
         while True:
             try:
-                print('connected')
+                # print('connected')
                 while True:
                     data = connection_socket.recv(1024).decode()
                     if data:
-                        print(data)
+                        self._motion_queue.put(data, timeout=60)
+                        # print(data)
                         # print('received {!r}'.format(data))
-                        connection_socket.sendall(b'Hello from Python')
+                        # connection_socket.sendall(b'Hello from Python')
                     else:
-                        print('no more data, socket closing')
+                        # print('no more data, socket closing')
                         break
 
             finally:

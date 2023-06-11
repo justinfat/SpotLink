@@ -40,7 +40,7 @@ def process_recv_controller(communication_queues):
     RecvController(communication_queues).run(communication_queues)
 
 def process_GUI_controller(communication_queues):
-    GUIController(communication_queues).GUI_comm(communication_queues)
+    GUIController(communication_queues).GUI_comm()
 
 # Queues
 def create_controllers_queues():
@@ -48,12 +48,12 @@ def create_controllers_queues():
                             'motion_controller': multiprocessing.Queue(1),
                             'socket_queue': multiprocessing.Queue(1)}
 
-    log.info('Created the communication queues: ' + ', '.join(communication_queues.keys()))
+    # log.info('Created the communication queues: ' + ', '.join(communication_queues.keys()))
 
     return communication_queues
 
 def close_controllers_queues(communication_queues):
-    log.info('Closing controller queues')
+    # log.info('Closing controller queues')
 
     for queue in communication_queues.items():
         queue.close()

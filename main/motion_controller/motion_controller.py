@@ -180,8 +180,8 @@ class MotionController:
             self._previous_event = {}
 
             self.init_position()
-            self.stand(12)
-            self.body_rotate(10,0)
+            # self.stand(12)
+            # self.body_rotate(10,0)
             
 
         except Exception as e:
@@ -223,6 +223,14 @@ class MotionController:
                 if event == 'TooHigh':
                     print('Too high...')
                     self.body_pitch(pitch_angle+1)
+                if event == 'Awake':
+                    self.stand(12)
+                    self.body_rotate(10,0)
+                if event == 'Asleep':
+                    self.body_rotate(0,0)
+                    self.init_position()
+
+                    
 
                 # #serial controller
                 # if type(event) == int:
