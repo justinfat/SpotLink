@@ -9,6 +9,7 @@ from abort_controller.abort_controller import AbortController
 from gamepad_controller.gamepad_controller import GamepadController
 from send_controller.send_controller import SendController
 from recv_controller.recv_controller import RecvController
+from GUI_controller.GUI_controller import GUIController
 
 log = Logger().setup_logger()
 
@@ -22,7 +23,6 @@ def process_abort_controller(communication_queues):
     abort.do_process_events_from_queue()
 
 def process_motion_controller(communication_queues):
-    print("starting motion controller")
     motion = MotionController(communication_queues)
     motion.do_process_events_from_queues()
 
@@ -38,6 +38,9 @@ def process_recv_controller(communication_queues):
     # recv_controller = RecvController(communication_queues)
     # recv_controller.run(communication_queues)
     RecvController(communication_queues).run(communication_queues)
+
+def process_GUI_controller(communication_queues):
+    GUIController(communication_queues).GUI_comm(communication_queues)
 
 # Queues
 def create_controllers_queues():
@@ -57,12 +60,6 @@ def close_controllers_queues(communication_queues):
         queue.join_thread()
 
 def main():
-    # client socket declaration: ipv4, TCP
-    # server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
-    # server_socket.bind((sever_ip, sever_port))
-    # server_socket.listen(1)
-    # connection_socket, client_address = server_socket.accept() 
-    # print(connection_socket)
 
     communication_queues = create_controllers_queues()
 
@@ -83,15 +80,20 @@ def main():
                                                 args=(communication_queues,))
     motion_controller.daemon = True
 
+    GUI_controller = multiprocessing.Process(target=process_GUI_controller, 
+                                                args=(communication_queues,))
+    GUI_controller.daemon = True
+
     # gamepad_controller = multiprocessing.Process(target=process_gamepad_controller, args=(communication_queues,))
     # gamepad_controller.daemon = True
 
     # Start the processes
-    abort_controller.start()
-    motion_controller.start()
-    # gamepad_controller.start()
     send_controller.start()
     recv_controller.start()
+    abort_controller.start()
+    motion_controller.start()
+    GUI_controller.start()
+    # gamepad_controller.start()
 
     # Make sure all controllers are working
     if not abort_controller.is_alive():
@@ -105,11 +107,13 @@ def main():
     #     sys.exit(1)
 
     # Wait till the processes end
-    abort_controller.join()
-    motion_controller.join()
-    # gamepad_controller.join()
     send_controller.join()
     recv_controller.join()
+    abort_controller.join()
+    motion_controller.join()
+    GUI_controller.join()
+    # gamepad_controller.join()
+    
 
     close_controllers_queues(communication_queues)
 
