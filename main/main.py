@@ -31,8 +31,7 @@ def process_gamepad_controller(communication_queues):
     gamepad_controller.do_process_events_from_queues()
 
 def process_send_controller(communication_queues):
-    send_controller = SendController(communication_queues)
-    send_controller.send_video()
+    SendController(communication_queues).run(communication_queues)
 
 def process_recv_controller(communication_queues):
     # recv_controller = RecvController(communication_queues)

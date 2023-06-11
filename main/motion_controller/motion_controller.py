@@ -208,7 +208,7 @@ class MotionController:
                 sys.exit(0)
 
     def do_process_events_from_queues(self):
-
+        global sleep_mode
         while True:
             try:
                 event = self._motion_queue.get(block=True)
@@ -217,16 +217,16 @@ class MotionController:
                 if sleep_mode == False:
                     if event == 'TooRight':
                         # print('Too right...')
-                        self.body_pitch(pitch_angle,yaw_angle-1)
+                        self.body_rotate(pitch_angle,yaw_angle-1)
                     if event == 'TooLeft':
                         # print('Too left...')
-                        self.body_pitch(pitch_angle,yaw_angle+1)
+                        self.body_rotate(pitch_angle,yaw_angle+1)
                     if event == 'TooLow':
                         # print('Too low...')
-                        self.body_pitch(pitch_angle-1,yaw_angle)
+                        self.body_rotate(pitch_angle-1,yaw_angle)
                     if event == 'TooHigh':
                         # print('Too high...')
-                        self.body_pitch(pitch_angle+1,yaw_angle)
+                        self.body_rotate(pitch_angle+1,yaw_angle)
                     if event == 'Asleep':
                         self.body_rotate(0,0)
                         self.init_position()

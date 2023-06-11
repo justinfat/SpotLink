@@ -17,8 +17,8 @@ class SendController:
     
     def run(self, communication_queues):
         controller = SendController(communication_queues)
-        send_video_thread = threading.Thread(target=controller.send_video, arg=())
-        face_track_thread = threading.Thread(target=controller.face_track, arg=())
+        send_video_thread = threading.Thread(target=controller.send_video, args=())
+        face_track_thread = threading.Thread(target=controller.face_track, args=())
         send_video_thread.start()
         face_track_thread.start()
         send_video_thread.join()
