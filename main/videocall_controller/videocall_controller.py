@@ -3,95 +3,142 @@ import socket
 import numpy as np
 import struct
 import threading
-import time
+import pyaudio
+import pickle
 
 sever_ip = '0.0.0.0'
 sever_port = 8485
 stop_threads = False
 
+CHUNK = 1024
+FORMAT = pyaudio.paInt16    # 格式
+CHANNELS = 2    # 输入/输出通道数
+RATE = 44100    # 音频数据的采样频率
+RECORD_SECONDS = 0.5    # 记录秒
+
 class VideocallController:
 
-    def send_video(connection_socket):
+    def send_video(video_connection_socket, audio_connection_socket):
         global stop_threads
+
+        # Video #
         capture = cv2.VideoCapture(0)
         capture.set(cv2.CAP_PROP_FPS, 24)
-        print(capture.get(cv2.CAP_PROP_FRAME_WIDTH))
-        print(capture.get(cv2.CAP_PROP_FRAME_HEIGHT))
+
+        # Audio #
+        audio = pyaudio.PyAudio()
+        audio_stream = audio.open(format=FORMAT,
+                              channels=CHANNELS,
+                              rate=RATE,
+                              input=True,
+                              frames_per_buffer = CHUNK)
 
         while not stop_threads:
-            print(capture.get(cv2.CAP_PROP_FPS))
             try:
-                ret, frame = capture.read()
+                # Video #
+                ret, video_frame = capture.read()
                 if not ret:
                     print('unable to read the video...')
                     break
+                video_frame = cv2.resize(video_frame, (320, 240))
+                video_data = video_frame.tobytes()
+                video_connection_socket.sendall(struct.pack("L", len(video_data)) + video_data)
 
-                frame = cv2.resize(frame, (320, 240))
-                data = frame.tobytes()
+                # Audio #
+                audio_frames = []
+                for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
+                    audio_data = audio_stream.read(CHUNK)
+                    audio_frames.append(audio_data)
+                client_audio_senddata = pickle.dumps(audio_frames)
+                audio_connection_socket.sendall(struct.pack("L", len(client_audio_senddata)) + client_audio_senddata)
 
-                connection_socket.sendall(struct.pack("L", len(data)))
-                connection_socket.sendall(data)
-
-                # stop video calling if type q
-                if cv2.waitKey(1) & 0xFF == ord('q'):
-                    stop_threads = True
-                    break
             except socket.error as e:
-                print("Receive video socket error:", e)
-                stop_threads = True
+                print("Socket error:", e)
                 break
-
+        # End of send_video
         capture.release()
+        audio_stream.stop_stream()
+        audio_stream.close()
+        audio.terminate()
 
-    def recv_video(connection_socket):
+        stop_threads = True
+
+    def recv_video(video_connection_socket, audio_connection_socket):
         global stop_threads
-        data = b'' # empty btytes
         payload_size = struct.calcsize("L")
+
+        # Video #
+        video_data = b'' # empty btytes
+        
+        # Audio #
+        audio_data = "".encode("utf-8")
+        audio = pyaudio.PyAudio()
+        audio_stream = audio.open(format=FORMAT,
+                                    channels=CHANNELS,
+                                    rate=RATE,
+                                    output=True,
+                                    frames_per_buffer = CHUNK
+                                    )
         
         while not stop_threads:
             try:
+                # Video #
                 # process the data that received
-                while len(data) < payload_size:
-                    data += connection_socket.recv(4096)
-                
-                #if not data:
-                #    print("Connection closed by client.")
-                #    break
-
-                packed_data_size = data[:payload_size]
-                data = data[payload_size:]
-                data_size = struct.unpack("L", packed_data_size)[0]
-
-                while len(data) < data_size:
-                    data += connection_socket.recv(4096)
-
-                frame_data = data[:data_size]
-                data = data[data_size:]
-
+                while len(video_data) < payload_size:
+                    video_data += video_connection_socket.recv(4096)
+                video_packed_size = video_data[:payload_size]
+                video_data = video_data[payload_size:]
+                video_data_size = struct.unpack("L", video_packed_size)[0]
+                while len(video_data) < video_data_size:
+                    video_data += video_connection_socket.recv(4096)
+                video_frame_data = video_data[:video_data_size]
+                video_data = video_data[video_data_size:]
                 # show the video
-                frame = np.frombuffer(frame_data, dtype=np.uint8).reshape(240, 320, 3)
+                frame = np.frombuffer(video_frame_data, dtype=np.uint8).reshape(240, 320, 3)
                 cv2.imshow('Received Video', frame)
 
-                # stop video calling if type q
+                # Audio #
+                while len(audio_data) < payload_size:
+                    audio_data += audio_connection_socket.recv(81920)
+                audio_packed_size = audio_data[:payload_size]
+                audio_data = audio_data[payload_size:]
+                audio_data_size = struct.unpack("L", audio_packed_size)[0]
+                while len(audio_data) < audio_data_size:
+                    audio_data += audio_connection_socket.recv(81920)
+                audio_frame_data = audio_data[:audio_data_size]
+                audio_data = audio_data[audio_data_size:]
+                audio_frames = pickle.loads(audio_frame_data)
+                for audio_frame in audio_frames:
+                    audio_stream.write(audio_frame, CHUNK)
+
+                # stop streaming if type q
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     stop_threads = True
                     break
             except socket.error as e:
-                print("Receive video socket error:", e)
-                stop_threads = True
+                print("Socket error:", e)
                 break
 
         cv2.destroyAllWindows()
+        audio_stream.stop_stream()
+        audio_stream.close()
+        audio.terminate()
+
+        stop_threads = True
 
     if __name__ == '__main__':
-        server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # client socket declaration: ipv4, TCP
-        server_socket.bind((sever_ip, sever_port))
-        server_socket.listen(1)
+        video_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # client socket declaration: ipv4, TCP
+        audio_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        video_server_socket.bind((sever_ip, sever_port))
+        audio_server_socket.bind((sever_ip, sever_port+1))
+        video_server_socket.listen(1)
+        audio_server_socket.listen(1)
 
-        connection_socket, client_address = server_socket.accept()
+        video_connection_socket, video_client_address = video_server_socket.accept()
+        audio_connection_socket, audio_client_address = audio_server_socket.accept()
 
-        send_video_thread = threading.Thread(target=send_video, args=(connection_socket,))
-        recv_video_thread = threading.Thread(target=recv_video, args=(connection_socket,))
+        send_video_thread = threading.Thread(target=send_video, args=(video_connection_socket, audio_connection_socket,))
+        recv_video_thread = threading.Thread(target=recv_video, args=(video_connection_socket, audio_connection_socket,))
 
         send_video_thread.start()
         recv_video_thread.start()
@@ -100,5 +147,7 @@ class VideocallController:
         recv_video_thread.join()
 
         # connection_socket.shutdown(socket.SHUT_RDWR)
-        connection_socket.close()
-        server_socket.close()
+        video_connection_socket.close()
+        video_server_socket.close()
+        audio_connection_socket.close()
+        audio_server_socket.close()
