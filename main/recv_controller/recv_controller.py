@@ -6,6 +6,9 @@ from tflite_runtime.interpreter import Interpreter
 from flask import Flask, Response
 from flask_cors import CORS
 import threading
+import pyaudio
+import pickle
+import ctypes
 
 sever_ip = '0.0.0.0'
 sever_port = 8485
@@ -14,6 +17,16 @@ global_buffer = None
 app = Flask(__name__)
 CORS(app)
 
+CHUNK = 1024
+FORMAT = pyaudio.paInt16
+CHANNELS = 2
+RATE = 44100
+RECORD_SECONDS = 0.5
+
+ERROR_HANDLER_FUNC = ctypes.CFUNCTYPE(None, ctypes.c_char_p, ctypes.c_int, ctypes.c_char_p, ctypes.c_int, ctypes.c_char_p)
+def py_error_handler(filename, line, function, err, fmt):
+  print('messages are yummy')
+c_error_handler = ERROR_HANDLER_FUNC(py_error_handler)
 
 def generate_frames():
     global global_buffer
@@ -31,78 +44,71 @@ class RecvController:
     def __init__(self, communication_queues):
         self._motion_queue = communication_queues['motion_controller']
         self._socket_queue = communication_queues['socket_queue']
-        # app.run(host='0.0.0.0', port=8586)
+        # Hide the warning from pyaudio (ALSA)
+        asound = ctypes.cdll.LoadLibrary('libasound.so')
+        asound.snd_lib_error_set_handler(c_error_handler)
 
     def run(self, communication_queues):
         controller = RecvController(communication_queues)
         recv_video_thread = threading.Thread(target=controller.recv_video, args=())
+        # emotion_recognize_thread = threading.Thread(target=controller.emotion_recognize, args=())
         recv_video_thread.start()
+        # emotion_recognize_thread.start()
         app.run(host='0.0.0.0', port=8586)
         recv_video_thread.join()
+        # emotion_recognize_thread.join()
 
     def recv_video(self):
         global global_buffer
-        connection_socket = self._socket_queue.get(block=True)
-        data = b'' # empty btytes
         payload_size = struct.calcsize("L")
 
-        # # Load the TFLite model and allocate tensors.
-        # interpreter = Interpreter(model_path="/home/pi/MayTest/main/recv_controller/model_mobilenet.tflite")
-        # interpreter.allocate_tensors()
+        # Video
+        video_data = b'' # empty btytes
 
-        # # Get input and output tensor details
-        # input_details = interpreter.get_input_details()
-        # output_details = interpreter.get_output_details()
-
-        # # Load the Haar cascade for face detection
-        # face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-
-        # # Define the emotion labels
-        # emotions = ('angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral')
+        # Audio
+        audio_data = "".encode("utf-8")
+        audio = pyaudio.PyAudio()
+        audio_stream = audio.open(format=FORMAT,
+                                    channels=CHANNELS,
+                                    rate=RATE,
+                                    output=True,
+                                    frames_per_buffer = CHUNK
+                                    )
         
+        video_connection_socket = self._socket_queue.get(block=True)
+        audio_connection_socket = self._socket_queue.get(block=True)
+
         while True:
             try:
-                # process the data that received
-                while len(data) < payload_size:
-                    data += connection_socket.recv(4096)
-                
-                #if not data:
-                #    print("Connection closed by client.")
-                #    break
+                # Video
+                while len(video_data) < payload_size:
+                    video_data += video_connection_socket.recv(81920)
+                video_packed_size = video_data[:payload_size]
+                video_data = video_data[payload_size:]
+                video_data_size = struct.unpack("L", video_packed_size)[0]
+                while len(video_data) < video_data_size:
+                    video_data += video_connection_socket.recv(81920)
+                video_frame_data = video_data[:video_data_size]
+                video_data = video_data[video_data_size:]
+                self.video_frame = np.frombuffer(video_frame_data, dtype=np.uint8).reshape(240, 320, 3)
+                # cv2.imshow('Received Video', self.frame)
 
-                packed_data_size = data[:payload_size]
-                data = data[payload_size:]
-                data_size = struct.unpack("L", packed_data_size)[0]
+                # Audio
+                while len(audio_data) < payload_size:
+                    audio_data += audio_connection_socket.recv(81920)
+                audio_packed_size = audio_data[:payload_size]
+                audio_data = audio_data[payload_size:]
+                audio_data_size = struct.unpack("L", audio_packed_size)[0]
+                while len(audio_data) < audio_data_size:
+                    audio_data += audio_connection_socket.recv(81920)
+                audio_frame_data = audio_data[:audio_data_size]
+                audio_data = audio_data[audio_data_size:]
+                audio_frames = pickle.loads(audio_frame_data)
+                for audio_frame in audio_frames:
+                    audio_stream.write(audio_frame, CHUNK)
 
-                while len(data) < data_size:
-                    data += connection_socket.recv(4096)
-
-                frame_data = data[:data_size]
-                data = data[data_size:]
-                frame = np.frombuffer(frame_data, dtype=np.uint8).reshape(240, 320, 3)
-
-                # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-                # faces = face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
-                # for (x, y, w, h) in faces:
-                #     cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 0), 2)
-
-                #     face = gray[y:y+h, x:x+w] # choose the face region from gray
-                #     face = cv2.resize(face, (224, 224)).reshape(224, 224, 1)
-                #     #face = np.array(Image.fromarray(face))
-                #     face = face.astype('float32') / 255.0
-                #     face = np.expand_dims(face, axis=0)
-
-                #     interpreter.set_tensor(input_details[0]['index'], face)
-                #     interpreter.invoke()
-
-                #     predictions = interpreter.get_tensor(output_details[0]['index'])
-                #     max_index = np.argmax(predictions[0])
-                #     emotion = emotions[max_index]
-
-                #     cv2.putText(frame, emotion, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-
-                # cv2.imshow('Received Video', frame)
-                ret, jpeg = cv2.imencode('.jpg', frame)
+                # Flask
+                ret, jpeg = cv2.imencode('.jpg', self.video_frame)
                 if not ret:
                     print('unable to encode the video...')
                     break
@@ -113,28 +119,68 @@ class RecvController:
                 #     print('global_buffer is None.')
 
                 # stop video calling if type q
-                if cv2.waitKey(1) & 0xFF == ord('q'):
-                    # connection_socket.shutdown(socket.SHUT_RDWR)
-                    connection_socket.close()
-                    break
+                # if cv2.waitKey(1) & 0xFF == ord('q'):
+                #     video_connection_socket.shutdown(socket.SHUT_RDWR)
+                #     video_connection_socket.close()
+                #     break
                 
             except socket.error as e:
                 print("Receive video socket error:", e)
                 # connection_socket.shutdown(socket.SHUT_RDWR)
-                connection_socket.close()
+                video_connection_socket.close()
+                audio_connection_socket.close()
                 break
 
         cv2.destroyAllWindows()
 
-if __name__ == '__main__':
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # client socket declaration: ipv4, TCP
-    server_socket.bind((sever_ip, sever_port))
-    server_socket.listen(1)
+    # def emotion_recognize(self):
+    #     # Load the TFLite model and allocate tensors.
+    #     interpreter = Interpreter(model_path="/home/pi/MayTest/main/recv_controller/model_mobilenet.tflite")
+    #     interpreter.allocate_tensors()
 
-    connection_socket, client_address = server_socket.accept()
+    #     # Get input and output tensor details
+    #     input_details = interpreter.get_input_details()
+    #     output_details = interpreter.get_output_details()
 
-    RecvController().recv_video(connection_socket)
+    #     # Load the Haar cascade for face detection
+    #     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
-    # connection_socket.shutdown(socket.SHUT_RDWR)
-    connection_socket.close()
-    server_socket.close()
+    #     # Define the emotion labels
+    #     emotions = ('angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral')
+
+    #     while True:
+    #         gray = cv2.cvtColor(self.video_frame, cv2.COLOR_BGR2GRAY)
+    #         faces = face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
+    #         for (x, y, w, h) in faces:
+    #             cv2.rectangle(self.video_frame, (x, y), (x+w, y+h), (255, 0, 0), 2)
+
+    #             face = gray[y:y+h, x:x+w] # choose the face region from gray
+    #             face = cv2.resize(face, (224, 224)).reshape(224, 224, 1)
+    #             #face = np.array(Image.fromarray(face))
+    #             face = face.astype('float32') / 255.0
+    #             face = np.expand_dims(face, axis=0)
+
+    #             interpreter.set_tensor(input_details[0]['index'], face)
+    #             interpreter.invoke()
+
+    #             predictions = interpreter.get_tensor(output_details[0]['index'])
+    #             max_index = np.argmax(predictions[0])
+    #             emotion = emotions[max_index]
+
+    #             # cv2.putText(self.frame, emotion, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+
+
+
+
+# if __name__ == '__main__':
+#     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # client socket declaration: ipv4, TCP
+#     server_socket.bind((sever_ip, sever_port))
+#     server_socket.listen(1)
+
+#     connection_socket, client_address = server_socket.accept()
+
+#     RecvController().recv_video(connection_socket)
+
+#     # connection_socket.shutdown(socket.SHUT_RDWR)
+#     connection_socket.close()
+#     server_socket.close()

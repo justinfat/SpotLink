@@ -3,6 +3,9 @@ import socket
 import numpy as np
 import struct
 import threading
+import pyaudio
+import pickle
+import ctypes
 
 sever_ip = '0.0.0.0'
 sever_port = 8485
@@ -10,10 +13,24 @@ videoHeight = 240
 videoWidth = 320
 face_in_center = True
 
+CHUNK = 1024
+FORMAT = pyaudio.paInt16
+CHANNELS = 2
+RATE = 44100
+RECORD_SECONDS = 0.5
+
+ERROR_HANDLER_FUNC = ctypes.CFUNCTYPE(None, ctypes.c_char_p, ctypes.c_int, ctypes.c_char_p, ctypes.c_int, ctypes.c_char_p)
+def py_error_handler(filename, line, function, err, fmt):
+  print('messages are yummy')
+c_error_handler = ERROR_HANDLER_FUNC(py_error_handler)
+
 class SendController:
     def __init__(self, communication_queues):
         self._motion_queue = communication_queues['motion_controller']
         self._socket_queue = communication_queues['socket_queue']
+        # Hide the warning from pyaudio (ALSA)
+        asound = ctypes.cdll.LoadLibrary('libasound.so')
+        asound.snd_lib_error_set_handler(c_error_handler)
     
     def run(self, communication_queues):
         controller = SendController(communication_queues)
@@ -25,30 +42,48 @@ class SendController:
         face_track_thread.join()
 
     def send_video(self):
-        server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # client socket declaration: ipv4, TCP
-        server_socket.bind((sever_ip, sever_port))
-        server_socket.listen(1)
+        # socket setting
+        video_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # client socket declaration: ipv4, TCP
+        audio_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        video_server_socket.bind((sever_ip, sever_port))
+        audio_server_socket.bind((sever_ip, sever_port+1))
+        video_server_socket.listen(1)
+        audio_server_socket.listen(1)
 
-        connection_socket, client_address = server_socket.accept()
-        self._socket_queue.put(connection_socket)
+        video_connection_socket, client_address = video_server_socket.accept()
+        audio_connection_socket, client_address = audio_server_socket.accept()
+        self._socket_queue.put(video_connection_socket)
+        self._socket_queue.put(audio_connection_socket)
+
+        # Audio #
+        audio = pyaudio.PyAudio()
+        audio_stream = audio.open(format=FORMAT,
+                                channels=CHANNELS,
+                                rate=RATE,
+                                input=True,
+                                frames_per_buffer = CHUNK)
 
         while True:
             try:
-                connection_socket.sendall(struct.pack("L", len(self.data)))
-                connection_socket.sendall(self.data)
+                # Video
+                video_connection_socket.sendall(struct.pack("L", len(self.video_data)) + self.video_data)
+
+                #Audio
+                audio_frames = []
+                for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
+                    audio_raw = audio_stream.read(CHUNK)
+                    audio_frames.append(audio_raw)
+                audio_data = pickle.dumps(audio_frames)
+                audio_connection_socket.sendall(struct.pack("L", len(audio_data)) + audio_data)
 
             except socket.error as e:
                 print("Send video socket error:", e)
                 # connection_socket.shutdown(socket.SHUT_RDWR)
-                connection_socket.close()
+                video_connection_socket.close()
+                audio_connection_socket.close()
                 break
 
-
-        # return connection_socket
-
     def face_track(self):
-        # connection_socket = self.create_sever_socket()
-        # self._socket_queue.put(connection_socket)
 
         capture = cv2.VideoCapture(0)
         capture.set(cv2.CAP_PROP_FPS, 10)
@@ -89,9 +124,9 @@ class SendController:
                     self._motion_queue.put('TooHigh', timeout=60)
                     # print('Too high...')
 
-            self.data = frame.tobytes()
+            self.video_data = frame.tobytes() # for send_video()
 
         capture.release()
 
-if __name__ == '__main__':
-    SendController().send_video()
+# if __name__ == '__main__':
+#     SendController().send_video()

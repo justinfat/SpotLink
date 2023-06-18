@@ -93,8 +93,8 @@ def recv_video(video_connection_socket, audio_connection_socket):
             video_frame_data = video_data[:video_data_size]
             video_data = video_data[video_data_size:]
             # show the video
-            frame = np.frombuffer(video_frame_data, dtype=np.uint8).reshape(240, 320, 3)
-            cv2.imshow('Received Video', frame)
+            video_frame = np.frombuffer(video_frame_data, dtype=np.uint8).reshape(240, 320, 3)
+            cv2.imshow('Received Video', video_frame)
 
             # Audio #
             while len(audio_data) < payload_size:
