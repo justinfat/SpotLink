@@ -11,7 +11,7 @@ sever_ip = '0.0.0.0'
 sever_port = 8485
 videoHeight = 240
 videoWidth = 320
-face_in_center = True
+video_data_ready = False
 
 CHUNK = 1024
 FORMAT = pyaudio.paInt16
@@ -21,7 +21,8 @@ RECORD_SECONDS = 0.5
 
 ERROR_HANDLER_FUNC = ctypes.CFUNCTYPE(None, ctypes.c_char_p, ctypes.c_int, ctypes.c_char_p, ctypes.c_int, ctypes.c_char_p)
 def py_error_handler(filename, line, function, err, fmt):
-  print('messages are yummy')
+#   print('messages are yummy')
+    return
 c_error_handler = ERROR_HANDLER_FUNC(py_error_handler)
 
 class SendController:
@@ -42,6 +43,7 @@ class SendController:
         face_track_thread.join()
 
     def send_video(self):
+        global video_data_ready
         # socket setting
         video_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # client socket declaration: ipv4, TCP
         audio_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -66,7 +68,8 @@ class SendController:
         while True:
             try:
                 # Video
-                video_connection_socket.sendall(struct.pack("L", len(self.video_data)) + self.video_data)
+                if video_data_ready is True:
+                    video_connection_socket.sendall(struct.pack("L", len(self.video_data)) + self.video_data)
 
                 #Audio
                 audio_frames = []
@@ -79,12 +82,16 @@ class SendController:
             except socket.error as e:
                 print("Send video socket error:", e)
                 # connection_socket.shutdown(socket.SHUT_RDWR)
-                video_connection_socket.close()
-                audio_connection_socket.close()
                 break
+        
+        video_connection_socket.close()
+        audio_connection_socket.close()
+        audio_stream.stop_stream()
+        audio_stream.close()
+        audio.terminate()
 
     def face_track(self):
-
+        global video_data_ready
         capture = cv2.VideoCapture(0)
         capture.set(cv2.CAP_PROP_FPS, 10)
 
@@ -125,6 +132,8 @@ class SendController:
                     # print('Too high...')
 
             self.video_data = frame.tobytes() # for send_video()
+            if video_data_ready is False:
+                video_data_ready = True
 
         capture.release()
 

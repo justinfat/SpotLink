@@ -25,7 +25,8 @@ RECORD_SECONDS = 0.5
 
 ERROR_HANDLER_FUNC = ctypes.CFUNCTYPE(None, ctypes.c_char_p, ctypes.c_int, ctypes.c_char_p, ctypes.c_int, ctypes.c_char_p)
 def py_error_handler(filename, line, function, err, fmt):
-  print('messages are yummy')
+#   print('messages are yummy')
+    return
 c_error_handler = ERROR_HANDLER_FUNC(py_error_handler)
 
 def generate_frames():
@@ -91,7 +92,7 @@ class RecvController:
                 video_frame_data = video_data[:video_data_size]
                 video_data = video_data[video_data_size:]
                 self.video_frame = np.frombuffer(video_frame_data, dtype=np.uint8).reshape(240, 320, 3)
-                # cv2.imshow('Received Video', self.frame)
+                # cv2.imshow('Received Video', self.video_frame)
 
                 # Audio
                 while len(audio_data) < payload_size:
@@ -113,10 +114,6 @@ class RecvController:
                     print('unable to encode the video...')
                     break
                 global_buffer = jpeg.tobytes()
-                # if global_buffer is not None:
-                #     print(len(global_buffer))
-                # else:
-                #     print('global_buffer is None.')
 
                 # stop video calling if type q
                 # if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -127,11 +124,12 @@ class RecvController:
             except socket.error as e:
                 print("Receive video socket error:", e)
                 # connection_socket.shutdown(socket.SHUT_RDWR)
-                video_connection_socket.close()
-                audio_connection_socket.close()
                 break
 
         cv2.destroyAllWindows()
+        audio_stream.stop_stream()
+        audio_stream.close()
+        audio.terminate()
 
     # def emotion_recognize(self):
     #     # Load the TFLite model and allocate tensors.
