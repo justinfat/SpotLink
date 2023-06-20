@@ -7,8 +7,8 @@ import multiprocessing
 from motion_controller.motion_controller import MotionController
 from abort_controller.abort_controller import AbortController
 from gamepad_controller.gamepad_controller import GamepadController
-from send_controller.send_controller import SendController
-from recv_controller.recv_controller import RecvController
+from input_controller.input_controller import InputController
+from output_controller.output_controller import OutputController
 from GUI_controller.GUI_controller import GUIController
 
 log = Logger().setup_logger()
@@ -30,13 +30,11 @@ def process_gamepad_controller(communication_queues):
     gamepad_controller = GamepadController(communication_queues)
     gamepad_controller.do_process_events_from_queues()
 
-def process_send_controller(communication_queues):
-    SendController(communication_queues).run(communication_queues)
+def process_input_controller(communication_queues):
+    InputController(communication_queues).run(communication_queues)
 
-def process_recv_controller(communication_queues):
-    # recv_controller = RecvController(communication_queues)
-    # recv_controller.run(communication_queues)
-    RecvController(communication_queues).run(communication_queues)
+def process_output_controller(communication_queues):
+    OutputController(communication_queues).run(communication_queues)
 
 def process_GUI_controller(communication_queues):
     GUIController(communication_queues).GUI_comm()
@@ -62,13 +60,13 @@ def main():
 
     communication_queues = create_controllers_queues()
 
-    send_controller = multiprocessing.Process(target=process_send_controller, 
+    input_controller = multiprocessing.Process(target=process_input_controller, 
                                               args=(communication_queues,))
-    send_controller.daemon = True
+    input_controller.daemon = True
 
-    recv_controller = multiprocessing.Process(target=process_recv_controller, 
+    output_controller = multiprocessing.Process(target=process_output_controller, 
                                               args=(communication_queues,))
-    recv_controller.daemon = True
+    output_controller.daemon = True
 
     # Controls the 0E port from PCA9685 to cut the power to the servos conveniently if needed.
     abort_controller = multiprocessing.Process(target=process_abort_controller, 
@@ -87,8 +85,8 @@ def main():
     # gamepad_controller.daemon = True
 
     # Start the processes
-    send_controller.start()
-    recv_controller.start()
+    input_controller.start()
+    output_controller.start()
     abort_controller.start()
     motion_controller.start()
     GUI_controller.start()
@@ -106,8 +104,8 @@ def main():
     #     sys.exit(1)
 
     # Wait till the processes end
-    send_controller.join()
-    recv_controller.join()
+    input_controller.join()
+    output_controller.join()
     abort_controller.join()
     motion_controller.join()
     GUI_controller.join()

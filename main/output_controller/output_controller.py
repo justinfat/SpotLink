@@ -41,7 +41,7 @@ def video_feed():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
-class RecvController:
+class OutputController:
     def __init__(self, communication_queues):
         self._motion_queue = communication_queues['motion_controller']
         self._socket_queue = communication_queues['socket_queue']
@@ -50,7 +50,7 @@ class RecvController:
         asound.snd_lib_error_set_handler(c_error_handler)
 
     def run(self, communication_queues):
-        controller = RecvController(communication_queues)
+        controller = OutputController(communication_queues)
         recv_video_thread = threading.Thread(target=controller.recv_video, args=())
         # emotion_recognize_thread = threading.Thread(target=controller.emotion_recognize, args=())
         recv_video_thread.start()
@@ -133,7 +133,7 @@ class RecvController:
 
     # def emotion_recognize(self):
     #     # Load the TFLite model and allocate tensors.
-    #     interpreter = Interpreter(model_path="/home/pi/MayTest/main/recv_controller/model_mobilenet.tflite")
+    #     interpreter = Interpreter(model_path="/home/pi/MayTest/main/output_controller/model_mobilenet.tflite")
     #     interpreter.allocate_tensors()
 
     #     # Get input and output tensor details
@@ -177,7 +177,7 @@ class RecvController:
 
 #     connection_socket, client_address = server_socket.accept()
 
-#     RecvController().recv_video(connection_socket)
+#     OutputController().recv_video(connection_socket)
 
 #     # connection_socket.shutdown(socket.SHUT_RDWR)
 #     connection_socket.close()

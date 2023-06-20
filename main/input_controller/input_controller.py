@@ -25,7 +25,7 @@ def py_error_handler(filename, line, function, err, fmt):
     return
 c_error_handler = ERROR_HANDLER_FUNC(py_error_handler)
 
-class SendController:
+class InputController:
     def __init__(self, communication_queues):
         self._motion_queue = communication_queues['motion_controller']
         self._socket_queue = communication_queues['socket_queue']
@@ -34,7 +34,7 @@ class SendController:
         asound.snd_lib_error_set_handler(c_error_handler)
     
     def run(self, communication_queues):
-        controller = SendController(communication_queues)
+        controller = InputController(communication_queues)
         send_video_thread = threading.Thread(target=controller.send_video, args=())
         face_track_thread = threading.Thread(target=controller.face_track, args=())
         send_video_thread.start()
@@ -138,4 +138,4 @@ class SendController:
         capture.release()
 
 # if __name__ == '__main__':
-#     SendController().send_video()
+#     InputController().send_video()
