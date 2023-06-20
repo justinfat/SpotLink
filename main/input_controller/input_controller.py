@@ -27,7 +27,7 @@ c_error_handler = ERROR_HANDLER_FUNC(py_error_handler)
 
 class InputController:
     def __init__(self, communication_queues):
-        self._motion_queue = communication_queues['motion_controller']
+        self._motion_queue = communication_queues['motion_queue']
         self._socket_queue = communication_queues['socket_queue']
         # Hide the warning from pyaudio (ALSA)
         asound = ctypes.cdll.LoadLibrary('libasound.so')

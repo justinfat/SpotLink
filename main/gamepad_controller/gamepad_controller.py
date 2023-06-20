@@ -32,8 +32,8 @@ class GamepadController:
             self.jsdev = None
             self.previous_fvalue = 0
 
-            self._abort_queue = communication_queues['abort_controller']
-            self._motion_queue = communication_queues['motion_controller']
+            self._abort_queue = communication_queues['abort_queue']
+            self._motion_queue = communication_queues['motion_queue']
 
         except Exception as e:
             log.error('Gamepad controller controller initialization problem', e)

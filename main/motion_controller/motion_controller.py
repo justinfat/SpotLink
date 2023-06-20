@@ -175,8 +175,8 @@ class MotionController:
             self.activate_pca9685_boards()
             self.activate_servos()
 
-            self._abort_queue = communication_queues['abort_controller']
-            self._motion_queue = communication_queues['motion_controller']
+            self._abort_queue = communication_queues['abort_queue']
+            self._motion_queue = communication_queues['motion_queue']
 
             self._previous_event = {}
 

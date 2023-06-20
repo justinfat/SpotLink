@@ -24,7 +24,7 @@ class AbortController:
             GPIO.setmode(GPIO.BCM)
             GPIO.setup(self.gpio_port, GPIO.OUT)
 
-            self._abort_queue = communication_queues['abort_controller']
+            self._abort_queue = communication_queues['abort_queue']
 
             self.abort()
 

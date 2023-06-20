@@ -41,8 +41,8 @@ def process_GUI_controller(communication_queues):
 
 # Queues
 def create_controllers_queues():
-    communication_queues = {'abort_controller': multiprocessing.Queue(1),
-                            'motion_controller': multiprocessing.Queue(1),
+    communication_queues = {'abort_queue': multiprocessing.Queue(1),
+                            'motion_queue': multiprocessing.Queue(1),
                             'socket_queue': multiprocessing.Queue(1)}
 
     # log.info('Created the communication queues: ' + ', '.join(communication_queues.keys()))
