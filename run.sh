@@ -1,13 +1,13 @@
 #!/bin/bash
 
-pidfile="$HOME/MayTest/.lock"
+pidfile="$HOME/SpotLink/.lock"
 if [ -f "$pidfile" ] && kill -0 "$(cat "$pidfile")" 2>/dev/null; then
     echo still running
     exit 1
 fi
 echo $$ > $pidfile
 
-cd ~/MayTest || exit
+cd ~/SpotLink || exit
 
 export PYTHONPATH=.
 
