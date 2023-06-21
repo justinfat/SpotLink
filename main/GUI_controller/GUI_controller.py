@@ -6,7 +6,7 @@ server_address = '/home/pi/uds_socket'
 
 class GUIController:
     def __init__(self, communication_queues):
-        self._motion_queue = communication_queues['motion_controller']
+        self._motion_queue = communication_queues['motion_queue']
 
     def GUI_comm(self):
         # Make sure the socket does not already exist
