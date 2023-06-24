@@ -20,7 +20,7 @@
         // setup() and All
         let screenWidth, screenHeight;
         let fr=30, light_blue, light_orange;
-        let interacteMode = "VideoCalling";
+        let interacteMode = "Sleep";
         // Standby(), Eye(), EyesEnter(), EyesLeave()
         let eyeLX_origin = 220, eyeRX_origin = 580, eyeY_origin = 240;
         let eyeW_origin = 120, eyeH_origin = 200, eyeH_closed = 20;
@@ -247,7 +247,7 @@
                 eyeBlinkCount++;
             }
 
-            if(noInputCount>30*fr){
+            if(noInputCount>10*fr){
                 interacteMode = "Sleep";
                 ipcRenderer.send('message_to_python', 'Asleep');
                 noInputCount = 0;
@@ -492,6 +492,9 @@
                     -HALF_PI + 6*PI/180*requestingCount, 
                     -HALF_PI+QUARTER_PI + 6*PI/180*requestingCount);
             requestingCount++;
+            if(requestingCount > 5*fr){
+                interacteMode = "VideoCalling";
+            }
         }
     </script>
 </body>

@@ -212,6 +212,7 @@ class MotionController:
         while True:
             try:
                 event = self._motion_queue.get(block=True)
+                print(event)
 
                 
                 if event == 'Awake':

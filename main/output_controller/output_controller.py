@@ -40,6 +40,9 @@ def generate_frames():
 def video_feed():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
+video_connection_socket = None
+audio_connection_socket = None
+video_frame = None
 
 class OutputController:
     def __init__(self, communication_queues):
@@ -50,9 +53,12 @@ class OutputController:
         asound.snd_lib_error_set_handler(c_error_handler)
 
     def run(self, communication_queues):
+        global video_connection_socket
+        global audio_connection_socket 
+
         controller = OutputController(communication_queues)
-        self.video_connection_socket = self._socket_queue.get(block=True)
-        self.audio_connection_socket = self._socket_queue.get(block=True)
+        video_connection_socket = self._socket_queue.get(block=True)
+        audio_connection_socket = self._socket_queue.get(block=True)
         recv_video_thread = threading.Thread(target=controller.recv_video, args=())
         emotion_recognize_thread = threading.Thread(target=controller.emotion_recognize, args=())
         recv_video_thread.start()
@@ -63,6 +69,8 @@ class OutputController:
 
     def recv_video(self):
         global global_buffer
+        global video_frame
+
         payload_size = struct.calcsize("L")
 
         # Video
@@ -84,25 +92,25 @@ class OutputController:
             try:
                 # Video
                 while len(video_data) < payload_size:
-                    video_data += self.video_connection_socket.recv(81920)
+                    video_data += video_connection_socket.recv(81920)
                 video_packed_size = video_data[:payload_size]
                 video_data = video_data[payload_size:]
                 video_data_size = struct.unpack("L", video_packed_size)[0]
                 while len(video_data) < video_data_size:
-                    video_data += self.video_connection_socket.recv(81920)
+                    video_data += video_connection_socket.recv(81920)
                 video_frame_data = video_data[:video_data_size]
                 video_data = video_data[video_data_size:]
-                self.video_frame = np.frombuffer(video_frame_data, dtype=np.uint8).reshape(240, 320, 3)
-                # cv2.imshow('Received Video', self.video_frame)
+                video_frame = np.frombuffer(video_frame_data, dtype=np.uint8).reshape(240, 320, 3)
+                # cv2.imshow('Received Video', video_frame)
 
                 # Audio
                 while len(audio_data) < payload_size:
-                    audio_data += self.audio_connection_socket.recv(81920)
+                    audio_data += audio_connection_socket.recv(81920)
                 audio_packed_size = audio_data[:payload_size]
                 audio_data = audio_data[payload_size:]
                 audio_data_size = struct.unpack("L", audio_packed_size)[0]
                 while len(audio_data) < audio_data_size:
-                    audio_data += self.audio_connection_socket.recv(81920)
+                    audio_data += audio_connection_socket.recv(81920)
                 audio_frame_data = audio_data[:audio_data_size]
                 audio_data = audio_data[audio_data_size:]
                 audio_frames = pickle.loads(audio_frame_data)
@@ -110,7 +118,7 @@ class OutputController:
                     audio_stream.write(audio_frame, CHUNK)
 
                 # Flask
-                ret, jpeg = cv2.imencode('.jpg', self.video_frame)
+                ret, jpeg = cv2.imencode('.jpg', video_frame)
                 if not ret:
                     print('unable to encode the video...')
                     break
@@ -133,6 +141,7 @@ class OutputController:
         audio.terminate()
 
     def emotion_recognize(self):
+        global video_frame
         # Load the TFLite model and allocate tensors.
         interpreter = Interpreter(model_path="/home/pi/SpotLink/main/output_controller/model_mobilenet_4class.tflite")
         interpreter.allocate_tensors()
@@ -153,48 +162,54 @@ class OutputController:
         count_sad = 0
 
         while True:
-            gray = cv2.cvtColor(self.video_frame, cv2.COLOR_BGR2GRAY)
-            faces = face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
-            for (x, y, w, h) in faces:
-                cv2.rectangle(self.video_frame, (x, y), (x+w, y+h), (255, 0, 0), 2)
+            if video_frame is None or video_frame.size == 0:
+                print("Error: video frame is empty")
+            else:
+                gray = cv2.cvtColor(video_frame, cv2.COLOR_BGR2GRAY)
+                faces = face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
+                for (x, y, w, h) in faces:
+                    cv2.rectangle(video_frame, (x, y), (x+w, y+h), (255, 0, 0), 2)
 
-                # if w < 50:
-                #     continue
+                    # if w < 50:
+                    #     continue
 
-                # face = gray[y:y+h, x:x+w] # choose the face region from gray
-                face = np.clip(cv2.equalizeHist(gray[y:y+h, x:x+w]) * 1 + 0, 0, 255).astype(np.uint8)
-                face = cv2.resize(face, (224, 224)).reshape(224, 224, 1)
-                #face = np.array(Image.fromarray(face))
-                face = face.astype('float32') / 255.0
-                face = np.expand_dims(face, axis=0)
+                    # face = gray[y:y+h, x:x+w] # choose the face region from gray
+                    face = np.clip(cv2.equalizeHist(gray[y:y+h, x:x+w]) * 1 + 0, 0, 255).astype(np.uint8)
+                    face = cv2.resize(face, (224, 224)).reshape(224, 224, 1)
+                    #face = np.array(Image.fromarray(face))
+                    face = face.astype('float32') / 255.0
+                    face = np.expand_dims(face, axis=0)
 
-                interpreter.set_tensor(input_details[0]['index'], face)
-                interpreter.invoke()
+                    interpreter.set_tensor(input_details[0]['index'], face)
+                    interpreter.invoke()
 
-                predictions = interpreter.get_tensor(output_details[0]['index'])
-                # max_index = np.argmax(predictions[0])
-                # emotion = emotions[max_index]
-                score = predictions[0][0]
-                if score > 0.70:
-                    emotion = 'happy'
-                    count_happy += 1
-                    count_neutral = 0
-                    count_sad = 0
-                elif score > 0.5:
-                    emotion = 'neutral'
-                    count_happy = 0
-                    count_neutral += 1
-                    count_sad = 0
-                else:
-                    emotion = 'sad'
-                    count_happy = 0
-                    count_neutral = 0
-                    count_sad += 1
+                    predictions = interpreter.get_tensor(output_details[0]['index'])
+                    # max_index = np.argmax(predictions[0])
+                    # emotion = emotions[max_index]
+                    score = predictions[0][0]
+                    if score > 0.70:
+                        emotion = 'happy'
+                        count_happy += 1
+                        count_neutral = 0
+                        count_sad = 0
+                    elif score > 0.5:
+                        emotion = 'neutral'
+                        count_happy = 0
+                        count_neutral += 1
+                        count_sad = 0
+                    else:
+                        emotion = 'sad'
+                        count_happy = 0
+                        count_neutral = 0
+                        count_sad += 1
 
-                # cv2.putText(self.video_frame, emotion, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-                if (count_happy > 3) | (count_neutral > 3) | (count_sad > 3):
-                    cv2.putText(self.video_frame, emotion, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-                    self._motion_queue.put(emotion, timeout=60)
+                    # self._motion_queue.put('happy', timeout=60)
+
+                    # cv2.putText(video_frame, emotion, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+                    if (count_happy > 3) | (count_neutral > 3) | (count_sad > 3):
+                        cv2.putText(video_frame, emotion, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+                        self._motion_queue.put(emotion, timeout=60)
+
                 
                 
 

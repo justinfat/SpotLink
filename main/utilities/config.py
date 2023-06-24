@@ -116,7 +116,7 @@ class Config(metaclass=Singleton):
 
     def load_config(self):
         try:
-            with open(str(Path.home()) + '/MayTest/main/profile.json') as json_file:
+            with open(str(Path.home()) + '/SpotLink/main/profile.json') as json_file:
                 self.values = json.load(json_file)
                 # log.debug(json.dumps(self.values, indent=4, sort_keys=True))
 
