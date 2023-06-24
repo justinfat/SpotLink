@@ -213,8 +213,17 @@ class MotionController:
             try:
                 event = self._motion_queue.get(block=True)
 
-                # send_controller
+                
+                if event == 'Awake':
+                    self.stand(12)
+                    self.body_rotate(10,0)
+                    sleep_mode = False
                 if sleep_mode == False:
+                    # output_controller
+                    if event == 'happy':
+                        self.wiggle()
+
+                    # input_controller
                     if event == 'TooRight':
                         # print('Too right...')
                         self.body_rotate(pitch_angle,yaw_angle-1)
@@ -231,10 +240,7 @@ class MotionController:
                         self.body_rotate(0,0)
                         self.init_position()
                         sleep_mode = True
-                if event == 'Awake':
-                    self.stand(12)
-                    self.body_rotate(10,0)
-                    sleep_mode = False
+                
                 
 
                     
@@ -933,6 +939,19 @@ class MotionController:
         self.move_all(spd)
         #WHY???????????
         self.stand()
+
+    ## special actions ##
+    def wiggle(self):
+        self.rear_left_position_P(rear_left_P[0], rear_left_P[1] - 1, rear_left_P[2])
+        self.rear_right_position_P(rear_right_P[0], rear_right_P[1] - 1, rear_right_P[2])
+        self.front_left_position_P(front_left_P[0], front_left_P[1] - 1, front_left_P[2])
+        self.front_right_position_P(front_right_P[0], front_right_P[1] - 1, front_right_P[2])
+        self.move_all(5)
+        self.rear_left_position_P(rear_left_P[0], rear_left_P[1] + 1, rear_left_P[2])
+        self.rear_right_position_P(rear_right_P[0], rear_right_P[1] + 1, rear_right_P[2])
+        self.front_left_position_P(front_left_P[0], front_left_P[1] + 1, front_left_P[2])
+        self.front_right_position_P(front_right_P[0], front_right_P[1] + 1, front_right_P[2])
+        self.move_all(5)
 
     ## body posture ##
     def body_pitch(self, new_pitch_angle):

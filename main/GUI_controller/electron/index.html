@@ -20,7 +20,7 @@
         // setup() and All
         let screenWidth, screenHeight;
         let fr=30, light_blue, light_orange;
-        let interacteMode = "Sleep";
+        let interacteMode = "VideoCalling";
         // Standby(), Eye(), EyesEnter(), EyesLeave()
         let eyeLX_origin = 220, eyeRX_origin = 580, eyeY_origin = 240;
         let eyeW_origin = 120, eyeH_origin = 200, eyeH_closed = 20;
@@ -92,8 +92,8 @@
                 contacts[i].position(contacts[i].x_origin, eyeY_origin);
                 contacts[i].c = light_blue;
             }
-            // videoImg = createImg("http://192.168.1.22:8586/video_feed", "video_feed", '', function(err) {console.error(err);});
-            // videoImg.hide();
+            videoImg = createImg("http://192.168.1.22:8586/video_feed", "video_feed", '', function(err) {console.error(err);});
+            videoImg.hide();
             
         }
 
