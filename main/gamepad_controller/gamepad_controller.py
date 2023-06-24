@@ -32,7 +32,7 @@ class GamepadController:
             self.jsdev = None
             self.previous_fvalue = 0
 
-            self._abort_queue = communication_queues['abort_queue']
+            # self._abort_queue = communication_queues['abort_queue']
             self._motion_queue = communication_queues['motion_queue']
 
         except Exception as e:
@@ -52,7 +52,7 @@ class GamepadController:
                 gamepad_controller_connected_already = True
             else:
                 time.sleep(2.5)
-                self._abort_queue.put('abort')
+                # self._abort_queue.put('abort')
                 gamepad_controller_connected_already = False
                 self.check_for_connected_devices()
                 continue
@@ -101,7 +101,7 @@ class GamepadController:
 
                 except Exception as e:
                     log.error('Unknown problem while processing the queue of the gamepad controller', e)
-                    self._abort_queue.put('abort')
+                    # self._abort_queue.put('abort')
                     gamepad_controller_connected_already = False
                     self.check_for_connected_devices()
                     break

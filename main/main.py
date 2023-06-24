@@ -5,7 +5,7 @@ from utilities.log import Logger
 import multiprocessing
 
 from motion_controller.motion_controller import MotionController
-from abort_controller.abort_controller import AbortController
+# from abort_controller.abort_controller import AbortController
 from gamepad_controller.gamepad_controller import GamepadController
 from input_controller.input_controller import InputController
 from output_controller.output_controller import OutputController
@@ -18,9 +18,9 @@ sever_port = 8485
 
 
 # Multiprocessing
-def process_abort_controller(communication_queues):
-    abort = AbortController(communication_queues)
-    abort.do_process_events_from_queue()
+# def process_abort_controller(communication_queues):
+#     abort = AbortController(communication_queues)
+#     abort.do_process_events_from_queue()
 
 def process_motion_controller(communication_queues):
     motion = MotionController(communication_queues)
@@ -41,8 +41,10 @@ def process_GUI_controller(communication_queues):
 
 # Queues
 def create_controllers_queues():
-    communication_queues = {'abort_queue': multiprocessing.Queue(1),
-                            'motion_queue': multiprocessing.Queue(1),
+    # communication_queues = {'abort_queue': multiprocessing.Queue(1),
+    #                         'motion_queue': multiprocessing.Queue(1),
+    #                         'socket_queue': multiprocessing.Queue(1)}
+    communication_queues = {'motion_queue': multiprocessing.Queue(1),
                             'socket_queue': multiprocessing.Queue(1)}
 
     # log.info('Created the communication queues: ' + ', '.join(communication_queues.keys()))
@@ -69,9 +71,9 @@ def main():
     output_controller.daemon = True
 
     # Controls the 0E port from PCA9685 to cut the power to the servos conveniently if needed.
-    abort_controller = multiprocessing.Process(target=process_abort_controller, 
-                                               args=(communication_queues,))
-    abort_controller.daemon = True  # The daemon dies if the parent process dies
+    # abort_controller = multiprocessing.Process(target=process_abort_controller, 
+    #                                            args=(communication_queues,))
+    # abort_controller.daemon = True  # The daemon dies if the parent process dies
 
     motion_controller = multiprocessing.Process(target=process_motion_controller, 
                                                 args=(communication_queues,))
@@ -87,15 +89,15 @@ def main():
     # Start the processes
     input_controller.start()
     output_controller.start()
-    abort_controller.start()
+    # abort_controller.start()
     motion_controller.start()
     GUI_controller.start()
     # gamepad_controller.start()
 
     # Make sure all controllers are working
-    if not abort_controller.is_alive():
-        log.error("SpotMicro can't work without abort_controller")
-        sys.exit(1)
+    # if not abort_controller.is_alive():
+    #     log.error("SpotMicro can't work without abort_controller")
+    #     sys.exit(1)
     if not motion_controller.is_alive():
         log.error("SpotMicro can't work without motion_controller")
         sys.exit(1)
@@ -106,7 +108,7 @@ def main():
     # Wait till the processes end
     input_controller.join()
     output_controller.join()
-    abort_controller.join()
+    # abort_controller.join()
     motion_controller.join()
     GUI_controller.join()
     # gamepad_controller.join()
