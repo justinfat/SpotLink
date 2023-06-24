@@ -20,7 +20,7 @@
         // setup() and All
         let screenWidth, screenHeight;
         let fr=30, light_blue, light_orange;
-        let interacteMode = "VideoCalling";
+        let interacteMode = "Sleep";
         // Standby(), Eye(), EyesEnter(), EyesLeave()
         let eyeLX_origin = 220, eyeRX_origin = 580, eyeY_origin = 240;
         let eyeW_origin = 120, eyeH_origin = 200, eyeH_closed = 20;
@@ -33,12 +33,12 @@
         let sleepCurvePointsY = [], sleepCurvePointsDir = [];
         let sleepWaveSteps = 10, sleepWaveAmp = 30;
         let awakeCount = 0;
-        // Contact(), ContactsMenu(), ContactsEnter(), ContactsLeave(), ContactCalling()
+        // Contact(), ContactsMenu(), ContactsEnter(), ContactsLeave(), Requesting()
         let contacts = [], contactsNum = 5, maskImg;
         let contactsX_origin = [], contactD_origin = 120;
         let contactsEnterCount = 0, contactsLeaveCount = 0;
         let contactIsSelected = null, contactChoosedCount = 0;
-        let contactCallingCount = 0;
+        let requestingCount = 0;
         // VideoCalling()
         let videoImg;
         let dataFromServer='', dataToServer = 'Hello from p5.js';
@@ -92,8 +92,8 @@
                 contacts[i].position(contacts[i].x_origin, eyeY_origin);
                 contacts[i].c = light_blue;
             }
-            videoImg = createImg("http://192.168.1.22:8586/video_feed", "video_feed", '', function(err) {console.error(err);});
-            videoImg.hide();
+            // videoImg = createImg("http://192.168.1.22:8586/video_feed", "video_feed", '', function(err) {console.error(err);});
+            // videoImg.hide();
             
         }
 
@@ -119,8 +119,8 @@
             } else if(interacteMode === "ContactsMenu2ContactCalling"){
                 ContactsLeave();
                 ContactChoosed(contactIsSelected);
-            } else if(interacteMode === "ContactCalling"){
-                ContactCalling(contactIsSelected);
+            } else if(interacteMode === "Requesting"){
+                Requesting(contactIsSelected);
             } else if(interacteMode === "VideoCalling"){
                 VideoCalling();
             }
@@ -214,10 +214,11 @@
                     eyeR.x = eyeRX_origin+vR.x; eyeR.y = eyeY_origin+vR.y;
                 }		
 
-                noFill();
-                strokeWeight(8);
-                stroke(light_orange);
-                arc(mouseX, mouseY, 100, 100, -HALF_PI, -HALF_PI + 2*PI*mousePressedCount/(2*fr));
+                // noFill();
+                // strokeWeight(8);
+                // stroke(light_orange);
+                // arc(mouseX, mouseY, 100, 100, -HALF_PI, -HALF_PI + 2*PI*mousePressedCount/(2*fr));
+                LongTouch(2);
                 mousePressedCount++;
                 if(mousePressedCount > 2*fr){
                     interacteMode = "Standby2Menu";
@@ -251,6 +252,13 @@
                 ipcRenderer.send('message_to_python', 'Asleep');
                 noInputCount = 0;
             }
+        }
+
+        function LongTouch(second){
+            noFill();
+            strokeWeight(8);
+            stroke(light_orange);
+            arc(mouseX+30, mouseY-60, 50, 50, -HALF_PI, -HALF_PI + 2*PI*mousePressedCount/(second*fr));
         }
 
         function Eye(x, y, w, h){
@@ -380,10 +388,11 @@
                 }
                 
                 if(contactIsSelected === null){
-                    noFill();
-                    strokeWeight(8);
-                    stroke(light_orange);
-                    arc(mouseX, mouseY, 50, 50, -HALF_PI, -HALF_PI + 2*PI*mousePressedCount/(2*fr));
+                    // noFill();
+                    // strokeWeight(8);
+                    // stroke(light_orange);
+                    // arc(mouseX, mouseY, 50, 50, -HALF_PI, -HALF_PI + 2*PI*mousePressedCount/(2*fr));
+                    // LongTouch(2);
                     mousePressedCount++;
                 } else{
                     mousePressedCount = 0;
@@ -417,6 +426,9 @@
                 }
             }
             
+            if(mousePressedCount > 0){
+                LongTouch(2);
+            }
             if(mousePressedCount > 2*fr){
                 interacteMode = "ContactsMenu2Standby";
                 mousePressedCount = 0;
@@ -459,7 +471,7 @@
                 contacts[i].x += (screenWidth/2-contacts[i].x)*contactChoosedCount/(1*fr);
                 contacts[i].d += (320-contacts[i].d)*contactChoosedCount/(1*fr);
             } else{
-                interacteMode = "ContactCalling";
+                interacteMode = "Requesting";
                 contactChoosedCount = 0;
             }
             contacts[i].display();
@@ -471,15 +483,15 @@
             
         }
 
-        function ContactCalling(i){
+        function Requesting(i){
             contacts[i].display();
             noFill();
             strokeWeight(8);
             stroke(light_orange);
             arc(contacts[i].x, contacts[i].y, contacts[i].d-8, contacts[i].d-8,
-                    -HALF_PI + 6*PI/180*contactCallingCount, 
-                    -HALF_PI+QUARTER_PI + 6*PI/180*contactCallingCount);
-            contactCallingCount++;
+                    -HALF_PI + 6*PI/180*requestingCount, 
+                    -HALF_PI+QUARTER_PI + 6*PI/180*requestingCount);
+            requestingCount++;
         }
     </script>
 </body>
