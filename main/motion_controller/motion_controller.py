@@ -943,16 +943,30 @@ class MotionController:
 
     ## special actions ##
     def wiggle(self):
-        self.rear_left_position_P(rear_left_P[0], rear_left_P[1] - 1, rear_left_P[2])
-        self.rear_right_position_P(rear_right_P[0], rear_right_P[1] - 1, rear_right_P[2])
-        self.front_left_position_P(front_left_P[0], front_left_P[1] - 1, front_left_P[2])
-        self.front_right_position_P(front_right_P[0], front_right_P[1] - 1, front_right_P[2])
-        self.move_all(5)
-        self.rear_left_position_P(rear_left_P[0], rear_left_P[1] + 1, rear_left_P[2])
-        self.rear_right_position_P(rear_right_P[0], rear_right_P[1] + 1, rear_right_P[2])
-        self.front_left_position_P(front_left_P[0], front_left_P[1] + 1, front_left_P[2])
-        self.front_right_position_P(front_right_P[0], front_right_P[1] + 1, front_right_P[2])
-        self.move_all(5)
+        amp = 2
+        step = 15
+        self.rear_left_position_P(rear_left_P[0], rear_left_P[1] - amp, rear_left_P[2])
+        self.rear_right_position_P(rear_right_P[0], rear_right_P[1] - amp, rear_right_P[2])
+        self.front_left_position_P(front_left_P[0], front_left_P[1] - amp, front_left_P[2])
+        self.front_right_position_P(front_right_P[0], front_right_P[1] - amp, front_right_P[2])
+        self.move_all(step)
+        self.rear_left_position_P(rear_left_P[0], rear_left_P[1] + amp, rear_left_P[2])
+        self.rear_right_position_P(rear_right_P[0], rear_right_P[1] + amp, rear_right_P[2])
+        self.front_left_position_P(front_left_P[0], front_left_P[1] + amp, front_left_P[2])
+        self.front_right_position_P(front_right_P[0], front_right_P[1] + amp, front_right_P[2])
+        self.move_all(step)
+    
+    def tap(self):
+        amp = 3
+        step = 10
+        self.front_left_position_P(front_left_P[0], front_left_P[1] + amp, front_left_P[2])
+        self.move_all(step)
+        self.front_left_position_P(front_left_P[0], front_left_P[1] - amp, front_left_P[2])
+        self.move_all(step)
+        self.front_right_position_P(front_right_P[0], front_right_P[1] + amp, front_right_P[2])
+        self.move_all(step)
+        self.front_right_position_P(front_right_P[0], front_right_P[1] - amp, front_right_P[2])
+        self.move_all(step)
 
     ## body posture ##
     def body_pitch(self, new_pitch_angle):
@@ -1192,20 +1206,29 @@ class MotionController:
         return b1 + ((s - a1) * (b2 - b1) / (a2 - a1))
     
 if __name__ == '__main__':
-    communication_queues = {'abort_controller': 'fake',
-                            'motion_controller': 'fake',
+    communication_queues = {'abort_queue': 'fake',
+                            'motion_queue': 'fake',
                             'socket_queue': 'fake'}
     MC = MotionController(communication_queues)
-    # MC.init_position()
-    # MC.stand(12)
+    MC.init_position()
+    MC.stand(12)
+    MC.body_rotate(10,0)
 
     while True:
-        user_input = input("Insert pitch angle: ")
+        user_input = input("Insert command: ")
 
         if user_input == 'q':
             break
+        elif user_input == 'w':
+            MC.wiggle()
+        elif user_input == 'ww':
+            MC.wiggle()
+            MC.wiggle()
+        elif user_input == 't':
+            MC.tap()
         else:
-            MC.body_rotate(10,float(user_input))
+            print('Unknown command')
+            # MC.body_rotate(10,float(user_input))
             # print('front_left_P: ', front_left_P[0], front_left_P[1], front_left_P[2])
             # print('front_right_P: ', front_right_P[0], front_right_P[1], front_right_P[2])
             # print('rear_left_P: ', rear_left_P[0], rear_left_P[1], rear_left_P[2])
