@@ -188,6 +188,7 @@
                 // eyeR.y = (eyeY_origin-4*0.3*fr+60*0.7*fr);
                 interacteMode = "EyesEnter";
                 ipcRenderer.send('message_to_python', 'Awake');
+                awakeCount = 0;
             }
         }
 
@@ -247,7 +248,7 @@
                 eyeBlinkCount++;
             }
 
-            if(noInputCount>10*fr){
+            if(noInputCount>120*fr){
                 interacteMode = "Sleep";
                 ipcRenderer.send('message_to_python', 'Asleep');
                 noInputCount = 0;

@@ -225,10 +225,10 @@ class MotionController:
                         self.wiggle()
 
                     # input_controller
-                    if event == 'TooRight':
+                    if event == 'TooLeft':
                         # print('Too right...')
                         self.body_rotate(pitch_angle,yaw_angle-1)
-                    if event == 'TooLeft':
+                    if event == 'TooRight':
                         # print('Too left...')
                         self.body_rotate(pitch_angle,yaw_angle+1)
                     if event == 'TooLow':
