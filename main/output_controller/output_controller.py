@@ -205,10 +205,10 @@ class OutputController:
 
                     # self._motion_queue.put('happy', timeout=60)
 
-                    # cv2.putText(video_frame, emotion, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-                    if (count_happy > 3) | (count_neutral > 3) | (count_sad > 3):
-                        cv2.putText(video_frame, emotion, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-                        self._motion_queue.put(emotion, timeout=60)
+                    cv2.putText(video_frame, emotion, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+                    # if (count_happy > 3) | (count_neutral > 3) | (count_sad > 3):
+                    #     cv2.putText(video_frame, emotion, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+                    #     self._motion_queue.put(emotion, timeout=60)
 
                 
                 
