@@ -43,7 +43,7 @@
 				"rest_angle": 8
 			}],
 			"rear_shoulder_right": [{
-				"pca9685": 2,
+				"pca9685": 1,
 				"channel": 5,
 				"min_pulse": 500,
 				"max_pulse": 2500,
