@@ -67,6 +67,7 @@ while True:
             pca.frequency = PCA9685_FREQUENCY
 
             active_servo = servo.Servo(pca.channels[CHANNEL])
+            active_servo.actuation_range = 180
             active_servo.set_pulse_width_range(min_pulse=MIN_PULSE, max_pulse=MAX_PULSE)
 
             if user_input == 'menu' or user_input == 'm':
