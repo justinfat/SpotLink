@@ -1212,7 +1212,7 @@ if __name__ == '__main__':
     MC = MotionController(communication_queues)
     MC.init_position()
     MC.stand(12)
-    MC.body_rotate(10,0)
+    # MC.body_rotate(10,0)
 
     while True:
         user_input = input("Insert command: ")
