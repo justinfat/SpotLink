@@ -264,7 +264,7 @@ class MotionController:
                 #         if self.is_activated:
                 #             self.init_position()
                 #             time.sleep(0.5)
-                #             self.deactivate_pca9685_boards()
+                #             # self.deactivate_pca9685_boards()
                 #             self._abort_queue.put('abort')
                 #         else:
                 #             self._abort_queue.put('activate')
@@ -329,7 +329,7 @@ class MotionController:
                 if self.is_activated:
                     self.init_position()
                     time.sleep(0.5)
-                    self.deactivate_pca9685_boards()
+                    # self.deactivate_pca9685_boards()
             
             except Exception as e:
                 print(e)
@@ -340,44 +340,44 @@ class MotionController:
         self.pca9685_1_reference_clock_speed = int(Config().get(Config.MOTION_CONTROLLER_BOARDS_PCA9685_1_REFERENCE_CLOCK_SPEED))
         self.pca9685_1_frequency = int(Config().get(Config.MOTION_CONTROLLER_BOARDS_PCA9685_1_FREQUENCY))
 
-        self.pca9685_2_address = False
-        try:
-            self.pca9685_2_address = int(Config().get(Config.MOTION_CONTROLLER_BOARDS_PCA9685_2_ADDRESS), 0)
+        # self.pca9685_2_address = False
+        # try:
+        #     self.pca9685_2_address = int(Config().get(Config.MOTION_CONTROLLER_BOARDS_PCA9685_2_ADDRESS), 0)
 
-            if self.pca9685_2_address:
-                self.pca9685_2_reference_clock_speed = int(Config().get(Config.MOTION_CONTROLLER_BOARDS_PCA9685_2_REFERENCE_CLOCK_SPEED))
-                self.pca9685_2_frequency = int(Config().get(Config.MOTION_CONTROLLER_BOARDS_PCA9685_2_FREQUENCY))
+        #     if self.pca9685_2_address:
+        #         self.pca9685_2_reference_clock_speed = int(Config().get(Config.MOTION_CONTROLLER_BOARDS_PCA9685_2_REFERENCE_CLOCK_SPEED))
+        #         self.pca9685_2_frequency = int(Config().get(Config.MOTION_CONTROLLER_BOARDS_PCA9685_2_FREQUENCY))
 
-        except Exception as e:
-            log.debug("Only 1 PCA9685 is present in the configuration")
+        # except Exception as e:
+        #     log.debug("Only 1 PCA9685 is present in the configuration")
     def activate_pca9685_boards(self):
 
         self.pca9685_1 = PCA9685(self.i2c, address=self.pca9685_1_address,
                                  reference_clock_speed=self.pca9685_1_reference_clock_speed)
         self.pca9685_1.frequency = self.pca9685_1_frequency
 
-        if self.pca9685_2_address:
-            self.pca9685_2 = PCA9685(self.i2c, address=self.pca9685_2_address,
-                                     reference_clock_speed=self.pca9685_2_reference_clock_speed)
-            self.pca9685_2.frequency = self.pca9685_2_frequency
-            self.boards = 2
+        # if self.pca9685_2_address:
+        #     self.pca9685_2 = PCA9685(self.i2c, address=self.pca9685_2_address,
+        #                              reference_clock_speed=self.pca9685_2_reference_clock_speed)
+        #     self.pca9685_2.frequency = self.pca9685_2_frequency
+        #     self.boards = 2
 
         self.is_activated = True
         log.debug(str(self.boards) + ' PCA9685 board(s) activated')
-    def deactivate_pca9685_boards(self):
+    # def deactivate_pca9685_boards(self):
 
-        try:
-            if self.pca9685_1:
-                self.pca9685_1.deinit()
-        finally:
-            try:
-                if self.boards == 2 and self.pca9685_2:
-                    self.pca9685_2.deinit()
-            finally:
-                # self._abort_queue.put(queues.ABORT_CONTROLLER_ACTION_ABORT)
-                self.is_activated = False
+    #     try:
+    #         if self.pca9685_1:
+    #             self.pca9685_1.deinit()
+    #     finally:
+    #         try:
+    #             if self.boards == 2 and self.pca9685_2:
+    #                 self.pca9685_2.deinit()
+    #         finally:
+    #             # self._abort_queue.put(queues.ABORT_CONTROLLER_ACTION_ABORT)
+    #             self.is_activated = False
 
-        log.debug(str(self.boards) + ' PCA9685 board(s) deactivated')
+    #     log.debug(str(self.boards) + ' PCA9685 board(s) deactivated')
     def load_servos_configuration(self):
 
         self.servo_rear_shoulder_left_pca9685 = Config().get(Config.MOTION_CONTROLLER_SERVOS_REAR_SHOULDER_LEFT_PCA9685)
