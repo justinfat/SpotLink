@@ -1,13 +1,9 @@
 import json
 import sys
 import os
-from utilities.log import Logger
 import jmespath  # http://jmespath.org/tutorial.html
 import shutil
 from pathlib import Path
-
-log = Logger().setup_logger('Configuration')
-
 
 class Singleton(type):
     _instances = {}
@@ -106,36 +102,35 @@ class Config(metaclass=Singleton):
     def __init__(self):
 
         try:
-            log.debug('Loading configuration...')
+            print('Loading configuration...')
 
             self.load_config()
             self.list_modules()
 
         except Exception as e:
-            log.error('Problem while loading the configuration file', e)
+            print('Problem while loading the configuration file', e)
 
     def load_config(self):
         try:
             with open(str(Path.home()) + '/SpotLink/main/profile.json') as json_file:
                 self.values = json.load(json_file)
-                # log.debug(json.dumps(self.values, indent=4, sort_keys=True))
 
         except Exception as e:
-            log.error("Configuration file don't exist or is not a valid json, aborting.")
+            print("Configuration file don't exist or is not a valid json, aborting.")
             sys.exit(1)
 
     def list_modules(self):
-        log.info('Detected configuration for the modules: ' + ', '.join(self.values.keys()))
+        print('Detected configuration for the modules: ' + ', '.join(self.values.keys()))
 
     def save_config(self):
         try:
             with open('~/profile.json', 'w') as outfile:
                 json.dump(self.values, outfile)
         except Exception as e:
-            log.error("Problem saving the configuration file", e)
+            print("Problem saving the configuration file", e)
 
     def get(self, search_pattern):
-        log.debug(search_pattern + ': ' + str(jmespath.search(search_pattern, self.values)))
+        print(search_pattern + ': ' + str(jmespath.search(search_pattern, self.values)))
         return jmespath.search(search_pattern, self.values)
 
     def get_by_section_name(self, search_pattern):
@@ -152,12 +147,12 @@ class Config(metaclass=Singleton):
         PCA9685_REFERENCE_CLOCK_SPEED = 'motion_controller[*].boards[*].pca9685_' + str(PCA9685) + '[*].reference_clock_speed | [0] | [0] | [0]'
         PCA9685_FREQUENCY = 'motion_controller[*].boards[*].pca9685_' + str(PCA9685) + '[*].frequency | [0] | [0] | [0]'
 
-        log.info('PCA9685_ADDRESS: ' + str(jmespath.search(PCA9685_ADDRESS, self.values)))
-        log.info('PCA9685_REFERENCE_CLOCK_SPEED: ' + str(jmespath.search(PCA9685_REFERENCE_CLOCK_SPEED, self.values)))
-        log.info('PCA9685_FREQUENCY: ' + str(jmespath.search(PCA9685_FREQUENCY, self.values)))
-        log.info('CHANNEL: ' + str(jmespath.search(CHANNEL, self.values)))
-        log.info('MIN_PULSE: ' + str(jmespath.search(MIN_PULSE, self.values)))
-        log.info('MAX_PULSE: ' + str(jmespath.search(MAX_PULSE, self.values)))
-        log.info('REST_ANGLE: ' + str(jmespath.search(REST_ANGLE, self.values)))
+        print('PCA9685_ADDRESS: ' + str(jmespath.search(PCA9685_ADDRESS, self.values)))
+        print('PCA9685_REFERENCE_CLOCK_SPEED: ' + str(jmespath.search(PCA9685_REFERENCE_CLOCK_SPEED, self.values)))
+        print('PCA9685_FREQUENCY: ' + str(jmespath.search(PCA9685_FREQUENCY, self.values)))
+        print('CHANNEL: ' + str(jmespath.search(CHANNEL, self.values)))
+        print('MIN_PULSE: ' + str(jmespath.search(MIN_PULSE, self.values)))
+        print('MAX_PULSE: ' + str(jmespath.search(MAX_PULSE, self.values)))
+        print('REST_ANGLE: ' + str(jmespath.search(REST_ANGLE, self.values)))
 
         return jmespath.search(PCA9685_ADDRESS, self.values), jmespath.search(PCA9685_REFERENCE_CLOCK_SPEED, self.values), jmespath.search(PCA9685_FREQUENCY, self.values), jmespath.search(CHANNEL, self.values), jmespath.search(MIN_PULSE, self.values), jmespath.search(MAX_PULSE, self.values), jmespath.search(REST_ANGLE, self.values)

@@ -7,10 +7,7 @@ import busio
 from board import SCL, SDA
 from adafruit_pca9685 import PCA9685
 from adafruit_motor import servo
-from utilities.log import Logger
 from utilities.config import Config
-
-log = Logger().setup_logger('Motion controller')
 
 sleep_mode = True
 # Body size
@@ -163,7 +160,7 @@ class MotionController:
 
         try:
 
-            # log.debug('Starting controller...')
+            # print('Starting controller...')
             print('initializing motion controller...')
 
             signal.signal(signal.SIGINT, self.exit_gracefully)
@@ -186,7 +183,7 @@ class MotionController:
             
 
         except Exception as e:
-            log.error('Motion controller initialization problem', e)
+            print('Motion controller initialization problem', e)
             try:
                 self.pca9685_1.deinit()
             finally:
@@ -204,7 +201,7 @@ class MotionController:
                 if self.boards == 2:
                     self.pca9685_2.deinit()
             finally:
-                log.info('Terminated')
+                print('Terminated')
                 sys.exit(0)
 
     def do_process_events_from_queues(self):
@@ -241,90 +238,9 @@ class MotionController:
                         self.body_rotate(0,0)
                         self.init_position()
                         sleep_mode = True
-                
-                
-
-                    
-
-                # #serial controller
-                # if type(event) == int:
-                #     if event == 11519:
-                #         self.walk_stably()
-                #     if event == 21074: #right
-                #         self.shift_z(1)
-                #         #self.rotate_CW()
-                #         #self._serial_queue.put(0)
-                #     if event == 19532: #left
-                #         self.shift_z(-1)
-                #         #self.rotate_CCW()
-                #         #self._serial_queue.put(0)
-                # else:
-                #     #gamepad controller
-                #     if event['start']:
-                #         if self.is_activated:
-                #             self.init_position()
-                #             time.sleep(0.5)
-                #             # self.deactivate_pca9685_boards()
-                #             self._abort_queue.put('abort')
-                #         else:
-                #             self._abort_queue.put('activate')
-                #             self.activate_pca9685_boards()
-                #             self.activate_servos()
-                #             self.init_position()
-
-                #     if not self.is_activated:
-                #         log.info('Press START/OPTIONS to enable the servos')
-                #         continue
-                    
-                #     if event['mode']: #PS button
-                #         self.init_position()
-                #         log.info('resting')
-
-                #     #if event['a']: # buttom
-                #     #    self.stand()
-                        
-
-                #     if event['x']: #top
-                #         self.walk_stably()
-
-                #     if event['y']: #left
-                #         self.start_walk()
-
-                #     #if event['b']: #right
-                #     #    self.stop_walk()
-                    
-                #     ## body posture ##
-                #     if event['select']: #share
-                #         self.stand()
-                #         log.info('standing...')
-                #         log.info(self.servo_rear_shoulder_left.angle, self.servo_rear_shoulder_right.angle, self.servo_front_shoulder_left.angle, self.servo_front_shoulder_right.angle)
-
-                #     if event['hat0x']: #direction button x
-                #         self.shift_z(event['hat0x'])
-
-                #     if event['hat0y']: #direction button y
-                #         self.body_move_y(event['hat0y'])
-
-                #     if event['ry']: #right joystick y
-                #         self.body_move_analog_x(event['ry'])
-
-                #     if event['rx']: #right joystick x
-                #         self.body_move_analog_z(event['rx'])
-
-                #     if event['tr']: #R1
-                #         self.rotate_CW()
-
-                #     if event['tl']: #L1
-                #         self.rotate_CCW()
-                    
-                    # if event['hat0x'] and event['tl2']:
-                    #     # 2 buttons example
-                    #     pass
-
-                    #self.move()
 
             except queue.Empty as e:
-                log.info('Inactivity lasted 60 seconds, shutting down the servos, '
+                print('Inactivity lasted 60 seconds, shutting down the servos, '
                          'press start to reactivate')
                 if self.is_activated:
                     self.init_position()
@@ -349,7 +265,7 @@ class MotionController:
         #         self.pca9685_2_frequency = int(Config().get(Config.MOTION_CONTROLLER_BOARDS_PCA9685_2_FREQUENCY))
 
         # except Exception as e:
-        #     log.debug("Only 1 PCA9685 is present in the configuration")
+        #     print("Only 1 PCA9685 is present in the configuration")
     def activate_pca9685_boards(self):
 
         self.pca9685_1 = PCA9685(self.i2c, address=self.pca9685_1_address,
@@ -363,7 +279,7 @@ class MotionController:
         #     self.boards = 2
 
         self.is_activated = True
-        log.debug(str(self.boards) + ' PCA9685 board(s) activated')
+        print(str(self.boards) + ' PCA9685 board(s) activated')
     # def deactivate_pca9685_boards(self):
 
     #     try:
@@ -377,7 +293,7 @@ class MotionController:
     #             # self._abort_queue.put(queues.ABORT_CONTROLLER_ACTION_ABORT)
     #             self.is_activated = False
 
-    #     log.debug(str(self.boards) + ' PCA9685 board(s) deactivated')
+    #     print(str(self.boards) + ' PCA9685 board(s) deactivated')
     def load_servos_configuration(self):
 
         self.servo_rear_shoulder_left_pca9685 = Config().get(Config.MOTION_CONTROLLER_SERVOS_REAR_SHOULDER_LEFT_PCA9685)
@@ -1074,83 +990,63 @@ class MotionController:
         try:
             self.servo_rear_shoulder_left.angle = self.servo_rear_shoulder_left_rest_angle
         except ValueError as e:
-            log.error('Impossible servo_rear_shoulder_left angle requested')
+            print('Impossible servo_rear_shoulder_left angle requested')
 
         try:
             self.servo_rear_leg_left.angle = self.servo_rear_leg_left_rest_angle
         except ValueError as e:
-            log.error('Impossible servo_rear_leg_left angle requested')
+            print('Impossible servo_rear_leg_left angle requested')
 
         try:
             self.servo_rear_feet_left.angle = self.servo_rear_feet_left_rest_angle
         except ValueError as e:
-            log.error('Impossible servo_rear_feet_left angle requested')
+            print('Impossible servo_rear_feet_left angle requested')
 
         try:
             self.servo_rear_shoulder_right.angle = self.servo_rear_shoulder_right_rest_angle
         except ValueError as e:
-            log.error('Impossible servo_rear_shoulder_right angle requested')
+            print('Impossible servo_rear_shoulder_right angle requested')
 
         try:
             self.servo_rear_leg_right.angle = self.servo_rear_leg_right_rest_angle
         except ValueError as e:
-            log.error('Impossible servo_rear_leg_right angle requested')
+            print('Impossible servo_rear_leg_right angle requested')
 
         try:
             self.servo_rear_feet_right.angle = self.servo_rear_feet_right_rest_angle
         except ValueError as e:
-            log.error('Impossible servo_rear_feet_right angle requested')
+            print('Impossible servo_rear_feet_right angle requested')
 
         try:
             self.servo_front_shoulder_left.angle = self.servo_front_shoulder_left_rest_angle
         except ValueError as e:
-            log.error('Impossible servo_front_shoulder_left angle requested')
+            print('Impossible servo_front_shoulder_left angle requested')
 
         try:
             self.servo_front_leg_left.angle = self.servo_front_leg_left_rest_angle
         except ValueError as e:
-            log.error('Impossible servo_front_leg_left angle requested')
+            print('Impossible servo_front_leg_left angle requested')
 
         try:
             self.servo_front_feet_left.angle = self.servo_front_feet_left_rest_angle
         except ValueError as e:
-            log.error('Impossible servo_front_feet_left angle requested')
+            print('Impossible servo_front_feet_left angle requested')
 
         try:
             self.servo_front_shoulder_right.angle = self.servo_front_shoulder_right_rest_angle
         except ValueError as e:
-            log.error('Impossible servo_front_shoulder_right angle requested')
+            print('Impossible servo_front_shoulder_right angle requested')
 
         try:
             self.servo_front_leg_right.angle = self.servo_front_leg_right_rest_angle
         except ValueError as e:
-            log.error('Impossible servo_front_leg_right angle requested')
+            print('Impossible servo_front_leg_right angle requested')
 
         try:
             self.servo_front_feet_right.angle = self.servo_front_feet_right_rest_angle
         except ValueError as e:
-            log.error('Impossible servo_front_feet_right angle requested')
-
-        # if self.servo_arm_rotation_pca9685:
-        #     try:
-        #         self.servo_arm_rotation.angle = self.servo_arm_rotation_rest_angle
-        #     except ValueError as e:
-        #         log.error('Impossible servo_arm_rotation angle requested')
-
-        #     try:
-        #         self.servo_arm_lift.angle = self.servo_arm_lift_rest_angle
-        #     except ValueError as e:
-        #         log.error('Impossible arm_lift angle requested')
-
-        #     try:
-        #         self.servo_arm_range.angle = self.servo_arm_range_rest_angle
-        #     except ValueError as e:
-        #         log.error('Impossible servo_arm_range angle requested')
-
-        #     try:
-        #         self.servo_arm_cam_tilt.angle = self.servo_arm_cam_tilt_rest_angle
-        #     except ValueError as e:
-        #         log.error('Impossible servo_arm_cam_tilt angle requested')
+            print('Impossible servo_front_feet_right angle requested')
+            
     def init_position(self):
 
         self.servo_rear_shoulder_left_rest_angle = Config().get(Config.MOTION_CONTROLLER_SERVOS_REAR_SHOULDER_LEFT_REST_ANGLE)
