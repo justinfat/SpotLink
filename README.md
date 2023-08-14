@@ -15,6 +15,7 @@ The link will be attached here once the paper is published.
 # Attributions
 
 The mechanism parts are adapted from SpotMicro model, which is originally developed by Deok-yeon Kim and released on [Thingiverse](https://www.thingiverse.com/thing:3445283).
+
 The eletronics and the programs are adapted from SpotMicroAI, which is originally developed by Fran Ferri and released on [SpotMicroAI](https://spotmicroai.readthedocs.io/en/latest/).
 
 # License
