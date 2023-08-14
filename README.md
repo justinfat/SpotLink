@@ -18,6 +18,4 @@ The link will be attached here once the paper is published.
 
 [Creative Commons Attribution](https://creativecommons.org/licenses/by/3.0/)
 
-![cc_icon_white_x2.png](Github%20Readme%20d90b6f0775cd44869a7b3053f1cbf16a/cc_icon_white_x2.png)
-
-![attribution_icon_white_x2.png](Github%20Readme%20d90b6f0775cd44869a7b3053f1cbf16a/attribution_icon_white_x2.png)
+![cc_icon_white_x2.png](images/cc_icon_white_x2.png)![attribution_icon_white_x2.png](images/attribution_icon_white_x2.png)
