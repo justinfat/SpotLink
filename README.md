@@ -1,5 +1,3 @@
-# Github Readme
-
 ![Entity.png](images/Entity.png)
 
 # SpotLink
