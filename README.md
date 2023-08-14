@@ -1,6 +1,6 @@
 # Github Readme
 
-![Entity.png](Github%20Readme%20d90b6f0775cd44869a7b3053f1cbf16a/Entity.png)
+![Entity.png](images/Entity.png)
 
 # SpotLink
 
